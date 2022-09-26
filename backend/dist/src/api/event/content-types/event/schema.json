@@ -1,0 +1,60 @@
+{
+    "kind": "collectionType",
+    "collectionName": "events",
+    "info": {
+        "singularName": "event",
+        "pluralName": "events",
+        "displayName": "event",
+        "description": ""
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "name": {
+            "type": "string",
+            "required": true
+        },
+        "startdate": {
+            "type": "date",
+            "required": true
+        },
+        "enddate": {
+            "type": "date"
+        },
+        "logo": {
+            "type": "media",
+            "multiple": false,
+            "required": false,
+            "allowedTypes": [
+                "images",
+                "files",
+                "videos",
+                "audios"
+            ]
+        },
+        "url": {
+            "type": "string",
+            "regex": "https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)",
+            "required": false
+        },
+        "numberofattendees": {
+            "type": "biginteger"
+        },
+        "services": {
+            "type": "relation",
+            "relation": "manyToMany",
+            "target": "api::service.service",
+            "mappedBy": "events"
+        },
+        "drinksserved": {
+            "type": "biginteger"
+        },
+        "hide": {
+            "type": "boolean",
+            "default": false,
+            "required": true
+        }
+    }
+}
