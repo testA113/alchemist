@@ -1,0 +1,16 @@
+{
+    "collectionName": "components_shared_video_heroes",
+    "info": {
+        "displayName": "video hero",
+        "icon": "video"
+    },
+    "options": {},
+    "attributes": {
+        "url": {
+            "type": "string"
+        },
+        "textoverlay": {
+            "type": "richtext"
+        }
+    }
+}

@@ -55,6 +55,11 @@
       "type": "boolean",
       "default": false,
       "required": true
+    },
+    "client": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::client.client"
     }
   }
 }
