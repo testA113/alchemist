@@ -1,0 +1,49 @@
+{
+    "collectionName": "components_sections_video_heroes",
+    "info": {
+        "displayName": "video hero",
+        "icon": "video",
+        "description": ""
+    },
+    "options": {},
+    "attributes": {
+        "videourl": {
+            "type": "string"
+        },
+        "cyclingsentence": {
+            "type": "component",
+            "repeatable": true,
+            "component": "sections.cyclingsentence"
+        },
+        "showscroll": {
+            "type": "boolean"
+        },
+        "primarybutton": {
+            "type": "component",
+            "repeatable": false,
+            "component": "links.button"
+        },
+        "secondarybutton": {
+            "type": "component",
+            "repeatable": false,
+            "component": "links.button"
+        },
+        "link": {
+            "type": "component",
+            "repeatable": true,
+            "component": "links.button"
+        },
+        "videoname": {
+            "type": "string"
+        },
+        "backgroundimage": {
+            "type": "media",
+            "multiple": false,
+            "required": false,
+            "allowedTypes": [
+                "images",
+                "files"
+            ]
+        }
+    }
+}

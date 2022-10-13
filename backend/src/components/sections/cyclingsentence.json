@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_elements_cyclingsentences",
+  "info": {
+    "name": "cyclingsentence",
+    "displayName": "cycling sentence",
+    "icon": "align-center",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "sentencestart": {
+      "type": "string",
+      "required": true,
+      "minLength": 1
+    },
+    "sentenceendings": {
+      "type": "json",
+      "required": true
+    }
+  }
+}

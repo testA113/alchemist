@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_elements_swipe_options",
+  "info": {
+    "displayName": "swipe option",
+    "icon": "ellipsis-h"
+  },
+  "options": {},
+  "attributes": {
+    "option": {
+      "type": "string"
+    }
+  }
+}

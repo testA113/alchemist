@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_layout_footers",
+  "info": {
+    "name": "Footer",
+    "displayName": "Footer",
+    "icon": "caret-square-down",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "sitemaplinks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "links.link"
+    },
+    "creditslink": {
+      "type": "component",
+      "repeatable": false,
+      "component": "links.link"
+    }
+  }
+}

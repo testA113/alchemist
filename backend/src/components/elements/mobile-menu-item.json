@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_elements_mobile_menu_items",
+  "info": {
+    "displayName": "mobile menu item",
+    "icon": "minus"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "urlpath": {
+      "type": "string"
+    }
+  }
+}

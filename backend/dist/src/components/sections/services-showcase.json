@@ -1,0 +1,26 @@
+{
+    "collectionName": "components_sections_services_showcases",
+    "info": {
+        "displayName": "services showcase",
+        "icon": "address-card",
+        "description": ""
+    },
+    "options": {},
+    "attributes": {
+        "title": {
+            "type": "string",
+            "required": true
+        },
+        "serviceswipeoptions": {
+            "type": "component",
+            "repeatable": true,
+            "component": "elements.swipe-option",
+            "required": true
+        },
+        "seemorelink": {
+            "type": "component",
+            "repeatable": false,
+            "component": "links.link"
+        }
+    }
+}

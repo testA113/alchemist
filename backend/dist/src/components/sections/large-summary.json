@@ -1,0 +1,31 @@
+{
+    "collectionName": "components_layout_large_summaries",
+    "info": {
+        "displayName": "large summary",
+        "icon": "align-center",
+        "description": ""
+    },
+    "options": {},
+    "attributes": {
+        "summarytext": {
+            "type": "richtext",
+            "default": "we are the best bitches in all the land",
+            "required": true,
+            "minLength": 1
+        },
+        "moreinfolink": {
+            "type": "component",
+            "repeatable": false,
+            "component": "links.link"
+        },
+        "backgroundimage": {
+            "type": "media",
+            "multiple": false,
+            "required": false,
+            "allowedTypes": [
+                "images",
+                "files"
+            ]
+        }
+    }
+}

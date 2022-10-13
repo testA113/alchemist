@@ -1,5 +1,5 @@
 {
-  "collectionName": "components_shared_buttons",
+  "collectionName": "components_links_buttons",
   "info": {
     "displayName": "button",
     "icon": "caret-square-right"
@@ -12,7 +12,8 @@
         "primary",
         "secondary",
         "default",
-        "callToAction"
+        "warning",
+        "danger"
       ],
       "default": "default",
       "required": false
@@ -27,6 +28,16 @@
       ]
     },
     "text": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "newTab": {
+      "type": "boolean",
+      "default": false
+    },
+    "function": {
       "type": "string"
     },
     "icon": {

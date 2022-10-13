@@ -1,35 +1,47 @@
 {
-    "collectionName": "components_shared_buttons",
+    "collectionName": "components_sections_contact_forms",
     "info": {
-        "displayName": "button",
-        "icon": "caret-square-right"
+        "displayName": "contact form",
+        "icon": "address-card",
+        "description": ""
     },
     "options": {},
     "attributes": {
-        "type": {
-            "type": "enumeration",
-            "enum": [
-                "primary",
-                "secondary",
-                "default",
-                "callToAction"
-            ],
-            "default": "default",
+        "namelabel": {
+            "type": "string",
+            "required": true,
+            "default": "Hi, my name is",
+            "minLength": 1
+        },
+        "nameplaceholder": {
+            "type": "string",
+            "required": false,
+            "default": "slim shady",
+            "minLength": 1
+        },
+        "descriptionlabel": {
+            "type": "string",
+            "required": true,
+            "default": "I'm looking for"
+        },
+        "descriptionplaceholder": {
+            "type": "string",
             "required": false
         },
-        "size": {
-            "type": "enumeration",
-            "enum": [
-                "small",
-                "medium",
-                "large",
-                "extaLarge"
-            ]
+        "emaillabel": {
+            "type": "string",
+            "default": "You can reach me at",
+            "required": true
         },
-        "text": {
+        "emailplaceholder": {
             "type": "string"
         },
-        "icon": {
+        "showcaptcha": {
+            "type": "boolean",
+            "default": true,
+            "required": true
+        },
+        "emailicon": {
             "type": "enumeration",
             "enum": [
                 "activity",
@@ -320,6 +332,12 @@
                 "zoom-in",
                 "zoom-out"
             ]
+        },
+        "submitbutton": {
+            "type": "component",
+            "repeatable": false,
+            "component": "links.button",
+            "required": true
         }
     }
 }

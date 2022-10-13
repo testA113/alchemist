@@ -4,7 +4,8 @@
     "info": {
         "singularName": "home",
         "pluralName": "homes",
-        "displayName": "home"
+        "displayName": "home",
+        "description": ""
     },
     "options": {
         "draftAndPublish": true
@@ -16,21 +17,17 @@
             "repeatable": false,
             "component": "shared.seo"
         },
-        "fallbackimage": {
-            "allowedTypes": [
-                "images",
-                "files",
-                "videos",
-                "audios"
-            ],
-            "type": "media",
-            "multiple": false
-        },
-        "who": {
-            "type": "richtext"
-        },
-        "what": {
-            "type": "richtext"
+        "homesections": {
+            "type": "dynamiczone",
+            "components": [
+                "sections.contact-form",
+                "sections.cyclingsentence",
+                "sections.full-size-carousel",
+                "sections.large-summary",
+                "sections.services-showcase",
+                "sections.video-hero",
+                "sections.multi-round-image-view"
+            ]
         }
     }
 }

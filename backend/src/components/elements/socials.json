@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_elements_socials",
+  "info": {
+    "displayName": "social icons",
+    "icon": "share-alt",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "facebookurl": {
+      "type": "string",
+      "required": true
+    },
+    "instagramurl": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email"
+    },
+    "telephone": {
+      "type": "string"
+    }
+  }
+}

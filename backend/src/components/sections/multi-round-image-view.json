@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_layout_multi_round_image_views",
+  "info": {
+    "displayName": "multi round image view",
+    "icon": "circle",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "backgroundimage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

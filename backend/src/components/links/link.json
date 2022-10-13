@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_links_links",
+  "info": {
+    "name": "link",
+    "displayName": "link",
+    "icon": "link",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "newTab": {
+      "type": "boolean",
+      "default": false
+    },
+    "text": {
+      "type": "string",
+      "required": true
+    },
+    "size": {
+      "type": "enumeration",
+      "enum": [
+        "small",
+        "medium",
+        "large",
+        "extaLarge"
+      ]
+    },
+    "group": {
+      "type": "string"
+    }
+  }
+}
