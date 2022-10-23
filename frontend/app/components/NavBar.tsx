@@ -1,30 +1,18 @@
 import { useEffect } from "react";
 import clsx from "clsx";
 import { Link, useLocation } from "@remix-run/react";
-import {
-  Menu as MenuIcon,
-  X,
-  Facebook,
-  Instagram,
-  Mail,
-  Phone,
-} from "lucide-react";
+import { Menu as MenuIcon, X } from "lucide-react";
 import {
   Menu,
   MenuButton,
   MenuItems,
-  MenuItem,
   MenuLink,
   MenuPopover,
   useMenuButtonContext,
 } from "@reach/menu-button";
-import { VisuallyHidden } from "@reach/visually-hidden";
-import {
-  AnimatePresence,
-  motion,
-  useAnimation,
-  useReducedMotion,
-} from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+
+import { SocialIcons } from "./SocialIcons";
 
 const links = [
   { name: "Private events", to: "/privateevents" },
@@ -91,52 +79,35 @@ const MobileMenuList = () => {
           style={{ display: "block" }}
           className="z-50 w-full"
         >
-          <MenuItems className="border-none bg-transparent p-0 flex flex-col focus-visible:outline-none">
-            <li className="flex w-full items-center justify-center gap-6 py-2">
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-primary btn-circle btn-outline btn-md"
-              >
-                <VisuallyHidden>Alchemist Mixology Facebook</VisuallyHidden>
-                <Facebook />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-primary btn-circle btn-outline btn-md"
-              >
-                <VisuallyHidden>Alchemist Mixology Instagram</VisuallyHidden>
-                <Instagram />
-              </a>
-              <a
-                href="mailto:aliharriss1995@gmail.com?subject = Event Enquiry"
-                className="btn btn-primary btn-circle btn-outline btn-md"
-              >
-                <VisuallyHidden>Email Alchemist Mixology</VisuallyHidden>
-                <Mail />
-              </a>
-              <a
-                href="tel: +64204439254"
-                className="btn btn-primary btn-circle btn-outline btn-md"
-              >
-                <VisuallyHidden>Phone Alchemist Mixology</VisuallyHidden>
-                <Phone />
-              </a>
-            </li>
-            {links.map((link) => (
-              <MenuLink
-                className="hover:bg-base-200 focus:bg-base-200 text-primary border-b px-5vw py-9 border-base-200 transition duration-200"
-                key={link.to}
-                as={Link}
-                to={link.to}
-              >
-                {link.name}
-              </MenuLink>
-            ))}
-          </MenuItems>
+          <motion.div
+            initial={{ y: -50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -50, opacity: 0 }}
+            transition={{
+              duration: 0.15,
+              ease: "linear",
+            }}
+            className="flex h-full flex-col overflow-y-scroll pb-12"
+          >
+            <MenuItems className="border-none bg-transparent p-0 flex flex-col focus-visible:outline-none">
+              <SocialIcons
+                facebookUrl="facebook.com"
+                instagramUrl="instagram.com"
+                email="ali@gmail.com"
+                phone="0204439254"
+              />
+              {links.map((link) => (
+                <MenuLink
+                  className="hover:bg-base-200 focus:bg-base-200 text-primary border-b px-5vw py-9 border-base-200 transition duration-200"
+                  key={link.to}
+                  as={Link}
+                  to={link.to}
+                >
+                  {link.name}
+                </MenuLink>
+              ))}
+            </MenuItems>
+          </motion.div>
         </MenuPopover>
       ) : null}
     </AnimatePresence>
@@ -149,7 +120,7 @@ const MobileMenu = () => {
       {({ isExpanded }) => {
         return (
           <>
-            <MenuButton className="btn btn-circle btn-ghost">
+            <MenuButton className="btn btn-circle btn-ghost ml-5">
               {isExpanded ? <X /> : <MenuIcon />}
             </MenuButton>
             <MobileMenuList />
@@ -164,9 +135,11 @@ export const NavBar = () => {
   return (
     <div className="fixed w-full bg-base-100/75 z-20 top-0 left-0 px-5vw py-6 lg:py-8">
       <nav className="text-primary mx-auto flex max-w-[96rem] items-center justify-between">
-        <div className="shrink-0">
+        <div className="shrink-0 mr-5">
           <Link to="/" title="Alchemist Mixology - Home" prefetch="intent">
             <img
+              width="748"
+              height="350"
               src="http://localhost:1337/uploads/small_small_logo_6d8d7070f6.webp"
               alt="Alchemist"
               className="h-14 md:h-16 lg:h-20 w-auto"
@@ -174,7 +147,6 @@ export const NavBar = () => {
           </Link>
         </div>
         <div className="flex items-center">
-          <button className="btn btn-primary mr-5">Contact Us</button>
           <ul className="hidden lg:flex">
             {links.map(({ to, name }) => (
               <NavLink key={to} to={to}>
@@ -182,6 +154,7 @@ export const NavBar = () => {
               </NavLink>
             ))}
           </ul>
+          <button className="btn btn-primary ml-5">Contact Us</button>
           <div className="flex lg:hidden">
             <MobileMenu />
           </div>

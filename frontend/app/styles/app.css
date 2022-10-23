@@ -1404,6 +1404,10 @@ html {
   }
 }
 
+.artboard.phone {
+  width: 320px;
+}
+
 .btn-md {
   height: 3rem;
   padding-left: 1rem;
@@ -1524,6 +1528,10 @@ html {
   margin-right: 1.25rem;
 }
 
+.ml-5 {
+  margin-left: 1.25rem;
+}
+
 .block {
   display: block;
 }
@@ -1538,6 +1546,10 @@ html {
 
 .h-14 {
   height: 3.5rem;
+}
+
+.h-full {
+  height: 100%;
 }
 
 .w-full {
@@ -1588,18 +1600,22 @@ html {
   border-bottom-width: 1px;
 }
 
-.border-none {
-  border-style: none;
+.border-t {
+  border-top-width: 1px;
 }
 
-.border-gray-600 {
-  --tw-border-opacity: 1;
-  border-color: rgb(75 85 99 / var(--tw-border-opacity));
+.border-none {
+  border-style: none;
 }
 
 .border-base-200 {
   --tw-border-opacity: 1;
   border-color: hsl(var(--b2, var(--b1)) / var(--tw-border-opacity));
+}
+
+.border-gray-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(229 231 235 / var(--tw-border-opacity));
 }
 
 .bg-transparent {
@@ -1608,6 +1624,11 @@ html {
 
 .bg-base-100\/75 {
   background-color: hsl(var(--b1) / 0.75);
+}
+
+.bg-primary {
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--p) / var(--tw-bg-opacity));
 }
 
 .p-0 {
@@ -1634,9 +1655,18 @@ html {
   padding-right: 5vw;
 }
 
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
 .py-6 {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+
+.pb-12 {
+  padding-bottom: 3rem;
 }
 
 .text-lg {
@@ -1742,6 +1772,13 @@ html {
   outline-offset: 2px;
 }
 
+@media (prefers-color-scheme: dark) {
+  .dark\:border-gray-600 {
+    --tw-border-opacity: 1;
+    border-color: rgb(75 85 99 / var(--tw-border-opacity));
+  }
+}
+
 @media (min-width: 768px) {
   .md\:h-16 {
     height: 4rem;
@@ -1759,6 +1796,11 @@ html {
 
   .lg\:h-20 {
     height: 5rem;
+  }
+
+  .lg\:py-6 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
   }
 
   .lg\:py-8 {
