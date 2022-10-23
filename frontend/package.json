@@ -2,15 +2,19 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "build": "remix build",
     "deploy": "fly deploy --remote-only",
-    "dev": "remix dev",
-    "start": "remix-serve build"
+    "develop": "remix dev",
+    "start": "remix-serve build",
+    "build": "yarn build:css && remix build",
+    "build:css": "tailwindcss -m -i ./styles/app.css -o app/styles/app.css",
+    "dev": "concurrently \"yarn dev:css\" \"remix dev\"",
+    "dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css"
   },
   "dependencies": {
     "@remix-run/node": "^1.7.2",
     "@remix-run/react": "^1.7.2",
     "@remix-run/serve": "^1.7.2",
+    "daisyui": "^2.33.0",
     "isbot": "^3.5.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
@@ -20,7 +24,11 @@
     "@remix-run/eslint-config": "^1.7.2",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
+    "autoprefixer": "^10.4.12",
+    "concurrently": "^7.5.0",
     "eslint": "^8.23.1",
+    "postcss": "^8.4.18",
+    "tailwindcss": "^3.2.1",
     "typescript": "^4.7.4"
   },
   "engines": {
