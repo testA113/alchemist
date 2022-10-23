@@ -1,3 +1,7 @@
+const Color = require("color");
+const lighen = (clr, val) => Color(clr).lighten(val).rgb().string();
+const darken = (clr, val) => Color(clr).darken(val).rgb().string();
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./app/**/*.{tsx,ts,js}"],
@@ -25,6 +29,7 @@ module.exports = {
           accent: "#11596F",
           neutral: "#78716c",
           "base-100": "#1A1A1A",
+          "base-200": "#303030",
           info: "#8CCAC1",
           success: "#9CB686",
           warning: "#fb923c",
