@@ -10,7 +10,7 @@ module.exports = {
       },
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [require("@tailwindcss/typography"), require("daisyui")],
   // daisyUI config (optional)
   daisyui: {
     styled: true,
@@ -24,7 +24,7 @@ module.exports = {
           secondary: "#263F40",
           accent: "#11596F",
           neutral: "#78716c",
-          "base-100": "#1c1917",
+          "base-100": "#1A1A1A",
           info: "#8CCAC1",
           success: "#9CB686",
           warning: "#fb923c",
