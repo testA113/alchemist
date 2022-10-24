@@ -98,7 +98,7 @@ const MobileMenuList = () => {
               />
               {links.map((link) => (
                 <MenuLink
-                  className="hover:bg-base-200 focus:bg-base-200 text-primary border-b px-5vw py-9 border-base-200 transition duration-200"
+                  className="hover:bg-base-200 focus:bg-base-200 text-neutral-content border-b px-5vw py-9 border-base-200 transition duration-200"
                   key={link.to}
                   as={Link}
                   to={link.to}
@@ -120,7 +120,7 @@ const MobileMenu = () => {
       {({ isExpanded }) => {
         return (
           <>
-            <MenuButton className="btn btn-circle btn-ghost ml-5">
+            <MenuButton className="btn btn-circle btn-ghost no-animation ml-5">
               {isExpanded ? <X /> : <MenuIcon />}
             </MenuButton>
             <MobileMenuList />
