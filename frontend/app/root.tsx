@@ -1,4 +1,4 @@
-import type { MetaFunction } from "@remix-run/node";
+import { json, type LoaderFunction, type MetaFunction } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -7,9 +7,11 @@ import {
   Scripts,
   ScrollRestoration,
   useCatch,
+  useLoaderData,
 } from "@remix-run/react";
 import { XCircle } from "lucide-react";
 
+import { getEnv } from "./env.server";
 import styles from "./styles/app.css";
 
 export function links() {
@@ -22,6 +24,15 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
+type LoaderData = {
+  ENV: ReturnType<typeof getEnv>;
+};
+export const loader: LoaderFunction = async () => {
+  return json<LoaderData>({
+    ENV: getEnv(),
+  });
+};
+
 function Document({
   children,
   title = "Alchemist Mixology",
@@ -29,6 +40,7 @@ function Document({
   children: React.ReactNode;
   title?: string;
 }) {
+  const data = useLoaderData<LoaderData>();
   return (
     <html lang="en">
       <head>
@@ -40,6 +52,11 @@ function Document({
         {children}
         <ScrollRestoration />
         <Scripts />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.ENV = ${JSON.stringify(data.ENV)}`,
+          }}
+        />
         <LiveReload />
       </body>
     </html>

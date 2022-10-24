@@ -11,20 +11,22 @@
     "links": {
       "type": "component",
       "repeatable": true,
-      "component": "links.link"
+      "component": "links.link",
+      "required": true,
+      "min": 1
     },
-    "button": {
+    "actionButton": {
       "type": "component",
       "repeatable": false,
       "component": "links.button"
     },
     "logo": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }

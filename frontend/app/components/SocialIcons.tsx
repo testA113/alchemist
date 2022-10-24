@@ -1,23 +1,16 @@
 import { VisuallyHidden } from "@reach/visually-hidden";
 import { Facebook, Instagram, Mail, Phone } from "lucide-react";
-
-interface Props {
-  facebookUrl: string;
-  instagramUrl: string;
-  email: string;
-  phone: string;
-}
+import type { GetAttributesValues } from "@strapi/strapi";
 
 export const SocialIcons = ({
-  facebookUrl,
-  instagramUrl,
-  email,
-  phone,
-}: Props) => {
+  social,
+}: {
+  social: GetAttributesValues<"elements.socials">;
+}) => {
   return (
     <div className="flex w-full items-center justify-center gap-6 py-2">
       <a
-        href={facebookUrl}
+        href={social.facebookurl}
         target="_blank"
         rel="noopener noreferrer"
         className="btn btn-primary btn-circle btn-outline btn-md"
@@ -26,7 +19,7 @@ export const SocialIcons = ({
         <Facebook />
       </a>
       <a
-        href={instagramUrl}
+        href={social.instagramurl}
         target="_blank"
         rel="noopener noreferrer"
         className="btn btn-primary btn-circle btn-outline btn-md"
@@ -35,14 +28,14 @@ export const SocialIcons = ({
         <Instagram />
       </a>
       <a
-        href={`mailto:${email}?subject = Event Enquiry`}
+        href={`mailto:${social.email}?subject = Event Enquiry`}
         className="btn btn-primary btn-circle btn-outline btn-md"
       >
         <VisuallyHidden>Email Alchemist Mixology</VisuallyHidden>
         <Mail />
       </a>
       <a
-        href={`tel: ${phone}`}
+        href={`tel: ${social.telephone}`}
         className="btn btn-primary btn-circle btn-outline btn-md"
       >
         <VisuallyHidden>Phone Alchemist Mixology</VisuallyHidden>

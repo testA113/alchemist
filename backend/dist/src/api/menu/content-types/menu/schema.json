@@ -15,12 +15,14 @@
         "navbar": {
             "type": "component",
             "repeatable": false,
-            "component": "layout.navbar"
+            "component": "layout.navbar",
+            "required": true
         },
         "social": {
             "type": "component",
             "repeatable": false,
-            "component": "elements.socials"
+            "component": "elements.socials",
+            "required": true
         }
     }
 }

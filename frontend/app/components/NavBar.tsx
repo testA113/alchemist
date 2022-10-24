@@ -11,8 +11,10 @@ import {
   useMenuButtonContext,
 } from "@reach/menu-button";
 import { AnimatePresence, motion } from "framer-motion";
+import type { GetAttributesValues } from "@strapi/strapi";
 
 import { SocialIcons } from "./SocialIcons";
+import { Button } from "./Button";
 
 const links = [
   { name: "Private events", to: "/privateevents" },
@@ -49,7 +51,7 @@ const NavLink = ({ to, children }: NavLinkProps) => {
   );
 };
 
-const MobileMenuList = () => {
+const MobileMenuList = ({social}: {social: GetAttributesValues<"elements.socials">}) => {
   const { isExpanded } = useMenuButtonContext();
 
   useEffect(() => {
@@ -91,10 +93,7 @@ const MobileMenuList = () => {
           >
             <MenuItems className="border-none bg-transparent p-0 flex flex-col focus-visible:outline-none">
               <SocialIcons
-                facebookUrl="facebook.com"
-                instagramUrl="instagram.com"
-                email="ali@gmail.com"
-                phone="0204439254"
+                social={social}
               />
               {links.map((link) => (
                 <MenuLink
@@ -114,7 +113,7 @@ const MobileMenuList = () => {
   );
 };
 
-const MobileMenu = () => {
+const MobileMenu = ({social}: {social: GetAttributesValues<"elements.socials">}) => {
   return (
     <Menu>
       {({ isExpanded }) => {
@@ -123,7 +122,7 @@ const MobileMenu = () => {
             <MenuButton className="btn btn-circle btn-ghost no-animation ml-5">
               {isExpanded ? <X /> : <MenuIcon />}
             </MenuButton>
-            <MobileMenuList />
+            <MobileMenuList social={social}/>
           </>
         );
       }}
@@ -131,7 +130,12 @@ const MobileMenu = () => {
   );
 };
 
-export const NavBar = () => {
+interface NavBarProps {
+  data: GetAttributesValues<"api::menu.menu">;
+}
+export const NavBar = ({ data }: NavBarProps) => {
+  const { navbar, social } = data;
+  const logoPath = navbar.logo.data.attributes.url;
   return (
     <div className="fixed w-full bg-base-100/75 z-20 top-0 left-0 px-5vw py-6 lg:py-8">
       <nav className="text-primary mx-auto flex max-w-[96rem] items-center justify-between">
@@ -140,7 +144,7 @@ export const NavBar = () => {
             <img
               width="748"
               height="350"
-              src="http://localhost:1337/uploads/small_small_logo_6d8d7070f6.webp"
+              src={`${ENV.STRAPI_BASEURL}${logoPath}`}
               alt="Alchemist"
               className="h-14 md:h-16 lg:h-20 w-auto"
             />
@@ -148,15 +152,26 @@ export const NavBar = () => {
         </div>
         <div className="flex items-center">
           <ul className="hidden lg:flex">
-            {links.map(({ to, name }) => (
-              <NavLink key={to} to={to}>
-                {name}
+            {navbar.links.map(({ path, text }) => (
+              <NavLink key={path} to={path}>
+                {text}
               </NavLink>
             ))}
           </ul>
-          <button className="btn btn-primary ml-5">Contact Us</button>
+          {navbar.actionButton && (
+            <Button
+              action={() => {
+                console.log("click");
+              }}
+              mode="primary"
+              size="lg"
+              className="ml-5"
+            >
+              {navbar.actionButton.text}
+            </Button>
+          )}
           <div className="flex lg:hidden">
-            <MobileMenu />
+            <MobileMenu social={social} />
           </div>
         </div>
       </nav>

@@ -5,10 +5,11 @@
   "description": "A Strapi application",
   "scripts": {
     "prestart": ". ~/.nvm/nvm.sh && nvm use",
-    "develop": "strapi develop",
+    "dev": "yarn strapi ts:generate-types --verbose && mv schemas.d.ts ../frontend/schemas.d.ts && strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "make-types": "yarn strapi ts:generate-types --verbose && mv schemas.d.ts ../frontend/schemas.d.ts"
   },
   "devDependencies": {},
   "dependencies": {
