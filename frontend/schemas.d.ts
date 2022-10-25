@@ -708,7 +708,11 @@ export interface ApiHomeHome extends SingleTypeSchema {
         'sections.video-hero',
         'sections.multi-round-image-view'
       ]
-    >;
+    > &
+      RequiredAttribute &
+      SetMinMax<{
+        min: 1;
+      }>;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;

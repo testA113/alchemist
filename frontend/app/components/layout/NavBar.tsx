@@ -13,8 +13,8 @@ import {
 import { AnimatePresence, motion } from "framer-motion";
 import type { GetAttributesValues } from "@strapi/strapi";
 
-import { SocialIcons } from "./SocialIcons";
-import { Button } from "./Button";
+import { SocialIcons } from "../shared/SocialIcons";
+import { Button } from "../shared/Button";
 
 const links = [
   { name: "Private events", to: "/privateevents" },
@@ -51,7 +51,11 @@ const NavLink = ({ to, children }: NavLinkProps) => {
   );
 };
 
-const MobileMenuList = ({social}: {social: GetAttributesValues<"elements.socials">}) => {
+const MobileMenuList = ({
+  social,
+}: {
+  social: GetAttributesValues<"elements.socials">;
+}) => {
   const { isExpanded } = useMenuButtonContext();
 
   useEffect(() => {
@@ -72,14 +76,13 @@ const MobileMenuList = ({social}: {social: GetAttributesValues<"elements.socials
     <AnimatePresence>
       {isExpanded ? (
         <MenuPopover
-          position={(r) => ({
-            top: `calc(${Number(r?.top) + Number(r?.height)}px + 2.25rem)`, // 2.25 rem = py-9 from navbar
+          position={() => ({
+            top: 0,
             left: 0,
             bottom: 0,
             right: 0,
           })}
-          style={{ display: "block" }}
-          className="z-50 w-full"
+          className="block z-20 w-full h-[100vh] bg-base-100 pt-36"
         >
           <motion.div
             initial={{ y: -50, opacity: 0 }}
@@ -92,9 +95,7 @@ const MobileMenuList = ({social}: {social: GetAttributesValues<"elements.socials
             className="flex h-full flex-col overflow-y-scroll pb-12"
           >
             <MenuItems className="border-none bg-transparent p-0 flex flex-col focus-visible:outline-none">
-              <SocialIcons
-                social={social}
-              />
+              <SocialIcons social={social} />
               {links.map((link) => (
                 <MenuLink
                   className="hover:bg-base-200 focus:bg-base-200 text-neutral-content border-b px-5vw py-9 border-base-200 transition duration-200"
@@ -113,7 +114,11 @@ const MobileMenuList = ({social}: {social: GetAttributesValues<"elements.socials
   );
 };
 
-const MobileMenu = ({social}: {social: GetAttributesValues<"elements.socials">}) => {
+const MobileMenu = ({
+  social,
+}: {
+  social: GetAttributesValues<"elements.socials">;
+}) => {
   return (
     <Menu>
       {({ isExpanded }) => {
@@ -122,7 +127,7 @@ const MobileMenu = ({social}: {social: GetAttributesValues<"elements.socials">})
             <MenuButton className="btn btn-circle btn-ghost no-animation ml-5">
               {isExpanded ? <X /> : <MenuIcon />}
             </MenuButton>
-            <MobileMenuList social={social}/>
+            <MobileMenuList social={social} />
           </>
         );
       }}
@@ -137,44 +142,46 @@ export const NavBar = ({ data }: NavBarProps) => {
   const { navbar, social } = data;
   const logoPath = navbar.logo.data.attributes.url;
   return (
-    <div className="fixed w-full bg-base-100/75 z-20 top-0 left-0 px-5vw py-6 lg:py-8">
-      <nav className="text-primary mx-auto flex max-w-[96rem] items-center justify-between">
-        <div className="shrink-0 mr-5">
-          <Link to="/" title="Alchemist Mixology - Home" prefetch="intent">
-            <img
-              width="748"
-              height="350"
-              src={`${ENV.STRAPI_BASEURL}${logoPath}`}
-              alt="Alchemist"
-              className="h-14 md:h-16 lg:h-20 w-auto"
-            />
-          </Link>
-        </div>
-        <div className="flex items-center">
-          <ul className="hidden lg:flex">
-            {navbar.links.map(({ path, text }) => (
-              <NavLink key={path} to={path}>
-                {text}
-              </NavLink>
-            ))}
-          </ul>
-          {navbar.actionButton && (
-            <Button
-              action={() => {
-                console.log("click");
-              }}
-              mode="primary"
-              size="lg"
-              className="ml-5"
-            >
-              {navbar.actionButton.text}
-            </Button>
-          )}
-          <div className="flex lg:hidden">
-            <MobileMenu social={social} />
+    <div className="transition duration-500" style={{ width: "100vw" }}>
+      <div className="fixed w-full bg-base-100/75 z-50 top-0 left-0 px-5vw py-6 lg:py-8">
+        <nav className="text-primary mx-auto flex max-w-[96rem] items-center justify-between">
+          <div className="shrink-0 mr-5">
+            <Link to="/" title="Alchemist Mixology - Home" prefetch="intent">
+              <img
+                width="748"
+                height="350"
+                src={`${ENV.STRAPI_BASEURL}${logoPath}`}
+                alt="Alchemist"
+                className="h-14 md:h-16 lg:h-20 w-auto"
+              />
+            </Link>
           </div>
-        </div>
-      </nav>
+          <div className="flex items-center">
+            <ul className="hidden lg:flex">
+              {navbar.links.map(({ path, text }) => (
+                <NavLink key={path} to={path}>
+                  {text}
+                </NavLink>
+              ))}
+            </ul>
+            {navbar.actionButton && (
+              <Button
+                action={() => {
+                  console.log("click");
+                }}
+                mode="primary"
+                size="lg"
+                className="ml-5"
+              >
+                {navbar.actionButton.text}
+              </Button>
+            )}
+            <div className="flex lg:hidden">
+              <MobileMenu social={social} />
+            </div>
+          </div>
+        </nav>
+      </div>
     </div>
   );
 };

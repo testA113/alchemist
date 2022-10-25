@@ -2,10 +2,17 @@ import { VisuallyHidden } from "@reach/visually-hidden";
 import { Facebook, Instagram, Mail, Phone } from "lucide-react";
 import type { GetAttributesValues } from "@strapi/strapi";
 
+const fallbackSocials = {
+  facebookurl: "https://www.facebook.com/alchemistmixology/",
+  instagramurl: "https://www.instagram.com/thealchemistmixology/",
+  telephone: "+64226834889",
+  email: "jaz@alchemistmixology.co.nz",
+};
+
 export const SocialIcons = ({
-  social,
+  social = fallbackSocials,
 }: {
-  social: GetAttributesValues<"elements.socials">;
+  social?: GetAttributesValues<"elements.socials">;
 }) => {
   return (
     <div className="flex w-full items-center justify-center gap-6 py-2">

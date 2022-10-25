@@ -11,11 +11,13 @@ import {
 } from "@remix-run/react";
 import type { GetAttributesValues } from "@strapi/strapi";
 
-import { NavBar } from "./components/NavBar";
-import { Alert } from "./components/Alert";
+import { NavBar } from "./components/layout/NavBar";
+import { Footer } from "./components/layout/Footer";
+import { PageError } from "./components/shared/Alert/PageError";
 import { getEnv } from "./env.server";
 import styles from "./styles/app.css";
-import { getNavBar } from "./service/navbar.server";
+import { getNavBar } from "./components/layout/navbar.server";
+import { getFooter } from "./components/layout/footer.server";
 
 export function links() {
   return [{ rel: "stylesheet", href: styles }];
@@ -30,11 +32,16 @@ export const meta: MetaFunction = () => ({
 type LoaderData = {
   ENV: ReturnType<typeof getEnv>;
   navBarData: GetAttributesValues<"api::menu.menu">;
+  footerData: GetAttributesValues<"api::footer.footer">;
 };
 export const loader: LoaderFunction = async () => {
-  const navBarResponse = await getNavBar();
+  const [navBarResponse, footerResponse] = await Promise.all([
+    getNavBar(),
+    getFooter(),
+  ]);
   const navBarData = await navBarResponse.json();
-  if (navBarData.error) {
+  const footerData = await footerResponse.json();
+  if (footerData.error) {
     throw new Response("Error loading navbar data", {
       status: navBarData?.error?.status || 500,
     });
@@ -43,6 +50,7 @@ export const loader: LoaderFunction = async () => {
   return json<LoaderData>({
     ENV: getEnv(),
     navBarData: navBarData.data.attributes,
+    footerData: footerData.data.attributes,
   });
 };
 
@@ -77,23 +85,21 @@ function Document({
 }
 
 export default function App() {
-  const { navBarData } = useLoaderData<LoaderData>();
+  const { navBarData, footerData } = useLoaderData<LoaderData>();
   return (
     <Document>
       <NavBar data={navBarData} />
       <Outlet />
+      <Footer data={footerData} />
     </Document>
   );
 }
 
 export function CatchBoundary() {
   const caught = useCatch();
-
   return (
     <Document title={`${caught.status} ${caught.statusText}`}>
-      <div>
-        <Alert mode="error" message={`${caught.status} ${caught.statusText}`} />
-      </div>
+      <PageError message={`${caught.status} ${caught.statusText}`} />
     </Document>
   );
 }
@@ -102,9 +108,7 @@ export function ErrorBoundary({ error }: { error: Error }) {
   console.error(error);
   return (
     <Document title="Uh-oh!">
-      <div>
-        <Alert mode="error" message={error.message} />
-      </div>
+      <PageError message={error.message} />
     </Document>
   );
 }

@@ -27,7 +27,9 @@
                 "sections.services-showcase",
                 "sections.video-hero",
                 "sections.multi-round-image-view"
-            ]
+            ],
+            "required": true,
+            "min": 1
         }
     }
 }
