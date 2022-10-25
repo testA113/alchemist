@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import clsx from "clsx";
-import { Link, useLocation } from "@remix-run/react";
+import { Link } from "@remix-run/react";
 import { Menu as MenuIcon, X } from "lucide-react";
 import {
   Menu,
@@ -14,6 +13,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import type { GetAttributesValues } from "@strapi/strapi";
 
 import { SocialIcons } from "../shared/SocialIcons";
+import { NavLink } from "../shared/NavLink";
 import { Button } from "../shared/Button";
 
 const links = [
@@ -22,34 +22,6 @@ const links = [
   { name: "Catering", to: "/catering" },
   { name: "About", to: "/about" },
 ];
-
-interface NavLinkProps {
-  to: string;
-  children?: React.ReactNode;
-}
-const NavLink = ({ to, children }: NavLinkProps) => {
-  const location = useLocation();
-  const isSelected =
-    to === location.pathname || location.pathname.startsWith(`${to}/`);
-
-  return (
-    <li className="px-5 py-2">
-      <Link
-        prefetch="intent"
-        className={clsx(
-          "underlined focus:outline-none block whitespace-nowrap text-lg font-medium mx-3 my-2",
-          {
-            "text-accent": isSelected,
-            "text-primary": !isSelected,
-          }
-        )}
-        to={to}
-      >
-        {children}
-      </Link>
-    </li>
-  );
-};
 
 const MobileMenuList = ({
   social,

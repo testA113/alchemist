@@ -661,6 +661,7 @@ export interface ApiFooterFooter extends SingleTypeSchema {
     singularName: 'footer';
     pluralName: 'footers';
     displayName: 'footer';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -903,7 +904,11 @@ export interface LayoutFooter extends ComponentSchema {
   };
   attributes: {
     logo: MediaAttribute;
-    sitemaplinks: ComponentAttribute<'links.link', true>;
+    sitemaplinks: ComponentAttribute<'links.link', true> &
+      RequiredAttribute &
+      SetMinMax<{
+        min: 1;
+      }>;
     creditslink: ComponentAttribute<'links.link'>;
   };
 }
