@@ -3,36 +3,23 @@ import { useCatch, useLoaderData } from "@remix-run/react";
 import type { GetAttributesValues } from "@strapi/strapi";
 
 import { Alert } from "~/components/Alert";
-import { NavBar } from "~/components/NavBar";
 import { SocialIcons } from "~/components/SocialIcons";
 
 import { getHomePage } from "./home.server";
-import { getNavBar } from "../service/navbar.server";
 
 export async function loader() {
-  const [homeResponse, navBarResponse] = await Promise.all([
-    getHomePage(),
-    getNavBar(),
-  ]);
+  const homeResponse = await getHomePage();
   const homeData = await homeResponse.json();
   if (homeData.error) {
     // error check
-    throw new Response("Error loading data from strapi", {
+    throw new Response("Error loading home page data from strapi", {
       status: homeData?.error?.status || 500,
-    });
-  }
-  const navBarData = await navBarResponse.json();
-  if (navBarData.error) {
-    // error check
-    throw new Response("Error loading data from strapi", {
-      status: navBarData?.error?.status || 500,
     });
   }
 
   return json(
     {
       homeData: homeData.data.attributes,
-      navBarData: navBarData.data.attributes,
     },
     {
       headers: { "Cache-Control": "private, max-age=120" },
@@ -43,7 +30,6 @@ export async function loader() {
 export default function Index() {
   const {
     homeData,
-    navBarData,
   }: {
     homeData: GetAttributesValues<"api::home.home">;
     navBarData: GetAttributesValues<"api::menu.menu">;
@@ -52,9 +38,7 @@ export default function Index() {
     <div
       className="transition duration-500"
       style={{ height: "100vh", width: "100vw" }}
-    >
-      <NavBar data={navBarData} />
-    </div>
+    ></div>
   );
 }
 

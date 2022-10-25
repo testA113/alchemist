@@ -9,10 +9,13 @@ import {
   useCatch,
   useLoaderData,
 } from "@remix-run/react";
-import { XCircle } from "lucide-react";
+import type { GetAttributesValues } from "@strapi/strapi";
 
+import { NavBar } from "./components/NavBar";
+import { Alert } from "./components/Alert";
 import { getEnv } from "./env.server";
 import styles from "./styles/app.css";
+import { getNavBar } from "./service/navbar.server";
 
 export function links() {
   return [{ rel: "stylesheet", href: styles }];
@@ -26,10 +29,20 @@ export const meta: MetaFunction = () => ({
 
 type LoaderData = {
   ENV: ReturnType<typeof getEnv>;
+  navBarData: GetAttributesValues<"api::menu.menu">;
 };
 export const loader: LoaderFunction = async () => {
+  const navBarResponse = await getNavBar();
+  const navBarData = await navBarResponse.json();
+  if (navBarData.error) {
+    throw new Response("Error loading navbar data", {
+      status: navBarData?.error?.status || 500,
+    });
+  }
+
   return json<LoaderData>({
     ENV: getEnv(),
+    navBarData: navBarData.data.attributes,
   });
 };
 
@@ -64,8 +77,10 @@ function Document({
 }
 
 export default function App() {
+  const { navBarData } = useLoaderData<LoaderData>();
   return (
     <Document>
+      <NavBar data={navBarData} />
       <Outlet />
     </Document>
   );
@@ -76,13 +91,8 @@ export function CatchBoundary() {
 
   return (
     <Document title={`${caught.status} ${caught.statusText}`}>
-      <div className="alert alert-error shadow-lg">
-        <div>
-          <XCircle />
-          <h1>
-            {caught.status} {caught.statusText}
-          </h1>
-        </div>
+      <div>
+        <Alert mode="error" message={`${caught.status} ${caught.statusText}`} />
       </div>
     </Document>
   );
@@ -92,12 +102,8 @@ export function ErrorBoundary({ error }: { error: Error }) {
   console.error(error);
   return (
     <Document title="Uh-oh!">
-      <div className="alert alert-error shadow-lg">
-        <div>
-          <XCircle />
-          <h1>App Error</h1>
-          <pre>{error.message}</pre>
-        </div>
+      <div>
+        <Alert mode="error" message={error.message} />
       </div>
     </Document>
   );
