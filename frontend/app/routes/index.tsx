@@ -32,10 +32,8 @@ export default function Index() {
     homeData: GetAttributesValues<"api::home.home">;
   } = useLoaderData();
 
-  console.log(homesections);
-
   return (
-    <div className="min-h-[100vh]">
+    <div className="min-h-minpage">
       {homesections.map((section) => (
         <Section
           key={section.__component}

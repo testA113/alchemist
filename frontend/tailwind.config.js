@@ -1,7 +1,3 @@
-const Color = require("color");
-const lighen = (clr, val) => Color(clr).lighten(val).rgb().string();
-const darken = (clr, val) => Color(clr).darken(val).rgb().string();
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./app/**/*.{tsx,ts,js}"],
@@ -11,6 +7,9 @@ module.exports = {
         "5vw": "5vw", // pull featured sections and navbar in the margin
         "8vw": "8vw", // positions hero img inside the margin
         "10vw": "10vw", // page margin
+      },
+      minHeight: {
+        minpage: "calc(100vh - 324px)", // 324px is the height of the footer
       },
     },
   },

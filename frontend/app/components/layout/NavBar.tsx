@@ -114,7 +114,7 @@ export const NavBar = ({ data }: NavBarProps) => {
   const { navbar, social } = data;
   const logoPath = navbar.logo.data.attributes.url;
   return (
-    <div className="transition duration-500" style={{ width: "100vw" }}>
+    <div className="transition duration-500 w-full">
       <div className="fixed w-full bg-base-100/75 z-50 top-0 left-0 px-5vw py-6 lg:py-8">
         <nav className="text-primary mx-auto flex max-w-[96rem] items-center justify-between">
           <div className="shrink-0 mr-5">
