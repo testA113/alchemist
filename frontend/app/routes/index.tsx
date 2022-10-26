@@ -57,7 +57,6 @@ export function CatchBoundary() {
 }
 
 export function ErrorBoundary({ error }: { error: Error }) {
-  console.error(error);
   return (
     <PageError message="There was an error loading the home page. Sorry! In the meantime, connect with us on our socials:" />
   );

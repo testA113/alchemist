@@ -7,6 +7,8 @@ import {
 } from "framer-motion";
 import { useRef } from "react";
 
+import { Button } from "~/components/shared/Button";
+
 import type { VideoHeroValues } from "./types";
 
 type Props = {
@@ -14,7 +16,6 @@ type Props = {
 };
 
 export function VideoHero({ sectionData }: Props) {
-  console.log(sectionData);
   let videoRef = useRef(null);
 
   let { scrollYProgress } = useScroll({
@@ -23,10 +24,13 @@ export function VideoHero({ sectionData }: Props) {
   });
   let y = useTransform(scrollYProgress, [0, 1], ["0%", "60%"]);
 
+  const sentenceEndings = sectionData.cyclingsentence
+    .sentenceendings as string[];
+
   return (
     <section
       ref={videoRef}
-      className="relative flex flex-col bg-transparent justify-center items-center h-[100vh] "
+      className="flex flex-col justify-end bg-transparent h-[100vh] pb-20"
     >
       <LazyMotion features={domAnimation}>
         <m.div
@@ -44,8 +48,23 @@ export function VideoHero({ sectionData }: Props) {
           ></iframe>
         </m.div>
       </LazyMotion>
-      <h1>some text</h1>
-      <div className="absolute bottom-0 h-1/2 w-full bg-gradient-to-t from-base-100 to-transparent"></div>
+      <div className="flex flex-col md:flex-row gap-6 px-5vw z-20 items-center md:items-end">
+        <div className="prose-xl lg:prose-2xl w-full flex flex-col flex-wrap pr-24 md:pr-[50%] lg:pr-[60%]">
+          <h1 className="text-white">
+            {sectionData.cyclingsentence.sentencestart}
+          </h1>
+          <h1 className="italic">{sentenceEndings[0]}</h1>
+        </div>
+        <div>
+          <Button
+            className="btn btn-primary h-16 w-36 text-lg"
+            action={() => console.log("contact")}
+          >
+            Contact Us
+          </Button>
+        </div>
+      </div>
+      <div className="absolute bottom-0 h-2/3 w-full bg-gradient-to-t from-base-100 to-transparent"></div>
     </section>
   );
 }

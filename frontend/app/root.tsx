@@ -105,7 +105,6 @@ export function CatchBoundary() {
 }
 
 export function ErrorBoundary({ error }: { error: Error }) {
-  console.error(error);
   return (
     <Document title="Uh-oh!">
       <PageError message={error.message} />

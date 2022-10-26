@@ -8,12 +8,15 @@
   "options": {},
   "attributes": {
     "videourl": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "minLength": 1
     },
     "cyclingsentence": {
       "type": "component",
-      "repeatable": true,
-      "component": "sections.cyclingsentence"
+      "repeatable": false,
+      "component": "sections.cyclingsentence",
+      "required": true
     },
     "showscroll": {
       "type": "boolean"
@@ -30,7 +33,7 @@
     },
     "link": {
       "type": "component",
-      "repeatable": true,
+      "repeatable": false,
       "component": "links.button"
     },
     "videoname": {
