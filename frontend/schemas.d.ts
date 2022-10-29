@@ -926,7 +926,7 @@ export interface LayoutNavbar extends ComponentSchema {
       SetMinMax<{
         min: 1;
       }>;
-    actionButton: ComponentAttribute<'links.button'>;
+    actionButton: ComponentAttribute<'links.button'> & RequiredAttribute;
     logo: MediaAttribute & RequiredAttribute;
   };
 }
@@ -2218,7 +2218,8 @@ export interface SectionsVideoHero extends ComponentSchema {
     secondarybutton: ComponentAttribute<'links.button'>;
     link: ComponentAttribute<'links.button'>;
     videoname: StringAttribute;
-    backgroundimage: MediaAttribute;
+    loadingBackgroundImage: MediaAttribute;
+    fallbackImage: MediaAttribute & RequiredAttribute;
   };
 }
 

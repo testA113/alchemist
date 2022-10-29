@@ -47,11 +47,16 @@ export const loader: LoaderFunction = async () => {
     });
   }
 
-  return json<LoaderData>({
-    ENV: getEnv(),
-    navBarData: navBarData.data.attributes,
-    footerData: footerData.data.attributes,
-  });
+  return json<LoaderData>(
+    {
+      ENV: getEnv(),
+      navBarData: navBarData.data.attributes,
+      footerData: footerData.data.attributes,
+    },
+    {
+      headers: { "Cache-Control": "private, max-age=120" },
+    }
+  );
 };
 
 function Document({

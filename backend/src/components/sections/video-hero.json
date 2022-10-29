@@ -39,13 +39,24 @@
     "videoname": {
       "type": "string"
     },
-    "backgroundimage": {
+    "loadingBackgroundImage": {
       "type": "media",
       "multiple": false,
       "required": false,
       "allowedTypes": [
         "images",
         "files"
+      ]
+    },
+    "fallbackImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
       ]
     }
   }

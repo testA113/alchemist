@@ -1,5 +1,9 @@
 {
+  "scripts": {
+    "dev": "concurrently \"cd backend && yarn dev\" \"cd frontend && yarn dev\""
+  },
   "devDependencies": {
+    "concurrently": "^7.5.0",
     "prettier": "^2.7.1"
   }
 }

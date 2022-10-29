@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import clsx from "clsx";
 import { Link } from "@remix-run/react";
 import { Menu as MenuIcon, X } from "lucide-react";
 import {
@@ -15,19 +15,18 @@ import type { GetAttributesValues } from "@strapi/strapi";
 import { SocialIcons } from "../shared/SocialIcons";
 import { NavLink } from "../shared/NavLink";
 import { Button } from "../shared/Button";
+import { useEffect } from "react";
 
-const links = [
-  { name: "Private events", to: "/privateevents" },
-  { name: "Corporate events", to: "/corporateevents" },
-  { name: "Catering", to: "/catering" },
-  { name: "About", to: "/about" },
-];
-
+type MobileMenuListProps = {
+  social: GetAttributesValues<"elements.socials">;
+  navbarLinks: GetAttributesValues<"links.link">[];
+  actionButton: GetAttributesValues<"links.button">;
+};
 const MobileMenuList = ({
   social,
-}: {
-  social: GetAttributesValues<"elements.socials">;
-}) => {
+  navbarLinks,
+  actionButton,
+}: MobileMenuListProps) => {
   const { isExpanded } = useMenuButtonContext();
 
   useEffect(() => {
@@ -37,13 +36,14 @@ const MobileMenuList = ({
       document.body.classList.add("overflow-y-scroll");
       // alternatively, get bounding box of the menu, and set body height to that.
       document.body.style.height = "100vh";
+      document.body.style.width = "100vw";
     } else {
       document.body.classList.remove("fixed");
       document.body.classList.remove("overflow-y-scroll");
       document.body.style.removeProperty("height");
+      document.body.style.removeProperty("width");
     }
   }, [isExpanded]);
-
   return (
     <AnimatePresence>
       {isExpanded ? (
@@ -54,7 +54,7 @@ const MobileMenuList = ({
             bottom: 0,
             right: 0,
           })}
-          className="block z-20 w-full h-[100vh] bg-base-100 pt-36"
+          className="block z-20 h-[100vh] sm:w-[100vw] bg-base-100 pt-28"
         >
           <motion.div
             initial={{ y: -50, opacity: 0 }}
@@ -67,17 +67,27 @@ const MobileMenuList = ({
             className="flex h-full flex-col overflow-y-scroll pb-12"
           >
             <MenuItems className="border-none bg-transparent p-0 flex flex-col focus-visible:outline-none">
-              <SocialIcons social={social} />
-              {links.map((link) => (
+              {navbarLinks.map(({ path, text }) => (
                 <MenuLink
                   className="hover:bg-base-200 focus:bg-base-200 text-neutral-content border-b px-5vw py-9 border-base-200 transition duration-200"
-                  key={link.to}
+                  key={path}
                   as={Link}
-                  to={link.to}
+                  to={path}
                 >
-                  {link.name}
+                  {text}
                 </MenuLink>
               ))}
+              <SocialIcons social={social} className="mt-8" />
+              <Button
+                action={() => {
+                  console.log("click");
+                }}
+                mode="primary"
+                size="lg"
+                className="mt-8 mx-5vw md:hidden"
+              >
+                {actionButton.text}
+              </Button>
             </MenuItems>
           </motion.div>
         </MenuPopover>
@@ -86,11 +96,12 @@ const MobileMenuList = ({
   );
 };
 
-const MobileMenu = ({
-  social,
-}: {
+type MobileMenuProps = {
   social: GetAttributesValues<"elements.socials">;
-}) => {
+  navbarLinks: GetAttributesValues<"links.link">[];
+  actionButton: GetAttributesValues<"links.button">;
+};
+const MobileMenu = ({ social, navbarLinks, actionButton }: MobileMenuProps) => {
   return (
     <Menu>
       {({ isExpanded }) => {
@@ -99,7 +110,11 @@ const MobileMenu = ({
             <MenuButton className="btn btn-circle btn-ghost no-animation ml-5">
               {isExpanded ? <X /> : <MenuIcon />}
             </MenuButton>
-            <MobileMenuList social={social} />
+            <MobileMenuList
+              social={social}
+              navbarLinks={navbarLinks}
+              actionButton={actionButton}
+            />
           </>
         );
       }}
@@ -112,23 +127,28 @@ interface NavBarProps {
 }
 export const NavBar = ({ data }: NavBarProps) => {
   const { navbar, social } = data;
-  const logoPath = navbar.logo.data.attributes.url;
+  const logo = navbar.logo.data.attributes;
+
   return (
     <div className="transition duration-500 w-full">
-      <div className="fixed w-full bg-base-100/75 z-50 top-0 left-0 px-5vw py-6 lg:py-8">
+      <div className="fixed w-full z-50 top-0 left-0 px-5vw py-2 lg:py-4 bg-base-100/50 backdrop-blur-sm">
         <nav className="text-primary mx-auto flex max-w-[96rem] items-center justify-between">
           <div className="shrink-0 mr-5">
             <Link to="/" title="Alchemist Mixology - Home" prefetch="intent">
               <img
                 width="748"
                 height="350"
-                src={`${ENV.STRAPI_BASEURL}${logoPath}`}
+                srcSet={clsx(
+                  `${ENV.STRAPI_BASEURL}${logo.formats.thumbnail.url} 640w,`,
+                  `${ENV.STRAPI_BASEURL}${logo.formats.small.url} 768w,`,
+                  `${ENV.STRAPI_BASEURL}${logo.url} 1024w,`
+                )}
                 alt="Alchemist"
-                className="h-14 md:h-16 lg:h-20 w-auto"
+                className="h-20 md:h-24 w-auto"
               />
             </Link>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center py-4">
             <ul className="hidden lg:flex">
               {navbar.links.map(({ path, text }) => (
                 <NavLink key={path} to={path}>
@@ -136,20 +156,22 @@ export const NavBar = ({ data }: NavBarProps) => {
                 </NavLink>
               ))}
             </ul>
-            {navbar.actionButton && (
-              <Button
-                action={() => {
-                  console.log("click");
-                }}
-                mode="primary"
-                size="lg"
-                className="ml-5"
-              >
-                {navbar.actionButton.text}
-              </Button>
-            )}
+            <Button
+              action={() => {
+                console.log("click");
+              }}
+              mode="primary"
+              size="lg"
+              className="ml-5 hidden md:block"
+            >
+              {navbar.actionButton.text}
+            </Button>
             <div className="flex lg:hidden">
-              <MobileMenu social={social} />
+              <MobileMenu
+                social={social}
+                navbarLinks={navbar.links}
+                actionButton={navbar.actionButton}
+              />
             </div>
           </div>
         </nav>

@@ -18,7 +18,8 @@
         "actionButton": {
             "type": "component",
             "repeatable": false,
-            "component": "links.button"
+            "component": "links.button",
+            "required": true
         },
         "logo": {
             "type": "media",
