@@ -39,14 +39,14 @@ export function VideoHero({ sectionData }: Props) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowVideo(true);
-    }, 4000);
+    }, 3000);
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <section
       ref={videoRef}
-      className="flex flex-col justify-end bg-transparent h-[100vh] pb-20"
+      className="flex flex-col justify-end bg-transparent h-[100vh] pb-12 md:pb-20"
     >
       <LazyMotion features={domAnimation}>
         <m.div
@@ -66,10 +66,6 @@ export function VideoHero({ sectionData }: Props) {
             ></iframe>
           ) : (
             <img
-              onLoad={() => {
-                console.log("loaded");
-                setShowVideo(true);
-              }}
               srcSet={clsx(
                 `${ENV.STRAPI_BASEURL}${loadingBackgroundImage.formats.small.url} 640w,`,
                 `${ENV.STRAPI_BASEURL}${loadingBackgroundImage.formats.medium.url} 768w,`,
@@ -93,11 +89,28 @@ export function VideoHero({ sectionData }: Props) {
         </m.div>
       </LazyMotion>
       <div className="flex flex-col gap-6 px-5vw z-20 items-start">
-        <div className="prose-xl lg:prose-2xl w-full flex flex-col flex-wrap pr-24 md:w-[60%] lg:w-[50%]">
-          <h1 className="text-white !mb-6">
+        <div className="relative prose-lg md:prose-xl lg:prose-2xl w-full flex flex-col flex-wrap pr-24 md:w-[60%] lg:w-[50%]">
+          <h1 className="text-white !mb-4">
             {sectionData.cyclingSentence.sentencestart}
           </h1>
-          <h1 className="italic">{sentenceEndings[0]}</h1>
+          <h1 className="italic !mb-32">
+            <div className="inline min-h-max">
+              {sentenceEndings.map((sentenceEnding, index) => (
+                <span
+                  className={clsx(
+                    "absolute min-h-max opacity-0",
+                    "[&:nth-child(1)]:animate-[rotateword_16s_linear_infinite]",
+                    "[&:nth-child(2)]:animate-[rotateword_16s_linear_infinite_4s]",
+                    "[&:nth-child(3)]:animate-[rotateword_16s_linear_infinite_8s]",
+                    "[&:nth-child(4)]:animate-[rotateword_16s_linear_infinite_12s]"
+                  )}
+                  key={index}
+                >
+                  {sentenceEnding}
+                </span>
+              ))}
+            </div>
+          </h1>
         </div>
         <div className="w-full flex justify-center md:justify-start gap-6">
           {primaryButton && (

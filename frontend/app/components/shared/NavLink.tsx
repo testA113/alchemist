@@ -11,7 +11,7 @@ export const NavLink = ({ to, children }: NavLinkProps) => {
     to === location.pathname || location.pathname.startsWith(`${to}/`);
 
   return (
-    <div className="px-5 py-2">
+    <div className="px-[1vw] py-2">
       <Link
         prefetch="intent"
         className={clsx(

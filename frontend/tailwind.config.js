@@ -2,6 +2,9 @@
 module.exports = {
   content: ["./app/**/*.{tsx,ts,js}"],
   theme: {
+    fontFamily: {
+      sans: ["Suez One", "sans-serif"],
+    },
     extend: {
       spacing: {
         "5vw": "5vw", // pull featured sections and navbar in the margin
@@ -10,6 +13,20 @@ module.exports = {
       },
       minHeight: {
         minpage: "calc(100vh - 324px)", // 324px is the height of the footer
+      },
+      keyframes: {
+        rotateword: {
+          "0%": { opacity: "0" },
+          "1%": { opacity: "0", transform: "translateY(-30px)" },
+          "3%": { opacity: "1", transform: "translateY(0px)" },
+          "24%": { opacity: "1", transform: "translateY(0px)" },
+          "26%": { opacity: "0", transform: "translateY(30px)" },
+          "80%": { opacity: "0" },
+          "100%": { opacity: "0" },
+        },
+      },
+      animation: {
+        rotateword: "rotateword 12s linear infinite",
       },
     },
   },

@@ -939,7 +939,7 @@ export interface LinksButton extends ComponentSchema {
   };
   attributes: {
     type: EnumerationAttribute<
-      ['primary', 'secondary', 'default', 'warning', 'danger']
+      ['primary', 'secondary', 'default', 'warning', 'danger', 'link']
     > &
       DefaultTo<'default'>;
     size: EnumerationAttribute<['xs', 'sm', 'md', 'lg']>;

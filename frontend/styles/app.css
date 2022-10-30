@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 .btn {
-  @apply normal-case;
   @apply rounded-full
 }
 
