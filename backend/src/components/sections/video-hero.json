@@ -7,26 +7,26 @@
   },
   "options": {},
   "attributes": {
-    "videourl": {
+    "videoUrl": {
       "type": "string",
       "required": true,
       "minLength": 1
     },
-    "cyclingsentence": {
+    "cyclingSentence": {
       "type": "component",
       "repeatable": false,
       "component": "sections.cyclingsentence",
       "required": true
     },
-    "showscroll": {
+    "showScroll": {
       "type": "boolean"
     },
-    "primarybutton": {
+    "primaryButton": {
       "type": "component",
       "repeatable": false,
       "component": "links.button"
     },
-    "secondarybutton": {
+    "secondaryButton": {
       "type": "component",
       "repeatable": false,
       "component": "links.button"
@@ -36,16 +36,15 @@
       "repeatable": false,
       "component": "links.button"
     },
-    "videoname": {
+    "videoName": {
       "type": "string"
     },
     "loadingBackgroundImage": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
-        "images",
-        "files"
+        "images"
       ]
     },
     "fallbackImage": {
@@ -53,10 +52,7 @@
       "multiple": false,
       "required": true,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "images"
       ]
     }
   }

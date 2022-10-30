@@ -19,12 +19,14 @@ export const SocialIcons = ({
 }) => {
   return (
     <div
+      aria-label="Alchemist mixology social media links"
       className={clsx(
         className,
         "flex w-full items-center justify-center gap-6 py-2"
       )}
     >
       <a
+        aria-label="Facebook"
         href={social.facebookurl}
         target="_blank"
         rel="noopener noreferrer"
@@ -34,6 +36,7 @@ export const SocialIcons = ({
         <Facebook />
       </a>
       <a
+        aria-label="Instagram"
         href={social.instagramurl}
         target="_blank"
         rel="noopener noreferrer"
@@ -43,6 +46,7 @@ export const SocialIcons = ({
         <Instagram />
       </a>
       <a
+        aria-label="Email"
         href={`mailto:${social.email}?subject = Event Enquiry`}
         className="btn btn-primary btn-circle btn-outline btn-md"
       >
@@ -50,6 +54,7 @@ export const SocialIcons = ({
         <Mail />
       </a>
       <a
+        aria-label="Phone"
         href={`tel: ${social.telephone}`}
         className="btn btn-primary btn-circle btn-outline btn-md"
       >

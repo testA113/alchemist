@@ -14,7 +14,8 @@
         "secondary",
         "default",
         "warning",
-        "danger"
+        "danger",
+        "link"
       ],
       "default": "default",
       "required": false

@@ -1,5 +1,8 @@
 {
   "scripts": {
+    "dev-backend": "cd backend && yarn dev",
+    "dev-frontend": "cd frontend && yarn dev",
+    "start-frontend": "cd frontend && yarn build && yarn start",
     "dev": "concurrently \"cd backend && yarn dev\" \"cd frontend && yarn dev\""
   },
   "devDependencies": {

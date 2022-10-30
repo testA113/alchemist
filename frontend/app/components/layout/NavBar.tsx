@@ -104,11 +104,15 @@ type MobileMenuProps = {
 const MobileMenu = ({ social, navbarLinks, actionButton }: MobileMenuProps) => {
   return (
     <Menu>
-      {({ isExpanded }) => {
+      {() => {
         return (
           <>
-            <MenuButton className="btn btn-circle btn-ghost no-animation ml-5">
-              {isExpanded ? <X /> : <MenuIcon />}
+            <MenuButton>
+              <label className="btn swap swap-rotate btn-circle btn-ghost no-animation ml-5">
+                <input type="checkbox" />
+                <X className="swap-on" />
+                <MenuIcon className="swap-off" />
+              </label>
             </MenuButton>
             <MobileMenuList
               social={social}
@@ -149,19 +153,19 @@ export const NavBar = ({ data }: NavBarProps) => {
             </Link>
           </div>
           <div className="flex items-center py-4">
-            <ul className="hidden lg:flex">
+            <div aria-label="Navigation bar links" className="hidden lg:flex">
               {navbar.links.map(({ path, text }) => (
                 <NavLink key={path} to={path}>
                   {text}
                 </NavLink>
               ))}
-            </ul>
+            </div>
             <Button
               action={() => {
                 console.log("click");
               }}
-              mode="primary"
-              size="lg"
+              mode={navbar.actionButton.type}
+              size={navbar.actionButton.size}
               className="ml-5 hidden md:block"
             >
               {navbar.actionButton.text}

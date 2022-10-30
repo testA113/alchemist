@@ -4,6 +4,7 @@
 
 .btn {
   @apply normal-case;
+  @apply rounded-full
 }
 
 .underlined {

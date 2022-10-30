@@ -1,20 +1,18 @@
-import * as lucide from "lucide-react";
+import { Link } from "@remix-run/react";
+import clsx from "clsx";
 
+type Mode = "primary" | "secondary" | "default" | "warning" | "danger" | "link";
+type Size = "xs" | "sm" | "md" | "lg";
 interface Props {
   action: string | (() => void);
   children?: React.ReactNode;
-  mode?: "primary" | "secondary" | "default" | "warning" | "danger";
-  size?: "xs" | "sm" | "md" | "lg";
+  mode?: Mode;
+  size?: Size;
   className?: string;
-  icon?: keyof typeof lucide;
+  icon?: React.ReactNode;
   submit?: boolean;
   title?: string;
 }
-
-const Icon = ({ icon }: { icon: keyof typeof lucide }) => {
-  const Icon = lucide[icon] as React.FC<React.SVGProps<SVGSVGElement>>;
-  return <Icon />;
-};
 
 export const Button = ({
   action,
@@ -26,14 +24,14 @@ export const Button = ({
   submit = false,
   title,
 }: Props) => {
-  const buttonClass = `btn btn-${mode} btn-${size} ${className}`;
+  const buttonClass = clsx(getButtonClass(mode, size), className);
 
   if (typeof action === "string") {
     return (
-      <a href={action} className={buttonClass}>
-        {icon && <Icon icon={icon} />}
+      <Link prefetch="intent" to={action} className={buttonClass}>
+        {icon}
         {children}
-      </a>
+      </Link>
     );
   }
 
@@ -50,3 +48,50 @@ export const Button = ({
     </button>
   );
 };
+
+// getButtonClass uses a switch statement to return the correct class name for the button based on the mode and size prop.
+function getButtonClass(mode: Mode, size: Size) {
+  let buttonClass = "btn";
+  switch (mode) {
+    case "primary":
+      buttonClass += " btn-primary";
+      break;
+    case "secondary":
+      buttonClass += " btn-secondary";
+      break;
+    case "default":
+      buttonClass += " btn-default";
+      break;
+    case "warning":
+      buttonClass += " btn-warning";
+      break;
+    case "danger":
+      buttonClass += " btn-danger";
+      break;
+    case "link":
+      buttonClass += " btn-link";
+      break;
+    default:
+      buttonClass += " btn-default";
+      break;
+  }
+
+  switch (size) {
+    case "xs":
+      buttonClass += " btn-xs";
+      break;
+    case "sm":
+      buttonClass += " btn-sm";
+      break;
+    case "md":
+      buttonClass += " btn-md";
+      break;
+    case "lg":
+      buttonClass += " btn-lg";
+      break;
+    default:
+      buttonClass += " btn-md";
+      break;
+  }
+  return buttonClass;
+}

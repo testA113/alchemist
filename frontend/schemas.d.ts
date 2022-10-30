@@ -2206,19 +2206,19 @@ export interface SectionsVideoHero extends ComponentSchema {
     description: '';
   };
   attributes: {
-    videourl: StringAttribute &
+    videoUrl: StringAttribute &
       RequiredAttribute &
       SetMinMaxLength<{
         minLength: 1;
       }>;
-    cyclingsentence: ComponentAttribute<'sections.cyclingsentence'> &
+    cyclingSentence: ComponentAttribute<'sections.cyclingsentence'> &
       RequiredAttribute;
-    showscroll: BooleanAttribute;
-    primarybutton: ComponentAttribute<'links.button'>;
-    secondarybutton: ComponentAttribute<'links.button'>;
+    showScroll: BooleanAttribute;
+    primaryButton: ComponentAttribute<'links.button'>;
+    secondaryButton: ComponentAttribute<'links.button'>;
     link: ComponentAttribute<'links.button'>;
-    videoname: StringAttribute;
-    loadingBackgroundImage: MediaAttribute;
+    videoName: StringAttribute;
+    loadingBackgroundImage: MediaAttribute & RequiredAttribute;
     fallbackImage: MediaAttribute & RequiredAttribute;
   };
 }
