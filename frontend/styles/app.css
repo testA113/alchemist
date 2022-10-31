@@ -6,6 +6,10 @@
   @apply rounded-full
 }
 
+h1 {
+  @apply font-suez
+}
+
 .underlined {
   position: relative;
   text-decoration: none !important;

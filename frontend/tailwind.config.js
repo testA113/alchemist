@@ -3,7 +3,8 @@ module.exports = {
   content: ["./app/**/*.{tsx,ts,js}"],
   theme: {
     fontFamily: {
-      sans: ["Suez One", "sans-serif"],
+      suez: ["Suez One", "sans-serif"],
+      sans: ["Ubuntu", "sans-serif"],
     },
     extend: {
       spacing: {

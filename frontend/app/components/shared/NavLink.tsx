@@ -15,7 +15,7 @@ export const NavLink = ({ to, children }: NavLinkProps) => {
       <Link
         prefetch="intent"
         className={clsx(
-          "underlined focus:outline-none block whitespace-nowrap text-lg font-medium mx-3 my-2",
+          "underlined focus:outline-none block whitespace-nowrap uppercase mx-3 my-2",
           {
             "text-accent": isSelected,
             "text-body": !isSelected,
