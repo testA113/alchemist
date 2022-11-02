@@ -88,7 +88,7 @@ export function VideoHero({ sectionData }: Props) {
           />
         </m.div>
       </LazyMotion>
-      <div className="flex flex-col gap-6 px-5vw z-20 items-start">
+      <div className="flex flex-col gap-6 px-10vw z-20 items-start">
         <div className="relative prose-lg md:prose-xl lg:prose-2xl w-full flex flex-col flex-wrap pr-24 md:w-[60%] lg:w-[50%]">
           <h1 className="text-white !mb-4">
             {sectionData.cyclingSentence.sentencestart}

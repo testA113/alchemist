@@ -1,6 +1,11 @@
-import { type DynamicSectionValues, isVideoHeroValues } from "./types";
+import {
+  type DynamicSectionValues,
+  isVideoHeroValues,
+  isLargeSummaryValues,
+} from "./types";
 
 import { VideoHero } from "./VideoHero";
+import { LargeSummary } from "./LargeSummary";
 
 type Props = {
   componentType: keyof Strapi.Schemas;
@@ -10,6 +15,10 @@ type Props = {
 export function Section({ sectionData }: Props) {
   if (isVideoHeroValues(sectionData)) {
     return <VideoHero sectionData={sectionData} />;
+  }
+
+  if (isLargeSummaryValues(sectionData)) {
+    return <LargeSummary sectionData={sectionData} />;
   }
 
   return (

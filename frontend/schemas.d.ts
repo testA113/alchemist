@@ -2168,8 +2168,8 @@ export interface SectionsLargeSummary extends ComponentSchema {
         minLength: 1;
       }> &
       DefaultTo<'we are the best bitches in all the land'>;
-    moreinfolink: ComponentAttribute<'links.link'>;
     backgroundimage: MediaAttribute;
+    moreInfoButton: ComponentAttribute<'links.button'>;
   };
 }
 

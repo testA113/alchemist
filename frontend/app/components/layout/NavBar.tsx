@@ -69,7 +69,7 @@ const MobileMenuList = ({
             <MenuItems className="border-none bg-transparent p-0 flex flex-col focus-visible:outline-none">
               {navbarLinks.map(({ path, text }) => (
                 <MenuLink
-                  className="hover:bg-base-200 focus:bg-base-200 text-neutral-content border-b px-5vw py-9 border-base-200 transition duration-200"
+                  className="hover:bg-base-200 focus:bg-base-200 text-neutral-content border-b px-5vw py-9 border-base-200 transition uppercase duration-200"
                   key={path}
                   as={Link}
                   to={path}

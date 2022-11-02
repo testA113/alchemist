@@ -13,11 +13,6 @@
             "required": true,
             "minLength": 1
         },
-        "moreinfolink": {
-            "type": "component",
-            "repeatable": false,
-            "component": "links.link"
-        },
         "backgroundimage": {
             "type": "media",
             "multiple": false,
@@ -26,6 +21,11 @@
                 "images",
                 "files"
             ]
+        },
+        "moreInfoButton": {
+            "type": "component",
+            "repeatable": false,
+            "component": "links.button"
         }
     }
 }
