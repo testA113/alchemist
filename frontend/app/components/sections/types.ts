@@ -10,6 +10,8 @@ export type VideoHeroValues = GetAttributesValues<"sections.video-hero"> &
   DynamicZoneValueBase;
 export type LargeSummaryValues = GetAttributesValues<"sections.large-summary"> &
   DynamicZoneValueBase;
+export type CarouselValues =
+  GetAttributesValues<"sections.full-size-carousel"> & DynamicZoneValueBase;
 
 export function isVideoHeroValues(
   sectionValues: DynamicSectionValues
@@ -21,4 +23,10 @@ export function isLargeSummaryValues(
   sectionValues: DynamicSectionValues
 ): sectionValues is LargeSummaryValues {
   return sectionValues.__component === "sections.large-summary";
+}
+
+export function isCarouselValues(
+  sectionValues: DynamicSectionValues
+): sectionValues is CarouselValues {
+  return sectionValues.__component === "sections.full-size-carousel";
 }

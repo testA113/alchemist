@@ -2,10 +2,12 @@ import {
   type DynamicSectionValues,
   isVideoHeroValues,
   isLargeSummaryValues,
+  isCarouselValues,
 } from "./types";
 
 import { VideoHero } from "./VideoHero";
 import { LargeSummary } from "./LargeSummary";
+import { Carousel } from "./Carousel";
 
 type Props = {
   componentType: keyof Strapi.Schemas;
@@ -19,6 +21,10 @@ export function Section({ sectionData }: Props) {
 
   if (isLargeSummaryValues(sectionData)) {
     return <LargeSummary sectionData={sectionData} />;
+  }
+
+  if (isCarouselValues(sectionData)) {
+    return <Carousel sectionData={sectionData} />;
   }
 
   return (

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import clsx from "clsx";
 import { Link } from "@remix-run/react";
 import { Menu as MenuIcon, X } from "lucide-react";
@@ -15,7 +16,7 @@ import type { GetAttributesValues } from "@strapi/strapi";
 import { SocialIcons } from "../shared/SocialIcons";
 import { NavLink } from "../shared/NavLink";
 import { Button } from "../shared/Button";
-import { useEffect } from "react";
+import type { ImageAttributes } from "../shared/types";
 
 type MobileMenuListProps = {
   social: GetAttributesValues<"elements.socials">;
@@ -131,7 +132,7 @@ interface NavBarProps {
 }
 export const NavBar = ({ data }: NavBarProps) => {
   const { navbar, social } = data;
-  const logo = navbar.logo.data.attributes;
+  const logo = navbar.logo.data.attributes as ImageAttributes;
 
   return (
     <div className="transition duration-500 w-full">

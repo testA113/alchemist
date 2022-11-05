@@ -2149,9 +2149,10 @@ export interface SectionsFullSizeCarousel extends ComponentSchema {
   info: {
     displayName: 'full size carousel';
     icon: 'images';
+    description: '';
   };
   attributes: {
-    images: MediaAttribute;
+    images: MediaAttribute & RequiredAttribute;
   };
 }
 
