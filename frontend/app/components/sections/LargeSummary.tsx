@@ -13,7 +13,7 @@ export function LargeSummary({ sectionData }: Props) {
     <section
       className={clsx(
         "bg-base-100 flex flex-col py-12 px-10vw items-center justify-items-center text-center",
-        "prose-lg md:prose-xl lg:prose-2xl"
+        "prose max-w-max md:prose-lg lg:prose-xl"
       )}
     >
       <Markdown>{sectionData.summarytext}</Markdown>

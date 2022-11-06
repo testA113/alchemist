@@ -12,6 +12,7 @@ interface Props {
   icon?: React.ReactNode;
   submit?: boolean;
   title?: string;
+  disabled?: boolean;
 }
 
 export const Button = ({
@@ -23,6 +24,7 @@ export const Button = ({
   icon,
   submit = false,
   title,
+  disabled = false,
 }: Props) => {
   const buttonClass = clsx(getButtonClass(mode, size), className);
 

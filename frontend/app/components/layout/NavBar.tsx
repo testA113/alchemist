@@ -108,9 +108,9 @@ const MobileMenu = ({ social, navbarLinks, actionButton }: MobileMenuProps) => {
       {() => {
         return (
           <>
-            <MenuButton>
+            <MenuButton aria-label="menu button">
               <label className="btn swap swap-rotate btn-circle btn-ghost no-animation ml-5">
-                <input type="checkbox" />
+                <input type="checkbox" aria-label="toggle  menu" />
                 <X className="swap-on" />
                 <MenuIcon className="swap-off" />
               </label>
