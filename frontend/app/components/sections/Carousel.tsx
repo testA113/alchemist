@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import useEmblaCarousel from "embla-carousel-react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { Button } from "../shared/Button";
@@ -19,31 +19,9 @@ export function Carousel({ sectionData }: Props) {
     loop: true,
     skipSnaps: false,
   });
-  const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
-  const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [scrollSnaps, setScrollSnaps] = useState([]);
 
   const scrollPrev = useCallback(() => embla && embla.scrollPrev(), [embla]);
   const scrollNext = useCallback(() => embla && embla.scrollNext(), [embla]);
-  const scrollTo = useCallback(
-    (index: number) => embla && embla.scrollTo(index),
-    [embla]
-  );
-
-  const onSelect = useCallback(() => {
-    if (!embla) return;
-    setSelectedIndex(embla.selectedScrollSnap());
-    setPrevBtnDisabled(!embla.canScrollPrev());
-    setNextBtnDisabled(!embla.canScrollNext());
-  }, [embla, setSelectedIndex]);
-
-  useEffect(() => {
-    if (!embla) return;
-    onSelect();
-    // setScrollSnaps(embla.scrollSnapList());
-    embla.on("select", onSelect);
-  }, [embla, onSelect]);
 
   return (
     <section
@@ -62,7 +40,7 @@ export function Carousel({ sectionData }: Props) {
               )}
               width={image.attributes.formats.large.width}
               height={image.attributes.formats.large.height}
-              className="h-full w-auto object-cover"
+              className="h-full w-auto object-cover mx-4 rounded-2xl"
               alt={image.attributes.alternativeText}
             />
           ))}
@@ -71,8 +49,8 @@ export function Carousel({ sectionData }: Props) {
       <div className="absolute top-1/2 -translate-y-1/2 left-5vw md:left-20">
         <Button
           action={scrollPrev}
-          disabled={prevBtnDisabled}
-          className="btn-circle btn-ghost btn-active"
+          className="btn-circle btn-ghost btn-active lg:btn-outline md:btn-lg"
+          aria-label="previous image"
         >
           <ChevronLeft />
         </Button>
@@ -80,8 +58,8 @@ export function Carousel({ sectionData }: Props) {
       <div className="absolute top-1/2 -translate-y-1/2 right-5vw md:right-20">
         <Button
           action={scrollNext}
-          disabled={nextBtnDisabled}
-          className="btn-circle btn-ghost btn-active"
+          className="btn-circle btn-ghost btn-active lg:btn-outline md:btn-lg"
+          aria-label="next image"
         >
           <ChevronRight />
         </Button>

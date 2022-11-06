@@ -19,7 +19,6 @@ type Props = {
 export function VideoHero({ sectionData }: Props) {
   let videoRef = useRef(null);
   let [showVideo, setShowVideo] = useState(false);
-  console.log("showVideo: ", showVideo);
   let { scrollYProgress } = useScroll({
     target: videoRef,
     offset: ["start start", "end start"],
@@ -57,7 +56,8 @@ export function VideoHero({ sectionData }: Props) {
           {showVideo ? (
             <iframe
               title={sectionData.videoName}
-              src={sectionData.videoUrl}
+                src={sectionData.videoUrl}
+                aria-hidden
               loading="eager"
               scrolling="no"
               frameBorder="0"
