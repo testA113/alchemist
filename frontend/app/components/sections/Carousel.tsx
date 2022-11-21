@@ -25,7 +25,7 @@ export function Carousel({ sectionData }: Props) {
 
   return (
     <section
-      className="relative bg-base-100 items-center"
+      className="relative bg-base-100 items-center py-8"
       aria-label="Carousel section"
     >
       <div className="overflow-x-hidden cursor-move" ref={emblaRef}>

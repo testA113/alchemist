@@ -1,3 +1,5 @@
+import { ComponentAttribute, DateTimeAttribute, RelationAttribute, RichTextAttribute } from "@strapi/strapi";
+
 type ImageSize = "small" | "medium" | "large" | "thumbnail";
 
 type SizeValues = {
@@ -37,3 +39,26 @@ export type ImageValues = {
   id: number;
   attributes: ImageAttributes;
 };
+
+export interface Service {
+  id: number;
+  attributes: {
+    name: string;
+    slug: string;
+    showcases: RelationAttribute<
+      'api::service.service',
+      'manyToMany',
+      'api::showcase.showcase'
+    >;
+    events: RelationAttribute<
+      'api::service.service',
+      'manyToMany',
+      'api::event.event'
+    >;
+    seo: ComponentAttribute<'shared.seo'>;
+    description: RichTextAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    publishedAt: DateTimeAttribute;
+  };
+}

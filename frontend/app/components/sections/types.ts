@@ -1,4 +1,4 @@
-import type { GetAttributesValues } from "@strapi/strapi";
+import type { ComponentAttribute, DateTimeAttribute, GetAttributesValues, RelationAttribute, RichTextAttribute } from "@strapi/strapi";
 
 type DynamicZoneValueBase = {
   __component: keyof Strapi.Schemas;
@@ -12,6 +12,7 @@ export type LargeSummaryValues = GetAttributesValues<"sections.large-summary"> &
   DynamicZoneValueBase;
 export type CarouselValues =
   GetAttributesValues<"sections.full-size-carousel"> & DynamicZoneValueBase;
+export type ServicesShowcaseValues = GetAttributesValues<"sections.services-showcase"> & DynamicZoneValueBase
 
 export function isVideoHeroValues(
   sectionValues: DynamicSectionValues
@@ -29,4 +30,10 @@ export function isCarouselValues(
   sectionValues: DynamicSectionValues
 ): sectionValues is CarouselValues {
   return sectionValues.__component === "sections.full-size-carousel";
+}
+
+export function isServicesShowcaseValues(
+  sectionValues: DynamicSectionValues
+): sectionValues is ServicesShowcaseValues {
+  return sectionValues.__component === "sections.services-showcase";
 }

@@ -772,6 +772,7 @@ export interface ApiServiceService extends CollectionTypeSchema {
     >;
     seo: ComponentAttribute<'shared.seo'>;
     description: RichTextAttribute;
+    image: MediaAttribute & RequiredAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
