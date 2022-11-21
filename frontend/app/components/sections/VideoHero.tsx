@@ -6,6 +6,7 @@ import {
   domAnimation,
   m,
 } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { Button } from "~/components/shared/Button";
@@ -45,7 +46,7 @@ export function VideoHero({ sectionData }: Props) {
   return (
     <section
       ref={videoRef}
-      className="flex flex-col justify-end bg-transparent h-[100vh] pb-12 md:pb-20"
+      className="flex flex-col justify-end bg-transparent h-[100vh] pb-24 md:pb-12"
     >
       <LazyMotion features={domAnimation}>
         <m.div
@@ -56,8 +57,8 @@ export function VideoHero({ sectionData }: Props) {
           {showVideo ? (
             <iframe
               title={sectionData.videoName}
-                src={sectionData.videoUrl}
-                aria-hidden
+              src={sectionData.videoUrl}
+              aria-hidden
               loading="eager"
               scrolling="no"
               frameBorder="0"
@@ -131,6 +132,7 @@ export function VideoHero({ sectionData }: Props) {
               size={link.size}
             >
               {link.text}
+              <ChevronDown />
             </Button>
           )}
         </div>

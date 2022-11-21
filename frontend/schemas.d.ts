@@ -771,6 +771,7 @@ export interface ApiServiceService extends CollectionTypeSchema {
       'api::event.event'
     >;
     seo: ComponentAttribute<'shared.seo'>;
+    description: RichTextAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
@@ -830,6 +831,7 @@ export interface ApiShowcaseShowcase extends CollectionTypeSchema {
       'api::event.event'
     >;
     seo: ComponentAttribute<'shared.seo'>;
+    featured: BooleanAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
@@ -2194,9 +2196,12 @@ export interface SectionsServicesShowcase extends ComponentSchema {
   };
   attributes: {
     title: StringAttribute & RequiredAttribute;
-    serviceswipeoptions: ComponentAttribute<'elements.swipe-option', true> &
-      RequiredAttribute;
-    seemorelink: ComponentAttribute<'links.link'>;
+    servicesDescription: RichTextAttribute;
+    services: RelationAttribute<
+      'sections.services-showcase',
+      'oneToMany',
+      'api::service.service'
+    >;
   };
 }
 

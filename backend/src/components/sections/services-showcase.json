@@ -11,16 +11,13 @@
       "type": "string",
       "required": true
     },
-    "serviceswipeoptions": {
-      "type": "component",
-      "repeatable": true,
-      "component": "elements.swipe-option",
-      "required": true
+    "servicesDescription": {
+      "type": "richtext"
     },
-    "seemorelink": {
-      "type": "component",
-      "repeatable": false,
-      "component": "links.link"
+    "services": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::service.service"
     }
   }
 }
