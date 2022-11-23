@@ -51,49 +51,23 @@ export const Button = ({
   );
 };
 
+const buttonModeClassMap = {
+  primary: "btn-primary",
+  secondary: "btn-secondary",
+  default: "btn-default",
+  warning: "btn-warning",
+  danger: "btn-danger",
+  link: "btn-link",
+};
+
+const buttonSizeClassMap = {
+  xs: "btn-xs",
+  sm: "btn-sm",
+  md: "btn-md",
+  lg: "btn-lg",
+};
+
 // getButtonClass uses a switch statement to return the correct class name for the button based on the mode and size prop.
 function getButtonClass(mode: Mode, size: Size) {
-  let buttonClass = "btn";
-  switch (mode) {
-    case "primary":
-      buttonClass += " btn-primary";
-      break;
-    case "secondary":
-      buttonClass += " btn-secondary";
-      break;
-    case "default":
-      buttonClass += " btn-default";
-      break;
-    case "warning":
-      buttonClass += " btn-warning";
-      break;
-    case "danger":
-      buttonClass += " btn-danger";
-      break;
-    case "link":
-      buttonClass += " btn-link";
-      break;
-    default:
-      buttonClass += " btn-default";
-      break;
-  }
-
-  switch (size) {
-    case "xs":
-      buttonClass += " btn-xs";
-      break;
-    case "sm":
-      buttonClass += " btn-sm";
-      break;
-    case "md":
-      buttonClass += " btn-md";
-      break;
-    case "lg":
-      buttonClass += " btn-lg";
-      break;
-    default:
-      buttonClass += " btn-md";
-      break;
-  }
-  return buttonClass;
+  return `btn ${buttonModeClassMap[mode]} ${buttonSizeClassMap[size]}`;
 }

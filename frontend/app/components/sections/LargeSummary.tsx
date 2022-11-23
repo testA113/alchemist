@@ -3,6 +3,7 @@ import clsx from "clsx";
 
 import { Button } from "../shared/Button";
 import type { LargeSummaryValues } from "./types";
+import { ChevronRight } from "lucide-react";
 
 type Props = {
   sectionData: LargeSummaryValues;
@@ -24,6 +25,7 @@ export function LargeSummary({ sectionData }: Props) {
           size={sectionData.moreInfoButton.size}
         >
           {sectionData.moreInfoButton.text}
+          <ChevronRight />
         </Button>
       )}
     </section>

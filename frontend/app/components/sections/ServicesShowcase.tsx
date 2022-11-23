@@ -2,6 +2,8 @@ import type { Service } from "../shared/types";
 import { ChevronRight } from "lucide-react";
 
 import type { ServicesShowcaseValues } from "./types";
+import { Button } from "../shared/Button";
+import clsx from "clsx";
 
 type ServiceData = {
   data: Service[];
@@ -14,8 +16,18 @@ type Props = {
 export function ServicesShowcase({ sectionData }: Props) {
   const serviceData = sectionData.services as ServiceData | undefined;
   return (
-    <section className="py-12 px-10vw w-full flex flex-wrap !max-w-full gap-24">
-      <div className="sticky h-min top-48 prose md:prose-lg lg:prose-xl w-1/3 flex-none">
+    <section
+      className={clsx(
+        "flex flex-col",
+        "py-24 px-10vw w-full md:flex-row flex-wrap !max-w-full gap-24"
+      )}
+    >
+      <div
+        className={clsx(
+          "text-center",
+          "md:sticky h-min md:top-48 md:text-left prose md:prose-lg lg:prose-xl md:w-1/3 flex-none"
+        )}
+      >
         <h1>{sectionData.title}</h1>
         <h3>{sectionData.servicesDescription}</h3>
       </div>
@@ -33,13 +45,14 @@ export function ServicesShowcase({ sectionData }: Props) {
                 <p className="leading-relaxed mb-3">
                   {service.attributes.shortDescription}
                 </p>
-                <a
-                  href={`/${service.attributes.slug}`}
-                  className="text-indigo-500 inline-flex items-center"
+                <Button
+                  action={`/${service.attributes.slug}`}
+                  mode="link"
+                  className="inline-flex items-center"
                 >
                   Learn More
                   <ChevronRight />
-                </a>
+                </Button>
               </div>
             </div>
           ))}
