@@ -771,8 +771,13 @@ export interface ApiServiceService extends CollectionTypeSchema {
       'api::event.event'
     >;
     seo: ComponentAttribute<'shared.seo'>;
-    description: RichTextAttribute;
+    fullDescription: RichTextAttribute;
     image: MediaAttribute & RequiredAttribute;
+    shortDescription: StringAttribute &
+      RequiredAttribute &
+      SetMinMaxLength<{
+        maxLength: 400;
+      }>;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;

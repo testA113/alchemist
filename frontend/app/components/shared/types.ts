@@ -56,7 +56,8 @@ export interface Service {
       'api::event.event'
     >;
     seo: ComponentAttribute<'shared.seo'>;
-    description: RichTextAttribute;
+    fullDescription: RichTextAttribute;
+    shortDescription: string;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;

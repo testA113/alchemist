@@ -37,16 +37,21 @@
       "repeatable": false,
       "component": "shared.seo"
     },
-    "description": {
+    "fullDescription": {
       "type": "richtext"
     },
     "image": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "shortDescription": {
+      "type": "string",
+      "required": true,
+      "maxLength": 400
     }
   }
 }
