@@ -40,6 +40,10 @@ export type ImageValues = {
   attributes: ImageAttributes;
 };
 
+export type ImageData = {
+  data: ImageValues;
+}
+
 export interface Service {
   id: number;
   attributes: {
@@ -56,6 +60,7 @@ export interface Service {
       'api::event.event'
     >;
     seo: ComponentAttribute<'shared.seo'>;
+    image: ImageData;
     fullDescription: RichTextAttribute;
     shortDescription: string;
     createdAt: DateTimeAttribute;

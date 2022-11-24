@@ -100,10 +100,10 @@ export function VideoHero({ sectionData }: Props) {
                 <span
                   className={clsx(
                     "absolute min-h-max opacity-0",
-                    "[&:nth-child(1)]:animate-[rotateword_16s_linear_infinite]",
-                    "[&:nth-child(2)]:animate-[rotateword_16s_linear_infinite_4s]",
-                    "[&:nth-child(3)]:animate-[rotateword_16s_linear_infinite_8s]",
-                    "[&:nth-child(4)]:animate-[rotateword_16s_linear_infinite_12s]"
+                    "[&:nth-child(1)]:animate-[rotateword_16s_ease-out_infinite]",
+                    "[&:nth-child(2)]:animate-[rotateword_16s_ease-out_infinite_4s]",
+                    "[&:nth-child(3)]:animate-[rotateword_16s_ease-out_infinite_8s]",
+                    "[&:nth-child(4)]:animate-[rotateword_16s_ease-out_infinite_12s]"
                   )}
                   key={index}
                 >
