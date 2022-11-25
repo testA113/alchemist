@@ -18,6 +18,7 @@ type Props = {
 };
 
 export function VideoHero({ sectionData }: Props) {
+  let bottomRef = useRef<null | HTMLDivElement>(null);
   let videoRef = useRef(null);
   let [showVideo, setShowVideo] = useState(false);
   let { scrollYProgress } = useScroll({
@@ -42,6 +43,10 @@ export function VideoHero({ sectionData }: Props) {
     }, 3000);
     return () => clearTimeout(timer);
   }, []);
+
+  const scrollDown = () => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" })
+  };
 
   return (
     <section
@@ -127,9 +132,9 @@ export function VideoHero({ sectionData }: Props) {
           {link && (
             <Button
               aria-label={link.text}
-              action={link.url || ""}
               mode={link.type}
               size={link.size}
+              action={() => scrollDown()}
             >
               {link.text}
               <ChevronDown />
@@ -138,6 +143,7 @@ export function VideoHero({ sectionData }: Props) {
         </div>
       </div>
       <div className="absolute bottom-0 h-2/3 w-full bg-gradient-to-t from-base-100 to-transparent"></div>
+      <div className="absolute bottom-0" ref={bottomRef} />
     </section>
   );
 }

@@ -4,7 +4,7 @@ import clsx from "clsx";
 type Mode = "primary" | "secondary" | "default" | "warning" | "danger" | "link";
 type Size = "xs" | "sm" | "md" | "lg";
 interface Props {
-  action: string | (() => void);
+  action?: string | (() => void);
   children?: React.ReactNode;
   mode?: Mode;
   size?: Size;
@@ -37,18 +37,27 @@ export const Button = ({
     );
   }
 
-  return (
-    <button
-      type={submit ? "submit" : "button"}
-      title={title}
-      className={buttonClass}
-      onClick={() => {
-        action && action();
-      }}
-    >
-      {children}
-    </button>
-  );
+  if (action) {
+    return (
+      <button
+        type={submit ? "submit" : "button"}
+        title={title}
+        className={buttonClass}
+        onClick={() => {
+          action && action();
+        }}
+      >
+        {children}
+      </button>
+    );
+  }
+
+  return <div
+    title={title}
+    className={buttonClass}
+  >
+    {children}
+  </div>
 };
 
 const buttonModeClassMap = {

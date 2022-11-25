@@ -16,11 +16,10 @@ type Props = {
 
 export function ServicesShowcase({ sectionData }: Props) {
   const serviceData = sectionData.services as ServiceData | undefined;
-  console.log("serviceData:", serviceData);
   return (
     <section
       className={clsx(
-        "bg-base-100 flex flex-col gap-24",
+        "bg-base-100 flex flex-col gap-x-24",
         "py-24 px-10vw w-full md:flex-row flex-wrap !max-w-full"
       )}
     >
@@ -58,7 +57,6 @@ export function ServicesShowcase({ sectionData }: Props) {
                     {service.attributes.shortDescription}
                   </p>
                   <Button
-                    action={service.attributes.slug}
                     mode="link"
                     className="inline-flex items-center"
                   >
