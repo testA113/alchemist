@@ -20,7 +20,7 @@ export function ServicesShowcase({ sectionData }: Props) {
   return (
     <section
       className={clsx(
-        "flex flex-col",
+        "bg-base-100 flex flex-col gap-24",
         "py-24 px-10vw w-full md:flex-row flex-wrap !max-w-full"
       )}
     >
@@ -47,7 +47,7 @@ export function ServicesShowcase({ sectionData }: Props) {
                   key={index}
                   className="h-full px-8 py-20 rounded-2xl overflow-hidden text-center bg-cover bg-center transition ease-out transform duration-300 hover:opacity-90"
                   style={{
-                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
                   url(${ENV.STRAPI_BASEURL}${service.attributes.image.data.attributes.formats.medium.url})`,
                   }}
                 >

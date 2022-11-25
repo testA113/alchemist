@@ -46,7 +46,7 @@ export function VideoHero({ sectionData }: Props) {
   return (
     <section
       ref={videoRef}
-      className="flex flex-col justify-end bg-transparent h-[100vh] pb-24 md:pb-12"
+      className="flex flex-col justify-end bg-transparent h-[100vh] pb-24"
     >
       <LazyMotion features={domAnimation}>
         <m.div
