@@ -5,27 +5,27 @@ import { Link } from "@remix-run/react";
 import { SocialIcons } from "../shared/SocialIcons";
 
 interface Props {
-  data: GetAttributesValues<"api::footer.footer">;
+  data?: GetAttributesValues<"api::footer.footer">;
 }
 
-export const Footer = ({ data: { footer, socials } }: Props) => {
-  const logo = footer.logo?.data.attributes;
+export const Footer = ({ data }: Props) => {
+  const logo = data?.footer.logo?.data.attributes;
   return (
     <footer className="flex flex-col w-full items-center justify-center bg-base-100 gap-y-6 pb-6">
       <Link to="/" title="Alchemist Mixology - Home" prefetch="intent">
         <img
-          srcSet={clsx(
+          srcSet={ENV && logo ? clsx(
             `${ENV.STRAPI_BASEURL}${logo.formats.thumbnail.url} 640w,`,
             `${ENV.STRAPI_BASEURL}${logo.formats.small.url} 768w,`,
             `${ENV.STRAPI_BASEURL}${logo.url} 1024w,`
-          )}
+          ) : `images/small_small_logo_6d8d7070f6.webp 1024w`}
           alt="logo"
-          width={logo.formats.small.width}
-          height={logo.formats.small.height}
+          width={logo && logo.formats.small.width}
+          height={logo && logo.formats.small.height}
           className="h-32 w-auto object-cover"
         />
       </Link>
-      <SocialIcons social={socials} />
+      <SocialIcons social={data?.socials} />
       {/* TODO: creator link later */}
     </footer>
   );

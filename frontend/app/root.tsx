@@ -92,7 +92,7 @@ function Document({
         <Scripts />
         <script
           dangerouslySetInnerHTML={{
-            __html: `window.ENV = ${JSON.stringify(data.ENV)}`,
+            __html: `window.ENV = ${JSON.stringify(data?.ENV)}`,
           }}
         />
         <LiveReload />
@@ -114,9 +114,21 @@ export default function App() {
 
 export function CatchBoundary() {
   const caught = useCatch();
+
+  const renderError = () => {
+    switch (caught.status) {
+      case 404:
+        return <PageError message="Oh snap!! The page couldn't be found. In the meantime, connect with us on our socials." />
+      default:
+        return <PageError message={`${caught.status} ${caught.statusText}`} />
+    }
+  }
+
   return (
     <Document title={`${caught.status} ${caught.statusText}`}>
-      <PageError message={`${caught.status} ${caught.statusText}`} />
+      <NavBar />
+      {renderError()}
+      <Footer />
     </Document>
   );
 }
@@ -124,7 +136,9 @@ export function CatchBoundary() {
 export function ErrorBoundary({ error }: { error: Error }) {
   return (
     <Document title="Uh-oh!">
+      <NavBar />
       <PageError message={error.message} />
+      <Footer />
     </Document>
   );
 }

@@ -128,11 +128,10 @@ const MobileMenu = ({ social, navbarLinks, actionButton }: MobileMenuProps) => {
 };
 
 interface NavBarProps {
-  data: GetAttributesValues<"api::menu.menu">;
+  data?: GetAttributesValues<"api::menu.menu">;
 }
 export const NavBar = ({ data }: NavBarProps) => {
-  const { navbar, social } = data;
-  const logo = navbar.logo.data.attributes as ImageAttributes;
+  const logo = data?.navbar.logo.data.attributes as ImageAttributes | undefined;
 
   return (
     <div className="transition duration-500 w-full">
@@ -143,19 +142,21 @@ export const NavBar = ({ data }: NavBarProps) => {
               <img
                 width="748"
                 height="350"
-                srcSet={clsx(
+                srcSet={logo && ENV ? clsx(
                   `${ENV.STRAPI_BASEURL}${logo.formats.thumbnail.url} 640w,`,
                   `${ENV.STRAPI_BASEURL}${logo.formats.small.url} 768w,`,
-                  `${ENV.STRAPI_BASEURL}${logo.url} 1024w,`
-                )}
+                  `${ENV.STRAPI_BASEURL}${logo.url} 1024w,`) :
+                  // fallback logo
+                  `images/small_small_logo_6d8d7070f6.webp 1024w`}
                 alt="Alchemist"
                 className="h-20 md:h-24 w-auto"
               />
             </Link>
           </div>
+          {data && (
           <div className="flex items-center py-4">
             <div aria-label="Navigation bar links" className="hidden lg:flex">
-              {navbar.links.map(({ path, text }) => (
+                {data.navbar.links.map(({ path, text }) => (
                 <NavLink key={path} to={path}>
                   {text}
                 </NavLink>
@@ -165,20 +166,21 @@ export const NavBar = ({ data }: NavBarProps) => {
               action={() => {
                 console.log("click");
               }}
-              mode={navbar.actionButton.type}
-              size={navbar.actionButton.size}
+                mode={data.navbar.actionButton.type}
+                size={data.navbar.actionButton.size}
               className="ml-5 hidden md:block"
             >
-              {navbar.actionButton.text}
+                {data.navbar.actionButton.text}
             </Button>
             <div className="flex lg:hidden">
               <MobileMenu
-                social={social}
-                navbarLinks={navbar.links}
-                actionButton={navbar.actionButton}
+                  social={data.social}
+                  navbarLinks={data.navbar.links}
+                  actionButton={data.navbar.actionButton}
               />
             </div>
           </div>
+          )}
         </nav>
       </div>
     </div>
