@@ -13,6 +13,8 @@ export type LargeSummaryValues = GetAttributesValues<"sections.large-summary"> &
 export type CarouselValues =
   GetAttributesValues<"sections.full-size-carousel"> & DynamicZoneValueBase;
 export type ServicesShowcaseValues = GetAttributesValues<"sections.services-showcase"> & DynamicZoneValueBase
+export type ShowcaseValues = GetAttributesValues<"sections.showcases"> &
+  DynamicZoneValueBase;
 
 export function isVideoHeroValues(
   sectionValues: DynamicSectionValues
@@ -36,4 +38,10 @@ export function isServicesShowcaseValues(
   sectionValues: DynamicSectionValues
 ): sectionValues is ServicesShowcaseValues {
   return sectionValues.__component === "sections.services-showcase";
+}
+
+export function isShowcaseValues(
+  sectionValues: DynamicSectionValues
+): sectionValues is ShowcaseValues {
+  return sectionValues.__component === "sections.showcases";
 }

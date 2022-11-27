@@ -1,0 +1,22 @@
+{
+    "collectionName": "components_sections_showcases",
+    "info": {
+        "displayName": "showcases",
+        "icon": "id-badge",
+        "description": ""
+    },
+    "options": {},
+    "attributes": {
+        "title": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "showcases": {
+            "type": "relation",
+            "relation": "oneToMany",
+            "target": "api::showcase.showcase"
+        }
+    }
+}

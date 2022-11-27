@@ -707,7 +707,8 @@ export interface ApiHomeHome extends SingleTypeSchema {
         'sections.large-summary',
         'sections.services-showcase',
         'sections.video-hero',
-        'sections.multi-round-image-view'
+        'sections.multi-round-image-view',
+        'sections.showcases'
       ]
     > &
       RequiredAttribute &
@@ -2196,7 +2197,7 @@ export interface SectionsMultiRoundImageView extends ComponentSchema {
 
 export interface SectionsServicesShowcase extends ComponentSchema {
   info: {
-    displayName: 'services showcase';
+    displayName: 'services';
     icon: 'address-card';
     description: '';
   };
@@ -2207,6 +2208,23 @@ export interface SectionsServicesShowcase extends ComponentSchema {
       'sections.services-showcase',
       'oneToMany',
       'api::service.service'
+    >;
+  };
+}
+
+export interface SectionsShowcases extends ComponentSchema {
+  info: {
+    displayName: 'showcases';
+    icon: 'id-badge';
+    description: '';
+  };
+  attributes: {
+    title: StringAttribute;
+    description: StringAttribute;
+    showcases: RelationAttribute<
+      'sections.showcases',
+      'oneToMany',
+      'api::showcase.showcase'
     >;
   };
 }
@@ -2318,6 +2336,7 @@ declare global {
       'sections.large-summary': SectionsLargeSummary;
       'sections.multi-round-image-view': SectionsMultiRoundImageView;
       'sections.services-showcase': SectionsServicesShowcase;
+      'sections.showcases': SectionsShowcases;
       'sections.video-hero': SectionsVideoHero;
       'shared.meta-social': SharedMetaSocial;
       'shared.seo': SharedSeo;
