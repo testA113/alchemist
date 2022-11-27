@@ -23,10 +23,10 @@
     "size": {
       "type": "enumeration",
       "enum": [
-        "small",
-        "medium",
-        "large",
-        "extaLarge"
+        "xs",
+        "sm",
+        "md",
+        "lg"
       ]
     },
     "group": {

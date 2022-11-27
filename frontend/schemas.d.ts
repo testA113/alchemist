@@ -1810,7 +1810,7 @@ export interface LinksLink extends ComponentSchema {
     path: StringAttribute & RequiredAttribute;
     newTab: BooleanAttribute & DefaultTo<false>;
     text: StringAttribute & RequiredAttribute;
-    size: EnumerationAttribute<['small', 'medium', 'large', 'extaLarge']>;
+    size: EnumerationAttribute<['xs', 'sm', 'md', 'lg']>;
     group: StringAttribute;
   };
 }
@@ -2226,6 +2226,7 @@ export interface SectionsShowcases extends ComponentSchema {
       'oneToMany',
       'api::showcase.showcase'
     >;
+    seeMoreButton: ComponentAttribute<'links.link'>;
   };
 }
 

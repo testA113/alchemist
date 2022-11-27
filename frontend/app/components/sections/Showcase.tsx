@@ -1,4 +1,6 @@
 import clsx from "clsx"
+import { ChevronRight } from "lucide-react"
+import { Button } from "../shared/Button"
 
 import type { Showcase as ShowcaseType } from '../shared/types'
 
@@ -17,16 +19,20 @@ export function Showcase({ sectionData }: Props) {
   return (
     <section
       className={clsx(
-        "bg-base-100 flex flex-col gap-x-24 prose md:prose-lg lg:prose-xl",
-        "py-24 px-10vw w-full md:flex-row flex-wrap !max-w-full"
+        "bg-base-100 flex flex-col prose md:prose-lg lg:prose-xl",
+        "py-24 px-10vw w-full !max-w-full items-center"
       )}>
-      <h1>{sectionData.title}</h1>
-      <h3>{sectionData.description}</h3>
-      <div className="flex flex-row gap-8">
+      {sectionData.title && <h1>{sectionData.title}</h1>}
+      {sectionData.description && <h3>{sectionData.description}</h3>}
+      <div className="flex flex-wrap w-full gap-8 mb-8">
         {showcases?.data.map((showcase, index) =>
-          <div key={index} className={clsx("flex-1 h-48 bg-base-200 rounded-2xl", isModTwoOrThree(index) ? 'flex-[66%]' : 'flex-[34%]')}>{showcase.attributes.title}</div>
+          <div key={index} className={clsx("flex-1 h-48 bg-base-200 rounded-2xl min-w-[200px]", isModTwoOrThree(index) ? 'flex-[30%]' : 'flex-[60%]')}>{showcase.attributes.title}</div>
         )}
       </div>
+      {sectionData.seeMoreButton && <Button action={sectionData.seeMoreButton.path} mode="link" size={sectionData.seeMoreButton.size}>
+        {sectionData.seeMoreButton.text}
+        <ChevronRight />
+      </Button>}
     </section>
   )
 }
