@@ -2226,7 +2226,7 @@ export interface SectionsShowcases extends ComponentSchema {
       'oneToMany',
       'api::showcase.showcase'
     >;
-    seeMoreButton: ComponentAttribute<'links.link'>;
+    seeMoreButton: ComponentAttribute<'links.link'> & RequiredAttribute;
   };
 }
 

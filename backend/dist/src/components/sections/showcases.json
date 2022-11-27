@@ -21,7 +21,8 @@
         "seeMoreButton": {
             "type": "component",
             "repeatable": false,
-            "component": "links.link"
+            "component": "links.link",
+            "required": true
         }
     }
 }

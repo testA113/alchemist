@@ -1,10 +1,12 @@
-import type { Service } from "../shared/types";
+import clsx from "clsx";
 import { ChevronRight } from "lucide-react";
+import { Link } from "@remix-run/react";
+
+import type { Service } from "../shared/types";
+import { Button } from "../shared/Button";
+import { ImageCard } from '../shared/ImageCard'
 
 import type { ServicesShowcaseValues } from "./types";
-import { Button } from "../shared/Button";
-import clsx from "clsx";
-import { Link } from "@remix-run/react";
 
 type ServiceData = {
   data: Service[];
@@ -41,14 +43,7 @@ export function ServicesShowcase({ sectionData }: Props) {
               key={index}
               className="transition ease-out transform duration-300 hover:scale-105"
             >
-              <Link to={service.attributes.slug}>
-                <div
-                  className="h-full px-8 py-20 rounded-2xl overflow-hidden text-center bg-cover bg-center transition ease-out transform duration-300 hover:opacity-90"
-                  style={{
-                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-                  url(${ENV.STRAPI_BASEURL}${service.attributes.image.data.attributes.formats.medium.url})`,
-                  }}
-                >
+              <ImageCard imageUrl={service.attributes.image.data.attributes.formats.medium.url} childClasses="px-8 py-20 bg-base-100 bg-opacity-50">
                   <h1 className="sm:text-2xl text-xl font-medium text-base-content mb-3">
                     {service.attributes.name}
                   </h1>
@@ -58,12 +53,12 @@ export function ServicesShowcase({ sectionData }: Props) {
                   <Button
                     mode="link"
                     className="inline-flex items-center"
+                  action={service.attributes.slug}
                   >
                     Learn More
                     <ChevronRight />
                   </Button>
-                </div>
-              </Link>
+              </ImageCard>
             </div>
           ))}
       </div>

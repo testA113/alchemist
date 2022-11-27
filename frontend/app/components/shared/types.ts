@@ -85,7 +85,7 @@ export interface Service {
 interface ShowcaseAttributes {
   title: string;
   summary: string;
-  hero: MediaAttribute & RequiredAttribute;
+  hero: ImageData;
   content: RichTextAttribute & RequiredAttribute;
   slug: string;
   client: string;
