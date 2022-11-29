@@ -34,43 +34,41 @@ export function Showcase({ sectionData }: Props) {
           <div
             key={index}
             className={clsx(
-              "group min-h-min min-w-[200px] flex-1",
+              "group min-h-min min-w-[200px] flex-1 hover:scale-105 md:hover:scale-100 transition ease-out transform duration-300",
               isModTwoOrThree(index) ? "flex-[30%]" : "flex-[60%]"
             )}
           >
-            <ImageCard
-              imageUrl={
-                showcase.attributes.hero.data.attributes.formats?.medium.url
-              }
-              imageClasses="group-hover:opacity-90"
-              childClasses="h-full px-8 py-16 bg-base-100 bg-opacity-50 opacity-100 md:opacity-0 md:group-hover:opacity-100 md:group-hover:bg-opacity-50 transition ease-out transform duration-300"
+            <Link
+              to={`${sectionData.seeMoreButton.path}/${showcase.attributes.slug}`}
             >
-              <h1 className="mb-3 text-xl font-medium text-base-content sm:text-2xl">
-                {showcase.attributes.name}
-              </h1>
-              <p className="leading-relaxed line-clamp-3">
-                {showcase.attributes.summary}
-              </p>
-              <Button
-                mode="link"
-                className="inline-flex items-center"
-                action={`${sectionData.seeMoreButton.path}/${showcase.attributes.slug}`}
+              <ImageCard
+                imageUrl={
+                  showcase.attributes.hero.data.attributes.formats?.medium.url
+                }
+                imageClasses="group-hover:opacity-90"
+                childClasses="h-full px-8 py-16 bg-base-100 bg-opacity-50 opacity-100 md:opacity-0 md:group-hover:opacity-100 md:group-hover:bg-opacity-50 transition ease-out transform duration-300"
               >
-                Read on
-                <ChevronRight />
-              </Button>
-            </ImageCard>
+                <h1 className="mb-3 text-xl font-medium text-base-content sm:text-2xl">
+                  {showcase.attributes.name}
+                </h1>
+                <p className="leading-relaxed line-clamp-3 mb-3">
+                  {showcase.attributes.summary}
+                </p>
+                <div className="flex flex-wrap gap-1 justify-center">
+                  {showcase.attributes.services.data.map((service, index) => (
+                    <div
+                      key={index}
+                      className="badge line-clamp-1 bg-opacity-50"
+                    >
+                      {service.attributes.name}
+                    </div>
+                  ))}
+                </div>
+              </ImageCard>
+            </Link>
           </div>
         ))}
       </div>
-      <Button
-        action={sectionData.seeMoreButton.path}
-        mode="link"
-        size={sectionData.seeMoreButton.size}
-      >
-        {sectionData.seeMoreButton.text}
-        <ChevronRight />
-      </Button>
     </section>
   );
 }
