@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 .btn {
-  @apply rounded-full
+  @apply rounded-full;
 }
 
 h1 {
-  @apply font-suez
+  @apply font-suez;
 }
 
 .underlined {
@@ -22,7 +22,7 @@ h1 {
 }
 
 .underlined:after {
-  content: '';
+  content: "";
   height: 2px;
   transform: scaleX(0);
   transition: transform 0.25s ease;

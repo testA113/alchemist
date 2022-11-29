@@ -82,6 +82,10 @@ export interface Service {
   };
 }
 
+type ServicesData = {
+  data: Service[];
+};
+
 interface ShowcaseAttributes {
   title: string;
   summary: string;
@@ -90,11 +94,7 @@ interface ShowcaseAttributes {
   slug: string;
   client: string;
   name: string;
-  services: RelationAttribute<
-    "api::showcase.showcase",
-    "manyToMany",
-    "api::service.service"
-  >;
+  services: ServicesData;
   event: RelationAttribute<
     "api::showcase.showcase",
     "oneToOne",

@@ -1,0 +1,5 @@
+backend/
+frontend/build/
+frontend/public/
+frontend/node_modules/
+frontend/dist/

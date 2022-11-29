@@ -45,18 +45,18 @@ export function VideoHero({ sectionData }: Props) {
   }, []);
 
   const scrollDown = () => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" })
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <section
       ref={videoRef}
-      className="flex flex-col justify-end bg-transparent h-[100vh] pb-24"
+      className="flex h-[100vh] flex-col justify-end bg-transparent pb-24"
     >
       <LazyMotion features={domAnimation}>
         <m.div
           style={{ y }}
-          className="absolute inset-x-0 top-0 -z-20 h-full mx-auto overflow-hidden"
+          className="absolute inset-x-0 top-0 -z-20 mx-auto h-full overflow-hidden"
         >
           {/* for large screens */}
           {showVideo ? (
@@ -68,7 +68,7 @@ export function VideoHero({ sectionData }: Props) {
               scrolling="no"
               frameBorder="0"
               allow="autoplay; fullscreen; picture-in-picture"
-              className="hidden md:block lg:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full aspect-video object-cover"
+              className="absolute top-1/2 left-1/2 hidden aspect-video min-h-full min-w-full -translate-x-1/2 -translate-y-1/2 object-cover md:block lg:block"
             ></iframe>
           ) : (
             <img
@@ -78,7 +78,7 @@ export function VideoHero({ sectionData }: Props) {
                 `${ENV.STRAPI_BASEURL}${loadingBackgroundImage.formats.large.url} 1024w,`
               )}
               alt="Thumbnail"
-              className="hidden md:block object-cover w-full h-full"
+              className="hidden h-full w-full object-cover md:block"
             />
           )}
           {/* for small screens */}
@@ -90,16 +90,16 @@ export function VideoHero({ sectionData }: Props) {
               `${ENV.STRAPI_BASEURL}${fallBackImage.formats.medium.url} 768w,`,
               `${ENV.STRAPI_BASEURL}${fallBackImage.formats.large.url} 1024w,`
             )}
-            className="block md:hidden lg:hidden object-cover w-full h-full"
+            className="block h-full w-full object-cover md:hidden lg:hidden"
           />
         </m.div>
       </LazyMotion>
-      <div className="flex flex-col gap-6 px-10vw z-20 items-start">
-        <div className="relative prose-lg md:prose-xl lg:prose-2xl w-full flex flex-col flex-wrap pr-24 md:w-[60%] lg:w-[50%]">
-          <h1 className="text-white !mb-4">
+      <div className="z-20 flex flex-col items-start gap-6 px-10vw">
+        <div className="prose-lg relative flex w-full flex-col flex-wrap pr-24 md:w-[60%] md:prose-xl lg:w-[50%] lg:prose-2xl">
+          <h1 className="!mb-4 text-white">
             {sectionData.cyclingSentence.sentencestart}
           </h1>
-          <h1 className="italic !mb-32">
+          <h1 className="!mb-32 italic">
             <div className="inline min-h-max">
               {sentenceEndings.map((sentenceEnding, index) => (
                 <span
@@ -118,11 +118,11 @@ export function VideoHero({ sectionData }: Props) {
             </div>
           </h1>
         </div>
-        <div className="w-full flex justify-center md:justify-start gap-6">
+        <div className="flex w-full justify-center gap-6 md:justify-start">
           {primaryButton && (
             <Button
               aria-label={primaryButton.text}
-              className="btn btn-primary md:btn-wide"
+              className="btn-primary btn md:btn-wide"
               size="lg"
               action={primaryButton.function || primaryButton.url || ""}
             >

@@ -52,12 +52,11 @@ export const Button = ({
     );
   }
 
-  return <div
-    title={title}
-    className={buttonClass}
-  >
-    {children}
-  </div>
+  return (
+    <div title={title} className={buttonClass}>
+      {children}
+    </div>
+  );
 };
 
 const buttonModeClassMap = {

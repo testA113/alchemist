@@ -25,7 +25,7 @@ interface Props {
 export const Alert = ({ message, mode = "info" }: Props) => {
   const ModeIcon = modeIcon[mode];
   return (
-    <div className="px-8 pt-36 pb-4 max-w-[1000px]">
+    <div className="max-w-[1000px] px-8 pt-36 pb-4">
       <div className={clsx("alert", modeClass[mode], "shadow-lg")}>
         <div className="flex items-stretch">
           <ModeIcon className="shrink-0" />

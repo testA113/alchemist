@@ -13,7 +13,7 @@ export function LargeSummary({ sectionData }: Props) {
   return (
     <section
       className={clsx(
-        "bg-base-100 flex flex-col pt-48 pb-24 px-10vw max-w-max items-center justify-items-center text-center",
+        "flex max-w-max flex-col items-center justify-items-center bg-base-100 px-10vw pt-48 pb-24 text-center",
         "prose md:prose-lg lg:prose-xl"
       )}
     >

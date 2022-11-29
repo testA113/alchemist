@@ -30,7 +30,7 @@ export const SocialIcons = ({
         href={social.facebookurl}
         target="_blank"
         rel="noopener noreferrer"
-        className="btn btn-primary btn-circle btn-outline btn-md"
+        className="btn-outline btn-primary btn-md btn-circle btn"
       >
         <VisuallyHidden>Alchemist Mixology Facebook</VisuallyHidden>
         <Facebook />
@@ -40,7 +40,7 @@ export const SocialIcons = ({
         href={social.instagramurl}
         target="_blank"
         rel="noopener noreferrer"
-        className="btn btn-primary btn-circle btn-outline btn-md"
+        className="btn-outline btn-primary btn-md btn-circle btn"
       >
         <VisuallyHidden>Alchemist Mixology Instagram</VisuallyHidden>
         <Instagram />
@@ -48,7 +48,7 @@ export const SocialIcons = ({
       <a
         aria-label="Email"
         href={`mailto:${social.email}?subject = Event Enquiry`}
-        className="btn btn-primary btn-circle btn-outline btn-md"
+        className="btn-outline btn-primary btn-md btn-circle btn"
       >
         <VisuallyHidden>Email Alchemist Mixology</VisuallyHidden>
         <Mail />
@@ -56,7 +56,7 @@ export const SocialIcons = ({
       <a
         aria-label="Phone"
         href={`tel: ${social.telephone}`}
-        className="btn btn-primary btn-circle btn-outline btn-md"
+        className="btn-outline btn-primary btn-md btn-circle btn"
       >
         <VisuallyHidden>Phone Alchemist Mixology</VisuallyHidden>
         <Phone />

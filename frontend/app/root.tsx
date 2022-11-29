@@ -118,11 +118,13 @@ export function CatchBoundary() {
   const renderError = () => {
     switch (caught.status) {
       case 404:
-        return <PageError message="Oh snap!! The page couldn't be found. In the meantime, connect with us on our socials." />
+        return (
+          <PageError message="Oh snap!! The page couldn't be found. In the meantime, connect with us on our socials." />
+        );
       default:
-        return <PageError message={`${caught.status} ${caught.statusText}`} />
+        return <PageError message={`${caught.status} ${caught.statusText}`} />;
     }
-  }
+  };
 
   return (
     <Document title={`${caught.status} ${caught.statusText}`}>

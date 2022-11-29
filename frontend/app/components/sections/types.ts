@@ -1,4 +1,10 @@
-import type { ComponentAttribute, DateTimeAttribute, GetAttributesValues, RelationAttribute, RichTextAttribute } from "@strapi/strapi";
+import type {
+  ComponentAttribute,
+  DateTimeAttribute,
+  GetAttributesValues,
+  RelationAttribute,
+  RichTextAttribute,
+} from "@strapi/strapi";
 
 type DynamicZoneValueBase = {
   __component: keyof Strapi.Schemas;
@@ -12,7 +18,8 @@ export type LargeSummaryValues = GetAttributesValues<"sections.large-summary"> &
   DynamicZoneValueBase;
 export type CarouselValues =
   GetAttributesValues<"sections.full-size-carousel"> & DynamicZoneValueBase;
-export type ServicesShowcaseValues = GetAttributesValues<"sections.services-showcase"> & DynamicZoneValueBase
+export type ServicesShowcaseValues =
+  GetAttributesValues<"sections.services-showcase"> & DynamicZoneValueBase;
 export type ShowcaseValues = GetAttributesValues<"sections.showcases"> &
   DynamicZoneValueBase;
 

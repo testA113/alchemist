@@ -4,7 +4,7 @@ import {
   isLargeSummaryValues,
   isCarouselValues,
   isServicesShowcaseValues,
-  isShowcaseValues
+  isShowcaseValues,
 } from "./types";
 
 import { VideoHero } from "./VideoHero";
@@ -44,7 +44,7 @@ export function Section({ sectionData }: Props) {
   }
 
   return (
-    <section className="flex items-center justify-center h-[150px] w-full bg-base-100">
+    <section className="flex h-[150px] w-full items-center justify-center bg-base-100">
       {sectionData.__component}
     </section>
   );
