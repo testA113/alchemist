@@ -16,7 +16,8 @@ import type { GetAttributesValues } from "@strapi/strapi";
 import { SocialIcons } from "../shared/SocialIcons";
 import { NavLink } from "../shared/NavLink";
 import { Button } from "../shared/Button";
-import type { ImageAttributes } from "../shared/types";
+import type { ImageValues } from "../shared/types";
+import { StrapiImage } from "../shared/StrapiImage";
 
 type MobileMenuListProps = {
   social: GetAttributesValues<"elements.socials">;
@@ -131,7 +132,7 @@ interface NavBarProps {
   data?: GetAttributesValues<"api::menu.menu">;
 }
 export const NavBar = ({ data }: NavBarProps) => {
-  const logo = data?.navbar.logo.data.attributes as ImageAttributes | undefined;
+  const logo = data?.navbar.logo.data as ImageValues | undefined;
 
   return (
     <div className="w-full transition duration-500">
@@ -139,22 +140,9 @@ export const NavBar = ({ data }: NavBarProps) => {
         <nav className="mx-auto flex max-w-[96rem] items-center justify-between text-primary">
           <div className="mr-5 shrink-0">
             <Link to="/" title="Alchemist Mixology - Home" prefetch="intent">
-              <img
-                width="748"
-                height="350"
-                srcSet={
-                  logo && ENV
-                    ? clsx(
-                        `${ENV.STRAPI_BASEURL}${logo.formats.thumbnail.url} 640w,`,
-                        `${ENV.STRAPI_BASEURL}${logo.formats.small.url} 768w,`,
-                        `${ENV.STRAPI_BASEURL}${logo.url} 1024w,`
-                      )
-                    : // fallback logo
-                      `images/small_small_logo_6d8d7070f6.webp 1024w`
-                }
-                alt="Alchemist"
-                className="h-20 w-auto md:h-24"
-              />
+              {logo && (
+                <StrapiImage image={logo} className="h-20 w-auto md:h-24" />
+              )}
             </Link>
           </div>
           {data && (

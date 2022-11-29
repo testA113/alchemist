@@ -1,6 +1,5 @@
 import clsx from "clsx";
 import { ChevronRight } from "lucide-react";
-import { Link } from "@remix-run/react";
 
 import type { Service } from "../shared/types";
 import { Button } from "../shared/Button";
@@ -45,7 +44,7 @@ export function ServicesShowcase({ sectionData }: Props) {
             >
               <ImageCard
                 imageUrl={
-                  service.attributes.image.data.attributes.formats.medium.url
+                  service.attributes.image.data.attributes.formats?.medium.url
                 }
                 childClasses="px-8 py-20 bg-base-100 bg-opacity-50"
               >
