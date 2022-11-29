@@ -30,7 +30,7 @@ export function Showcase({ sectionData }: Props) {
       </div>
       <div className="flex flex-wrap w-full gap-8 mb-8">
         {showcases?.data.map((showcase, index) =>
-          <div key={index} className={clsx("group flex-1 h-72 min-w-[250px] transition ease-out transform duration-300 hover:scale-105", isModTwoOrThree(index) ? 'flex-[30%]' : 'flex-[60%]')}>
+          <div key={index} className={clsx("group flex-1 h-72 min-w-[250px]", isModTwoOrThree(index) ? 'flex-[30%]' : 'flex-[60%]')}>
             <ImageCard
               imageUrl={showcase.attributes.hero.data.attributes.formats.medium.url}
               imageClasses="group-hover:opacity-90"
