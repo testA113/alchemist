@@ -2,7 +2,7 @@ import clsx from "clsx";
 
 type Props = {
   children: React.ReactNode;
-  imageUrl: string;
+  imageUrl?: string;
   imageClasses?: string;
   childClasses?: string;
 };
@@ -20,7 +20,7 @@ export function ImageCard({
         imageClasses
       )}
       style={{
-        backgroundImage: `url(${ENV.STRAPI_BASEURL}${imageUrl})`,
+        backgroundImage: imageUrl && `url(${ENV.STRAPI_BASEURL}${imageUrl})`,
       }}
     >
       <div className={childClasses}>{children}</div>

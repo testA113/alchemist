@@ -40,7 +40,7 @@ export function Showcase({ sectionData }: Props) {
           >
             <ImageCard
               imageUrl={
-                showcase.attributes.hero.data.attributes.formats.medium.url
+                showcase.attributes.hero.data.attributes.formats?.medium.url
               }
               imageClasses="group-hover:opacity-90"
               childClasses="h-full px-8 py-16 bg-base-100 bg-opacity-50 opacity-100 md:opacity-0 md:group-hover:opacity-100 md:group-hover:bg-opacity-50 transition ease-out transform duration-300"
@@ -59,13 +59,6 @@ export function Showcase({ sectionData }: Props) {
                 Read on
                 <ChevronRight />
               </Button>
-              <div className="flex flex-wrap justify-center gap-1">
-                {showcase.attributes.services.data.map((service, index) => (
-                  <div key={index} className="badge">
-                    {`${service.attributes.name}`}
-                  </div>
-                ))}
-              </div>
             </ImageCard>
           </div>
         ))}

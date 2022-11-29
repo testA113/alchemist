@@ -707,8 +707,8 @@ export interface ApiHomeHome extends SingleTypeSchema {
         "sections.large-summary",
         "sections.services-showcase",
         "sections.video-hero",
-        "sections.multi-round-image-view",
-        "sections.showcases"
+        "sections.showcases",
+        "sections.event-partners"
       ]
     > &
       RequiredAttribute &
@@ -2154,6 +2154,18 @@ export interface SectionsCyclingsentence extends ComponentSchema {
   };
 }
 
+export interface SectionsEventPartners extends ComponentSchema {
+  info: {
+    displayName: "event partners";
+    icon: "smile-beam";
+    description: "";
+  };
+  attributes: {
+    title: StringAttribute & RequiredAttribute;
+    partnerImage: MediaAttribute & RequiredAttribute;
+  };
+}
+
 export interface SectionsFullSizeCarousel extends ComponentSchema {
   info: {
     displayName: "full size carousel";
@@ -2180,18 +2192,6 @@ export interface SectionsLargeSummary extends ComponentSchema {
       DefaultTo<"we are the best bitches in all the land">;
     backgroundimage: MediaAttribute;
     moreInfoButton: ComponentAttribute<"links.button">;
-  };
-}
-
-export interface SectionsMultiRoundImageView extends ComponentSchema {
-  info: {
-    displayName: "multi round image view";
-    icon: "circle";
-    description: "";
-  };
-  attributes: {
-    title: StringAttribute;
-    backgroundimage: MediaAttribute;
   };
 }
 
@@ -2333,9 +2333,9 @@ declare global {
       "links.link": LinksLink;
       "sections.contact-form": SectionsContactForm;
       "sections.cyclingsentence": SectionsCyclingsentence;
+      "sections.event-partners": SectionsEventPartners;
       "sections.full-size-carousel": SectionsFullSizeCarousel;
       "sections.large-summary": SectionsLargeSummary;
-      "sections.multi-round-image-view": SectionsMultiRoundImageView;
       "sections.services-showcase": SectionsServicesShowcase;
       "sections.showcases": SectionsShowcases;
       "sections.video-hero": SectionsVideoHero;

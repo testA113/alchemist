@@ -1,0 +1,26 @@
+{
+    "collectionName": "components_sections_event_partners",
+    "info": {
+        "displayName": "event partners",
+        "icon": "smile-beam",
+        "description": ""
+    },
+    "options": {},
+    "attributes": {
+        "title": {
+            "type": "string",
+            "required": true
+        },
+        "partnerImage": {
+            "type": "media",
+            "multiple": true,
+            "required": true,
+            "allowedTypes": [
+                "images",
+                "files",
+                "videos",
+                "audios"
+            ]
+        }
+    }
+}

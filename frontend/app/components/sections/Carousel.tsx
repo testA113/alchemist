@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "../shared/Button";
 import type { ImageValues } from "../shared/types";
 import type { CarouselValues } from "./types";
+import { StrapiImage } from "../shared/StrapiImage";
 
 type Props = {
   sectionData: CarouselValues;
@@ -31,17 +32,10 @@ export function Carousel({ sectionData }: Props) {
       <div className="cursor-move overflow-x-hidden" ref={emblaRef}>
         <div className="flex h-80 md:h-96 lg:h-[60vh]">
           {images.map((image, index) => (
-            <img
+            <StrapiImage
+              image={image}
               key={index}
-              srcSet={clsx(
-                `${ENV.STRAPI_BASEURL}${image.attributes.formats.small.url} 640w,`,
-                `${ENV.STRAPI_BASEURL}${image.attributes.formats.medium.url} 768w,`,
-                `${ENV.STRAPI_BASEURL}${image.attributes.formats.large.url} 1024w,`
-              )}
-              width={image.attributes.formats.large.width}
-              height={image.attributes.formats.large.height}
               className="mx-4 h-full w-auto rounded-2xl object-cover"
-              alt={image.attributes.alternativeText}
             />
           ))}
         </div>

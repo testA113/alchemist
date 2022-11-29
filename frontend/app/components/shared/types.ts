@@ -1,16 +1,10 @@
-import {
-  BooleanAttribute,
+import type {
   ComponentAttribute,
   DateTimeAttribute,
-  MediaAttribute,
   PrivateAttribute,
   RelationAttribute,
   RequiredAttribute,
   RichTextAttribute,
-  SetMinMaxLength,
-  StringAttribute,
-  TextAttribute,
-  UIDAttribute,
 } from "@strapi/strapi";
 
 type ImageSize = "small" | "medium" | "large" | "thumbnail";
@@ -34,7 +28,7 @@ export type ImageAttributes = {
   caption: string;
   createdAt: string;
   ext: string;
-  formats: ImageFormats;
+  formats: ImageFormats | null;
   hash: string;
   height: number;
   mime: string;
@@ -55,6 +49,10 @@ export type ImageValues = {
 
 export type ImageData = {
   data: ImageValues;
+};
+
+export type ImagesData = {
+  data: ImageValues[];
 };
 
 export interface Service {

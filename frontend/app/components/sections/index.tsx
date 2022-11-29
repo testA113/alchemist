@@ -5,6 +5,7 @@ import {
   isCarouselValues,
   isServicesShowcaseValues,
   isShowcaseValues,
+  isEventPartnersValues,
 } from "./types";
 
 import { VideoHero } from "./VideoHero";
@@ -12,6 +13,7 @@ import { LargeSummary } from "./LargeSummary";
 import { Carousel } from "./Carousel";
 import { ServicesShowcase } from "./ServicesShowcase";
 import { Showcase } from "./Showcase";
+import { EventPartnerImages } from "./EventPartnerImages";
 
 type Props = {
   componentType: keyof Strapi.Schemas;
@@ -41,6 +43,10 @@ export function Section({ sectionData }: Props) {
 
   if (isShowcaseValues(sectionData)) {
     return <Showcase sectionData={sectionData} />;
+  }
+
+  if (isEventPartnersValues(sectionData)) {
+    return <EventPartnerImages sectionData={sectionData} />;
   }
 
   return (

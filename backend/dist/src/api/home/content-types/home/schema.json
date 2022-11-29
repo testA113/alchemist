@@ -26,8 +26,8 @@
                 "sections.large-summary",
                 "sections.services-showcase",
                 "sections.video-hero",
-                "sections.multi-round-image-view",
-                "sections.showcases"
+                "sections.showcases",
+                "sections.event-partners"
             ],
             "required": true,
             "min": 1

@@ -1,10 +1,4 @@
-import type {
-  ComponentAttribute,
-  DateTimeAttribute,
-  GetAttributesValues,
-  RelationAttribute,
-  RichTextAttribute,
-} from "@strapi/strapi";
+import type { GetAttributesValues } from "@strapi/strapi";
 
 type DynamicZoneValueBase = {
   __component: keyof Strapi.Schemas;
@@ -22,6 +16,8 @@ export type ServicesShowcaseValues =
   GetAttributesValues<"sections.services-showcase"> & DynamicZoneValueBase;
 export type ShowcaseValues = GetAttributesValues<"sections.showcases"> &
   DynamicZoneValueBase;
+export type EventPartnersValues =
+  GetAttributesValues<"sections.event-partners"> & DynamicZoneValueBase;
 
 export function isVideoHeroValues(
   sectionValues: DynamicSectionValues
@@ -51,4 +47,10 @@ export function isShowcaseValues(
   sectionValues: DynamicSectionValues
 ): sectionValues is ShowcaseValues {
   return sectionValues.__component === "sections.showcases";
+}
+
+export function isEventPartnersValues(
+  sectionValues: DynamicSectionValues
+): sectionValues is EventPartnersValues {
+  return sectionValues.__component === "sections.event-partners";
 }
