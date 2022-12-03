@@ -2134,6 +2134,7 @@ export interface SectionsContactForm extends ComponentSchema {
       ]
     >;
     submitbutton: ComponentAttribute<"links.button"> & RequiredAttribute;
+    title: StringAttribute & RequiredAttribute;
   };
 }
 

@@ -4,7 +4,8 @@
     "info": {
         "singularName": "contact-message",
         "pluralName": "contact-messages",
-        "displayName": "contact message"
+        "displayName": "contact message",
+        "description": ""
     },
     "options": {
         "draftAndPublish": true

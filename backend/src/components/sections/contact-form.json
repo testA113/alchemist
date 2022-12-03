@@ -338,6 +338,10 @@
       "repeatable": false,
       "component": "links.button",
       "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
     }
   }
 }
