@@ -7,7 +7,7 @@
   },
   "options": {},
   "attributes": {
-    "type": {
+    "mode": {
       "type": "enumeration",
       "enum": [
         "primary",
@@ -30,16 +30,6 @@
       ]
     },
     "text": {
-      "type": "string"
-    },
-    "url": {
-      "type": "string"
-    },
-    "newTab": {
-      "type": "boolean",
-      "default": false
-    },
-    "function": {
       "type": "string"
     },
     "icon": {
@@ -882,6 +872,18 @@
         "zoom-in",
         "zoom-out"
       ]
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "submit",
+        "button"
+      ],
+      "required": true,
+      "default": "button"
+    },
+    "loadingText": {
+      "type": "string"
     }
   }
 }

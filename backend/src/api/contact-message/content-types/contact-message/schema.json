@@ -24,13 +24,8 @@
       "maxLength": 200,
       "minLength": 1
     },
-    "body": {
+    "description": {
       "type": "richtext"
-    },
-    "services": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::service.service"
     }
   }
 }
