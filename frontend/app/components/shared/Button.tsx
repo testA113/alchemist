@@ -1,18 +1,16 @@
 import { Link } from "@remix-run/react";
 import clsx from "clsx";
+import type { GetAttributesValues } from "@strapi/strapi";
+import type { PropsWithChildren } from "react";
 
 type Mode = "primary" | "secondary" | "default" | "warning" | "danger" | "link";
 type Size = "xs" | "sm" | "md" | "lg";
-interface Props {
-  action?: string | (() => void);
-  children?: React.ReactNode;
-  mode?: Mode;
-  size?: Size;
+
+interface Props extends GetAttributesValues<"links.button"> {
+  onClick?: () => void;
   className?: string;
-  icon?: React.ReactNode;
-  submit?: boolean;
-  title?: string;
   disabled?: boolean;
+  isLoading?: boolean;
 }
 
 export const Button = ({
@@ -21,41 +19,19 @@ export const Button = ({
   mode = "default",
   size = "md",
   className,
+  onClick,
   icon,
-  submit = false,
-  title,
+  text,
+  type,
   disabled = false,
-}: Props) => {
+}: PropsWithChildren<Props>) => {
   const buttonClass = clsx(getButtonClass(mode, size), className);
 
-  if (typeof action === "string") {
-    return (
-      <Link prefetch="intent" to={action} className={buttonClass}>
-        {icon}
-        {children}
-      </Link>
-    );
-  }
-
-  if (action) {
-    return (
-      <button
-        type={submit ? "submit" : "button"}
-        title={title}
-        className={buttonClass}
-        onClick={() => {
-          action && action();
-        }}
-      >
-        {children}
-      </button>
-    );
-  }
-
   return (
-    <div title={title} className={buttonClass}>
+    <button type={type} title={text} className={buttonClass} onClick={onClick}>
       {children}
-    </div>
+      {icon}
+    </button>
   );
 };
 

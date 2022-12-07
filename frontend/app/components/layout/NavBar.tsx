@@ -69,12 +69,12 @@ const MobileMenuList = ({
             className="flex h-full flex-col overflow-y-scroll pb-12"
           >
             <MenuItems className="flex flex-col border-none bg-transparent p-0 focus-visible:outline-none">
-              {navbarLinks.map(({ path, text }) => (
+              {navbarLinks.map(({ to, text }) => (
                 <MenuLink
                   className="border-b border-base-200 px-5vw py-9 uppercase text-neutral-content transition duration-200 hover:bg-base-200 focus:bg-base-200"
-                  key={path}
+                  key={to}
                   as={Link}
-                  to={path}
+                  to={to}
                 >
                   {text}
                 </MenuLink>
@@ -148,8 +148,8 @@ export const NavBar = ({ data }: NavBarProps) => {
           {data && (
             <div className="flex items-center py-4">
               <div aria-label="Navigation bar links" className="hidden lg:flex">
-                {data.navbar.links.map(({ path, text }) => (
-                  <NavLink key={path} to={path}>
+                {data.navbar.links.map(({ to, text }) => (
+                  <NavLink key={to} to={to}>
                     {text}
                   </NavLink>
                 ))}
@@ -158,7 +158,8 @@ export const NavBar = ({ data }: NavBarProps) => {
                 action={() => {
                   console.log("click");
                 }}
-                mode={data.navbar.actionButton.type}
+                mode={data.navbar.actionButton.mode}
+                type={data.navbar.actionButton.type}
                 size={data.navbar.actionButton.size}
                 className="ml-5 hidden md:block"
               >

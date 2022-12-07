@@ -23,18 +23,35 @@ export default function ContactUs() {
       <form method="post">
         <div className="flex flex-col gap-y-4">
           <p>
-            <label>
-              Name: <input type="text" name="name" />
+            <label className="flex flex-col">
+              Hi, my name is:
+              <input
+                name="name"
+                type="text"
+                placeholder="Slim Shady"
+                className="input input-bordered w-full max-w-xs"
+              />
             </label>
           </p>
           <p>
-            <label>
-              Email: <input type="text" name="email" />
+            <label className="flex flex-col">
+              You can reach me at:
+              <input
+                name="email"
+                type="text"
+                placeholder="Your email address"
+                className="input input-bordered w-full max-w-xs"
+              />
             </label>
           </p>
           <p>
-            <label>
-              description: <textarea name="description" />
+            <label className="flex flex-col">
+              And here's some info about my event:
+              <textarea
+                name="description"
+                className="textarea textarea-bordered"
+                placeholder="A bespoke wedding cocktail bar. Guest numbers.. Favourite drinks.."
+              ></textarea>
             </label>
           </p>
           <button className="btn btn-primary btn-lg" type="submit">
