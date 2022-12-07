@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { ChevronRight } from "lucide-react";
-import { Button } from "../shared/Button";
+import { Button } from "../shared/Actions/Button";
 import { Link } from "@remix-run/react";
 
 import type { Showcase as ShowcaseType } from "../shared/types";
@@ -39,7 +39,7 @@ export function Showcase({ sectionData }: Props) {
             )}
           >
             <Link
-              to={`${sectionData.seeMoreButton.path}/${showcase.attributes.slug}`}
+              to={`${sectionData.seeMoreButton.to}/${showcase.attributes.slug}`}
             >
               <ImageCard
                 imageUrl={

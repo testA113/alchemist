@@ -15,12 +15,6 @@
             "required": true,
             "min": 1
         },
-        "actionButton": {
-            "type": "component",
-            "repeatable": false,
-            "component": "links.button",
-            "required": true
-        },
         "logo": {
             "type": "media",
             "multiple": false,
@@ -28,6 +22,12 @@
             "allowedTypes": [
                 "images"
             ]
+        },
+        "actionButton": {
+            "type": "component",
+            "repeatable": false,
+            "component": "links.link",
+            "required": true
         }
     }
 }

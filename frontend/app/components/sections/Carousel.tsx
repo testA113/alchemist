@@ -3,7 +3,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-import { Button } from "../shared/Button";
+import { Button } from "../shared/Actions/Button";
 import type { ImageValues } from "../shared/types";
 import type { CarouselValues } from "./types";
 import { StrapiImage } from "../shared/StrapiImage";
@@ -42,7 +42,8 @@ export function Carousel({ sectionData }: Props) {
       </div>
       <div className="absolute top-1/2 left-5vw -translate-y-1/2 md:left-20">
         <Button
-          action={scrollPrev}
+          type="button"
+          onClick={scrollPrev}
           className="btn-ghost btn-active btn-circle md:btn-lg lg:btn-outline"
           aria-label="previous image"
         >
@@ -51,7 +52,8 @@ export function Carousel({ sectionData }: Props) {
       </div>
       <div className="absolute top-1/2 right-5vw -translate-y-1/2 md:right-20">
         <Button
-          action={scrollNext}
+          type="button"
+          onClick={scrollNext}
           className="btn-ghost btn-active btn-circle md:btn-lg lg:btn-outline"
           aria-label="next image"
         >

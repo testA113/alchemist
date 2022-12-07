@@ -6,10 +6,10 @@ import {
   domAnimation,
   m,
 } from "framer-motion";
-import { ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-import { Button } from "~/components/shared/Button";
+import { Button } from "~/components/shared/Actions/Button";
+import { LinkButton } from "../shared/Actions/LinkButton";
 
 import type { VideoHeroValues } from "./types";
 
@@ -120,24 +120,13 @@ export function VideoHero({ sectionData }: Props) {
         </div>
         <div className="flex w-full justify-center gap-6 md:justify-start">
           {primaryButton && (
-            <Button
-              aria-label={primaryButton.text}
-              className="btn-primary btn md:btn-wide"
-              size="lg"
-              action={primaryButton.function || primaryButton.url || ""}
-            >
+            <LinkButton {...primaryButton} className="md:btn-wide">
               {primaryButton.text}
-            </Button>
+            </LinkButton>
           )}
           {link && (
-            <Button
-              aria-label={link.text}
-              mode={link.type}
-              size={link.size}
-              action={() => scrollDown()}
-            >
+            <Button {...link} onClick={() => scrollDown()}>
               {link.text}
-              <ChevronDown />
             </Button>
           )}
         </div>

@@ -16,13 +16,6 @@
         "images"
       ]
     },
-    "sitemaplinks": {
-      "type": "component",
-      "repeatable": true,
-      "component": "links.link",
-      "required": true,
-      "min": 1
-    },
     "creditslink": {
       "type": "component",
       "repeatable": false,
