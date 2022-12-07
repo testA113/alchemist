@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import clsx from "clsx";
 import { Link } from "@remix-run/react";
 import { Menu as MenuIcon, X } from "lucide-react";
 import {
@@ -14,15 +13,15 @@ import { AnimatePresence, motion } from "framer-motion";
 import type { GetAttributesValues } from "@strapi/strapi";
 
 import { SocialIcons } from "../shared/SocialIcons";
-import { NavLink } from "../shared/NavLink";
-import { Button } from "../shared/Button";
+import { NavLink } from "../shared/Actions/NavLink";
 import type { ImageValues } from "../shared/types";
 import { StrapiImage } from "../shared/StrapiImage";
+import { LinkButton } from "../shared/Actions/LinkButton";
 
 type MobileMenuListProps = {
   social: GetAttributesValues<"elements.socials">;
   navbarLinks: GetAttributesValues<"links.link">[];
-  actionButton: GetAttributesValues<"links.button">;
+  actionButton: GetAttributesValues<"links.link">;
 };
 const MobileMenuList = ({
   social,
@@ -80,16 +79,9 @@ const MobileMenuList = ({
                 </MenuLink>
               ))}
               <SocialIcons social={social} className="mt-8" />
-              <Button
-                action={() => {
-                  console.log("click");
-                }}
-                mode="primary"
-                size="lg"
-                className="mx-5vw mt-8 md:hidden"
-              >
+              <LinkButton {...actionButton} className="mx-5vw mt-8 md:hidden">
                 {actionButton.text}
-              </Button>
+              </LinkButton>
             </MenuItems>
           </motion.div>
         </MenuPopover>
@@ -101,7 +93,7 @@ const MobileMenuList = ({
 type MobileMenuProps = {
   social: GetAttributesValues<"elements.socials">;
   navbarLinks: GetAttributesValues<"links.link">[];
-  actionButton: GetAttributesValues<"links.button">;
+  actionButton: GetAttributesValues<"links.link">;
 };
 const MobileMenu = ({ social, navbarLinks, actionButton }: MobileMenuProps) => {
   return (
@@ -148,23 +140,18 @@ export const NavBar = ({ data }: NavBarProps) => {
           {data && (
             <div className="flex items-center py-4">
               <div aria-label="Navigation bar links" className="hidden lg:flex">
-                {data.navbar.links.map(({ to, text }) => (
-                  <NavLink key={to} to={to}>
-                    {text}
+                {data.navbar.links.map((link) => (
+                  <NavLink key={link.to} {...link}>
+                    {link.text}
                   </NavLink>
                 ))}
               </div>
-              <Button
-                action={() => {
-                  console.log("click");
-                }}
-                mode={data.navbar.actionButton.mode}
-                type={data.navbar.actionButton.type}
-                size={data.navbar.actionButton.size}
-                className="ml-5 hidden md:block"
+              <LinkButton
+                {...data.navbar.actionButton}
+                className="ml-5 hidden md:flex"
               >
                 {data.navbar.actionButton.text}
-              </Button>
+              </LinkButton>
               <div className="flex lg:hidden">
                 <MobileMenu
                   social={data.social}

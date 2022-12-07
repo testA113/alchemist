@@ -2,10 +2,11 @@ import clsx from "clsx";
 import { ChevronRight } from "lucide-react";
 
 import type { Service } from "../shared/types";
-import { Button } from "../shared/Button";
+import { Button } from "../shared/Actions/Button";
 import { ImageCard } from "../shared/ImageCard";
 
 import type { ServicesShowcaseValues } from "./types";
+import { LinkButton } from "../shared/Actions/LinkButton";
 
 type ServiceData = {
   data: Service[];
@@ -54,14 +55,14 @@ export function ServicesShowcase({ sectionData }: Props) {
                 <p className="mb-3 leading-relaxed">
                   {service.attributes.shortDescription}
                 </p>
-                <Button
+                <LinkButton
                   mode="link"
                   className="inline-flex items-center"
-                  action={service.attributes.slug}
+                  to={service.attributes.slug}
                 >
                   Learn More
                   <ChevronRight />
-                </Button>
+                </LinkButton>
               </ImageCard>
             </div>
           ))}

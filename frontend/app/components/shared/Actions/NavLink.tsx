@@ -1,14 +1,18 @@
 import { Link, useLocation } from "@remix-run/react";
+import type { GetAttributesValues } from "@strapi/strapi";
 import clsx from "clsx";
+import type { PropsWithChildren } from "react";
 
-interface NavLinkProps {
-  to: string;
-  children?: React.ReactNode;
+interface Props extends GetAttributesValues<"links.link"> {
+  disabled?: boolean;
+  className?: string;
 }
-export const NavLink = ({ to, children }: NavLinkProps) => {
+
+// special animated style for the header nav links
+export const NavLink = ({ to, children }: PropsWithChildren<Props>) => {
   const location = useLocation();
   const isSelected =
-    to === location.pathname || location.pathname.startsWith(`${to}/`);
+    to === location?.pathname || location?.pathname.startsWith(`${to}/`);
 
   return (
     <div className="px-[1vw] py-2">

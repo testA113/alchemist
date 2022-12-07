@@ -21,11 +21,6 @@
         "showScroll": {
             "type": "boolean"
         },
-        "primaryButton": {
-            "type": "component",
-            "repeatable": false,
-            "component": "links.button"
-        },
         "secondaryButton": {
             "type": "component",
             "repeatable": false,
@@ -54,6 +49,11 @@
             "allowedTypes": [
                 "images"
             ]
+        },
+        "primaryButton": {
+            "type": "component",
+            "repeatable": false,
+            "component": "links.link"
         }
     }
 }

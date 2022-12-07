@@ -1,9 +1,9 @@
 import Markdown from "markdown-to-jsx";
 import clsx from "clsx";
 
-import { Button } from "../shared/Button";
 import type { LargeSummaryValues } from "./types";
 import { ChevronRight } from "lucide-react";
+import { LinkButton } from "../shared/Actions/LinkButton";
 
 type Props = {
   sectionData: LargeSummaryValues;
@@ -18,15 +18,11 @@ export function LargeSummary({ sectionData }: Props) {
       )}
     >
       <Markdown>{sectionData.summarytext}</Markdown>
-      {sectionData.moreInfoButton && (
-        <Button
-          action={sectionData.moreInfoButton.url || ""}
-          mode={sectionData.moreInfoButton.type}
-          size={sectionData.moreInfoButton.size}
-        >
-          {sectionData.moreInfoButton.text}
+      {sectionData.moreInfoLink && (
+        <LinkButton {...sectionData.moreInfoLink}>
+          {sectionData.moreInfoLink.text}
           <ChevronRight />
-        </Button>
+        </LinkButton>
       )}
     </section>
   );
