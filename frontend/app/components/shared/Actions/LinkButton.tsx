@@ -21,7 +21,6 @@ export function LinkButton({
   size = "md",
   newTab,
 }: PropsWithChildren<Props>) {
-  console.log(icon);
   const buttonClass = clsx(getButtonClass(mode, size), className);
 
   return (

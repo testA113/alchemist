@@ -12,11 +12,15 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "sections": {
-      "type": "dynamiczone",
-      "components": [
-        "sections.contact-form"
-      ],
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    },
+    "contactForm": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sections.contact-form",
       "required": true
     }
   }
