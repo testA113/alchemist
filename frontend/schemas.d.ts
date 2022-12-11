@@ -19,10 +19,10 @@ import {
   MediaAttribute,
   SingleTypeSchema,
   ComponentAttribute,
+  DynamicZoneAttribute,
   RichTextAttribute,
   DateAttribute,
   BigIntegerAttribute,
-  DynamicZoneAttribute,
   UIDAttribute,
   TextAttribute,
   ComponentSchema,
@@ -575,7 +575,7 @@ export interface ApiContactContact extends SingleTypeSchema {
   };
   attributes: {
     seo: ComponentAttribute<"shared.seo">;
-    contactForm: ComponentAttribute<"sections.contact-form"> &
+    contactSections: DynamicZoneAttribute<["sections.contact-form"]> &
       RequiredAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;

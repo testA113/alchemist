@@ -18,7 +18,6 @@ import { EventPartnerImages } from "./EventPartnerImages";
 import { ContactForm } from "./ContactForm";
 
 type Props = {
-  componentType: keyof Strapi.Schemas;
   sectionData: DynamicSectionValues;
 };
 
@@ -56,7 +55,7 @@ export function Section({ sectionData }: Props) {
   }
 
   return (
-    <section className="flex h-[150px] w-full items-center justify-center bg-base-100">
+    <section className="bg-base-100 flex h-[150px] w-full items-center justify-center">
       {sectionData.__component}
     </section>
   );
