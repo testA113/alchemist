@@ -13,6 +13,7 @@
   },
   "devDependencies": {},
   "dependencies": {
+    "@strapi/plugin-documentation": "^4.5.3",
     "@strapi/plugin-i18n": "4.3.9",
     "@strapi/plugin-seo": "^1.7.5",
     "@strapi/plugin-users-permissions": "4.3.9",

@@ -21,7 +21,6 @@ export function LargeSummary({ sectionData }: Props) {
       {sectionData.moreInfoLink && (
         <LinkButton {...sectionData.moreInfoLink}>
           {sectionData.moreInfoLink.text}
-          <ChevronRight />
         </LinkButton>
       )}
     </section>

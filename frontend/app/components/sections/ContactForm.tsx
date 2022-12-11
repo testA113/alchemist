@@ -7,15 +7,15 @@ type Props = {
 };
 
 export function ContactForm({ sectionData }: Props) {
-  console.log(sectionData);
+  // console.log(sectionData);
   return (
     <section
       className={clsx(
-        "flex flex-col bg-base-100",
-        "w-full !max-w-full items-center py-24 px-10vw"
+        "bg-base-100 flex flex-col",
+        "px-10vw w-full !max-w-full items-center py-24"
       )}
     >
-      <div className="prose mb-12 md:prose-lg lg:prose-xl">
+      <div className="prose md:prose-lg lg:prose-xl mb-12">
         <h1>{sectionData.title}</h1>
       </div>
     </section>

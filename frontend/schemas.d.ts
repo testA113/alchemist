@@ -18,11 +18,11 @@ import {
   SetMinMax,
   MediaAttribute,
   SingleTypeSchema,
-  DynamicZoneAttribute,
+  ComponentAttribute,
   RichTextAttribute,
   DateAttribute,
   BigIntegerAttribute,
-  ComponentAttribute,
+  DynamicZoneAttribute,
   UIDAttribute,
   TextAttribute,
   ComponentSchema,
@@ -574,7 +574,8 @@ export interface ApiContactContact extends SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    sections: DynamicZoneAttribute<["sections.contact-form"]> &
+    seo: ComponentAttribute<"shared.seo">;
+    contactForm: ComponentAttribute<"sections.contact-form"> &
       RequiredAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;

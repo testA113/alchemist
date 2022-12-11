@@ -55,7 +55,7 @@ const MobileMenuList = ({
             bottom: 0,
             right: 0,
           })}
-          className="z-20 block h-[100vh] bg-base-100 pt-28 sm:w-[100vw]"
+          className="bg-base-100 z-20 block h-[100vh] pt-28 sm:w-[100vw]"
         >
           <motion.div
             initial={{ y: -50, opacity: 0 }}
@@ -70,7 +70,7 @@ const MobileMenuList = ({
             <MenuItems className="flex flex-col border-none bg-transparent p-0 focus-visible:outline-none">
               {navbarLinks.map(({ to, text }) => (
                 <MenuLink
-                  className="border-b border-base-200 px-5vw py-9 uppercase text-neutral-content transition duration-200 hover:bg-base-200 focus:bg-base-200"
+                  className="text-neutral-content focus:bg-base-200 border-base-200 hover:bg-base-200 px-5vw border-b py-6 uppercase transition duration-200"
                   key={to}
                   as={Link}
                   to={to}
@@ -78,10 +78,15 @@ const MobileMenuList = ({
                   {text}
                 </MenuLink>
               ))}
-              <SocialIcons social={social} className="mt-8" />
-              <LinkButton {...actionButton} className="mx-5vw mt-8 md:hidden">
+              <MenuLink
+                className="btn btn-lg btn-primary mx-5vw mt-8 md:hidden"
+                key={actionButton.to}
+                as={Link}
+                to={actionButton.to}
+              >
                 {actionButton.text}
-              </LinkButton>
+              </MenuLink>
+              <SocialIcons social={social} className="mt-8" />
             </MenuItems>
           </motion.div>
         </MenuPopover>
@@ -98,15 +103,11 @@ type MobileMenuProps = {
 const MobileMenu = ({ social, navbarLinks, actionButton }: MobileMenuProps) => {
   return (
     <Menu>
-      {() => {
+      {({ isExpanded }) => {
         return (
           <>
-            <MenuButton aria-label="menu button">
-              <label className="swap btn-ghost swap-rotate no-animation btn-circle btn ml-5">
-                <input type="checkbox" aria-label="toggle  menu" />
-                <X className="swap-on" />
-                <MenuIcon className="swap-off" />
-              </label>
+            <MenuButton className="btn btn-circle btn-ghost no-animation ml-5">
+              {isExpanded ? <X /> : <MenuIcon />}
             </MenuButton>
             <MobileMenuList
               social={social}
@@ -128,8 +129,8 @@ export const NavBar = ({ data }: NavBarProps) => {
 
   return (
     <div className="w-full transition duration-500">
-      <div className="fixed top-0 left-0 z-50 w-full bg-base-100/50 px-5vw py-2 backdrop-blur-sm lg:py-4">
-        <nav className="mx-auto flex max-w-[96rem] items-center justify-between text-primary">
+      <div className="bg-base-100/50 px-5vw fixed top-0 left-0 z-50 w-full py-2 backdrop-blur-sm lg:py-4">
+        <nav className="text-primary mx-auto flex max-w-[96rem] items-center justify-between">
           <div className="mr-5 shrink-0">
             <Link to="/" title="Alchemist Mixology - Home" prefetch="intent">
               {logo && (

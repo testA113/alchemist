@@ -24,7 +24,6 @@ export const Button = ({
   type = "button",
   disabled = false,
 }: PropsWithChildren<Props>) => {
-  console.log(icon);
   const buttonClass = clsx(getButtonClass(mode, size), className);
 
   return (
