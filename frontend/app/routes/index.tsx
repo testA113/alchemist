@@ -34,12 +34,8 @@ export default function Index() {
 
   return (
     <div className="min-h-minpage">
-      {homesections.map((section) => (
-        <Section
-          key={section.__component}
-          componentType={section.__component}
-          sectionData={section}
-        />
+      {homesections.map((section, index) => (
+        <Section key={index} sectionData={section} />
       ))}
     </div>
   );
