@@ -141,11 +141,13 @@ export const NavBar = ({ data }: NavBarProps) => {
           {data && (
             <div className="flex items-center py-4">
               <div aria-label="Navigation bar links" className="hidden lg:flex">
-                {data.navbar.links.map((link) => (
-                  <NavLink key={link.to} {...link}>
-                    {link.text}
-                  </NavLink>
-                ))}
+                {data.navbar.links
+                  .filter((link) => link.to !== "/") // dont include the home link in the nav bar
+                  .map((link) => (
+                    <NavLink key={link.to} {...link}>
+                      {link.text}
+                    </NavLink>
+                  ))}
               </div>
               <LinkButton
                 {...data.navbar.actionButton}
