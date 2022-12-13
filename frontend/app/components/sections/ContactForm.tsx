@@ -1,15 +1,18 @@
-import { Form } from "@remix-run/react";
+import { Form, useActionData } from "@remix-run/react";
 import clsx from "clsx";
 
 import type { ContactFormValues } from "./types";
 import { Button } from "../shared/Actions/Button";
+import type { ContactMessageActionData } from "~/routes/contact-us/types";
 
 type Props = {
   sectionData: ContactFormValues;
 };
 
 export function ContactForm({ sectionData }: Props) {
-  console.log(sectionData);
+  const actionData = useActionData<ContactMessageActionData>();
+  console.log(actionData?.values?.name);
+  console.log(actionData?.error);
   return (
     <section
       className={clsx(
@@ -22,44 +25,48 @@ export function ContactForm({ sectionData }: Props) {
       </div>
       <Form method="post" action="/contact-us?index">
         <div className="flex flex-col gap-y-4">
-          <p>
+          <div>
             <label className="flex flex-col">
               <div className="mb-2">{sectionData.namelabel}</div>
               <input
                 name="name"
+                defaultValue={actionData?.values?.name}
                 type="text"
-                max={100}
+                maxLength={150}
+                minLength={1}
                 placeholder={
                   sectionData.nameplaceholder
                     ? sectionData.nameplaceholder
                     : "Slim Shady"
                 }
-                className="input input-bordered w-full max-w-xs"
+                className="input border-1 focus:border-primary bg-base-200 w-full max-w-xs border-gray-500"
               />
             </label>
-          </p>
-          <p>
+          </div>
+          <div>
             <label className="flex flex-col">
               <div className="mb-2">{sectionData.emaillabel}</div>
               <input
                 name="email"
-                type="email"
+                defaultValue={actionData?.values?.email}
+                type="text"
                 max={150}
                 placeholder={
                   sectionData.emailplaceholder
                     ? sectionData.emailplaceholder
                     : "Your email address"
                 }
-                className="input input-bordered w-full max-w-xs"
+                className="input border-1 focus:border-primary bg-base-200 w-full max-w-xs border-gray-500"
               />
             </label>
-          </p>
-          <p>
+          </div>
+          <div>
             <label className="flex flex-col">
               <div className="mb-2">{sectionData.descriptionlabel}</div>
               <textarea
                 name="description"
-                className="textarea textarea-bordered"
+                defaultValue={actionData?.values?.description}
+                className="textarea border-1 focus:border-primary bg-base-200 w-full max-w-xs border-gray-500"
                 placeholder={
                   sectionData.descriptionplaceholder
                     ? sectionData.descriptionplaceholder
@@ -67,7 +74,7 @@ export function ContactForm({ sectionData }: Props) {
                 }
               ></textarea>
             </label>
-          </p>
+          </div>
           <Button {...sectionData.submitbutton}>
             {sectionData.submitbutton.text}
           </Button>
