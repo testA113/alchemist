@@ -11,6 +11,7 @@ type InputProps = {
   placeholder?: string;
   className?: string;
   error?: string;
+  isLoading?: boolean;
 };
 
 export const TextArea: React.FC<InputProps> = ({
@@ -22,9 +23,10 @@ export const TextArea: React.FC<InputProps> = ({
   placeholder,
   className,
   error,
+  isLoading,
 }) => {
   return (
-    <label className="flex flex-col">
+    <label className="flex flex-col gap-1">
       <div className="mb-2">{label}</div>
       <textarea
         name={name}
@@ -38,7 +40,7 @@ export const TextArea: React.FC<InputProps> = ({
           className
         )}
       />
-      {error && <InputError>{error}</InputError>}
+      <InputError isLoading={isLoading}>{error}</InputError>
     </label>
   );
 };

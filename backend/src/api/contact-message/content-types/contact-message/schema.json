@@ -25,7 +25,10 @@
       "minLength": 1
     },
     "description": {
-      "type": "richtext"
+      "type": "richtext",
+      "required": true,
+      "minLength": 10,
+      "maxLength": 4000
     }
   }
 }

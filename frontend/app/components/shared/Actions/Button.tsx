@@ -35,6 +35,7 @@ export const Button = ({
       onClick={onClick}
       disabled={disabled || isLoading}
     >
+      {isLoading && <Icon icon="Loader2" className="animate-spin" />}
       {children}
       {icon && <Icon icon={icon} />}
     </button>
