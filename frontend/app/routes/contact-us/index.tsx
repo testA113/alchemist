@@ -9,22 +9,29 @@ import { formatStrapiError } from "../utils.server";
 
 // get the contact page
 export async function loader() {
-  const contactResponse = await getContactPage();
-  const contactData = await contactResponse.json();
-  if (contactData.error) {
+  try {
+    const contactResponse = await getContactPage();
+
+    const contactData = await contactResponse.json();
+    if (contactData.error) {
+      throw new Response("Upstream error loading contact page data from strapi", {
+        status: contactData?.error?.status || 500, statusText: contactData?.error?.message
+      });
+    }
+
+    return json(
+      {
+        contactData: contactData.data.attributes,
+      },
+      {
+        headers: { "Cache-Control": "private, max-age=120" },
+      }
+    );
+  } catch (error) {
     throw new Response("Error loading contact page data from strapi", {
-      status: contactData?.error?.status || 500,
+      status: 500,
     });
   }
-
-  return json(
-    {
-      contactData: contactData.data.attributes,
-    },
-    {
-      headers: { "Cache-Control": "private, max-age=120" },
-    }
-  );
 }
 
 // handle the contact us submission
