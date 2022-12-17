@@ -23,6 +23,7 @@ export const Button = ({
   text,
   type = "button",
   disabled = false,
+  isLoading,
 }: PropsWithChildren<Props>) => {
   const buttonClass = clsx(getButtonClass(mode, size), className);
 
@@ -32,7 +33,7 @@ export const Button = ({
       title={text}
       className={buttonClass}
       onClick={onClick}
-      disabled={disabled}
+      disabled={disabled || isLoading}
     >
       {children}
       {icon && <Icon icon={icon} />}
