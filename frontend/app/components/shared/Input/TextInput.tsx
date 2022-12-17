@@ -12,6 +12,7 @@ type Props = {
   placeholder?: string;
   className?: string;
   error?: string;
+  isLoading?: boolean;
 };
 
 export const TextInput: React.FC<Props> = ({
@@ -24,9 +25,10 @@ export const TextInput: React.FC<Props> = ({
   placeholder,
   className,
   error,
+  isLoading,
 }) => {
   return (
-    <label className="flex flex-col">
+    <label className="flex flex-col gap-1">
       <div className="mb-2">{label}</div>
       <input
         name={name}
@@ -41,7 +43,7 @@ export const TextInput: React.FC<Props> = ({
           className
         )}
       />
-      {error && <InputError>{error}</InputError>}
+      <InputError isLoading={isLoading}>{error}</InputError>
     </label>
   );
 };

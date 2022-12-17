@@ -19,5 +19,5 @@ const buttonSizeClassMap = {
 
 // getButtonClass uses a switch statement to return the correct class name for the button based on the mode and size prop.
 export function getButtonClass(mode: Mode, size: Size) {
-  return `btn ${buttonModeClassMap[mode]} ${buttonSizeClassMap[size]}`;
+  return `btn ${buttonModeClassMap[mode]} ${buttonSizeClassMap[size]} gap-2`;
 }

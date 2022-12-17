@@ -6,15 +6,21 @@ import { Button } from "../shared/Actions/Button";
 import type { ContactMessageActionData } from "~/routes/contact-us/types";
 import { TextInput } from "../shared/Input/TextInput";
 import { TextArea } from "../shared/Input/TextArea";
+import { useState } from "react";
 
 type Props = {
   sectionData: ContactFormValues;
 };
 
 export function ContactForm({ sectionData }: Props) {
+  const [showSubmittingMinDelay, setShowSubmittingMinDelay] = useState(false);
   const actionData = useActionData<ContactMessageActionData>();
   const transition = useTransition();
   const { values, error } = actionData ?? {};
+
+  // show the submitting state for at least 800ms
+  const showSubmitting =
+    showSubmittingMinDelay || transition.state === "submitting";
 
   return (
     <section
@@ -30,9 +36,15 @@ export function ContactForm({ sectionData }: Props) {
         method="post"
         action="/contact-us?index"
         className="w-full max-w-xl"
+        onSubmit={() => {
+          setShowSubmittingMinDelay(true);
+          setTimeout(() => {
+            setShowSubmittingMinDelay(false);
+          }, 800);
+        }}
       >
         <fieldset disabled={transition.state === "submitting"}>
-          <div className="flex w-full flex-col gap-y-4">
+          <div className="flex w-full flex-col gap-y-2">
             <TextInput
               name="name"
               label={sectionData.namelabel}
@@ -40,7 +52,7 @@ export function ContactForm({ sectionData }: Props) {
               type="text"
               maxLength={150}
               minLength={1}
-              error={error?.name}
+              error={!showSubmitting ? error?.name : undefined}
               placeholder={
                 sectionData.nameplaceholder
                   ? sectionData.nameplaceholder
@@ -54,7 +66,7 @@ export function ContactForm({ sectionData }: Props) {
               type="text" // change to email
               maxLength={150}
               minLength={1}
-              error={error?.email}
+              error={!showSubmitting ? error?.email : undefined}
               placeholder={
                 sectionData.emailplaceholder
                   ? sectionData.emailplaceholder
@@ -66,19 +78,16 @@ export function ContactForm({ sectionData }: Props) {
               label={sectionData.descriptionlabel}
               defaultValue={values?.description}
               maxLength={4000}
-              minLength={1}
-              error={error?.description}
+              minLength={10}
+              error={!showSubmitting ? error?.description : undefined}
               placeholder={
                 sectionData.descriptionplaceholder
                   ? sectionData.descriptionplaceholder
                   : "Event description, guest numbers, location, favourite drinks.."
               }
             />
-            <Button
-              {...sectionData.submitbutton}
-              isLoading={transition.state === "submitting"}
-            >
-              {transition.state === "submitting"
+            <Button {...sectionData.submitbutton} isLoading={showSubmitting}>
+              {showSubmitting
                 ? sectionData.submitbutton.loadingText ?? "Loading..."
                 : sectionData.submitbutton.text}
             </Button>
