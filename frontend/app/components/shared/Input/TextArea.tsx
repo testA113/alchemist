@@ -34,6 +34,7 @@ export const TextArea: React.FC<InputProps> = ({
         maxLength={maxLength}
         minLength={minLength}
         placeholder={placeholder}
+        aria-invalid={error ? "true" : "false"}
         className={clsx(
           "textarea border-1 bg-base-200 autofill:!bg-base-200 w-full",
           error ? "textarea-error" : "focus:border-primary border-gray-500",

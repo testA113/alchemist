@@ -34,6 +34,7 @@ export const TextInput: React.FC<Props> = ({
         name={name}
         defaultValue={defaultValue}
         type={type}
+        aria-invalid={error ? "true" : "false"}
         maxLength={maxLength}
         minLength={minLength}
         placeholder={placeholder}
