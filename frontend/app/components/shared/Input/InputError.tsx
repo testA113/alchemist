@@ -43,7 +43,7 @@ export const InputError = ({
   return (
     <div
       className={clsx(
-        "flex w-full items-center gap-1 bg-transparent py-2 text-xs transition duration-200 ease-in-out",
+        "flex h-4 w-full items-center gap-1 bg-transparent text-xs transition duration-200 ease-in-out",
         textClass[mode],
         show ? "h-4 opacity-100" : "opacity-0"
       )}

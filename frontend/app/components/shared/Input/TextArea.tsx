@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { useField } from "remix-validated-form";
 
 import { InputError } from "./InputError";
 
@@ -10,7 +11,6 @@ type InputProps = {
   minLength?: number;
   placeholder?: string;
   className?: string;
-  error?: string;
   isLoading?: boolean;
 };
 
@@ -22,13 +22,15 @@ export const TextArea: React.FC<InputProps> = ({
   minLength,
   placeholder,
   className,
-  error,
   isLoading,
 }) => {
+  const { error, getInputProps } = useField(name);
+
   return (
     <label className="flex flex-col gap-1">
       <div className="mb-2">{label}</div>
       <textarea
+        {...getInputProps({ id: name })}
         name={name}
         defaultValue={defaultValue}
         maxLength={maxLength}
