@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { useField } from "remix-validated-form";
 
 import { InputError } from "./InputError";
 
@@ -11,7 +12,6 @@ type Props = {
   minLength?: number;
   placeholder?: string;
   className?: string;
-  error?: string;
   isLoading?: boolean;
 };
 
@@ -24,13 +24,15 @@ export const TextInput: React.FC<Props> = ({
   minLength,
   placeholder,
   className,
-  error,
   isLoading,
 }) => {
+  const { error, getInputProps } = useField(name);
+
   return (
     <label className="flex flex-col gap-1">
       <div className="mb-2">{label}</div>
       <input
+        {...getInputProps({ id: name })}
         name={name}
         defaultValue={defaultValue}
         type={type}
@@ -39,7 +41,7 @@ export const TextInput: React.FC<Props> = ({
         minLength={minLength}
         placeholder={placeholder}
         className={clsx(
-          "input border-1 bg-base-200  autofill:!bg-base-200 w-full",
+          "input border-1 bg-base-200  autofill:!bg-base-200 [&:-internal-autofill-selected]:!bg-base-200 w-full",
           error ? "input-error" : "focus:border-primary border-gray-500",
           className
         )}
