@@ -1,44 +1,31 @@
 import { useActionData } from "@remix-run/react";
 import clsx from "clsx";
-import { useIsSubmitting, ValidatedForm } from "remix-validated-form";
-import { withZod } from "@remix-validated-form/with-zod";
-import { z } from "zod";
+import {
+  useIsSubmitting,
+  ValidatedForm,
+  useIsValid,
+} from "remix-validated-form";
+import { useState } from "react";
+import { useHydrated } from "remix-utils";
 
+import { validator } from "~/routes/contact-us";
 import type { ContactFormValues } from "./types";
 import { Button } from "../shared/Actions/Button";
 import type { ContactMessageActionData } from "~/routes/contact-us/types";
 import { TextInput } from "../shared/Input/TextInput";
 import { TextArea } from "../shared/Input/TextArea";
-import { useState } from "react";
-
-export const validator = withZod(
-  z.object({
-    name: z.string().min(1, { message: "Name is required" }),
-    email: z
-      .string()
-      .min(1, { message: "Email is required" })
-      .email("Must be a valid email"),
-    description: z
-      .string()
-      .min(10, {
-        message: "A little description please! At least 10 characters.",
-      })
-      .max(4000, {
-        message:
-          "4000 characters maximum please. We can talk more about it soon.",
-      }),
-  })
-);
 
 type Props = {
   sectionData: ContactFormValues;
 };
 
 export function ContactForm({ sectionData }: Props) {
+  let isHydrated = useHydrated();
   const [showSubmittingMinDelay, setShowSubmittingMinDelay] = useState(false);
   const actionData = useActionData<ContactMessageActionData>();
   const isSubmitting = useIsSubmitting("contact-form");
-  const { values, error } = actionData ?? {};
+  const isValid = useIsValid("contact-form");
+  const { values } = actionData ?? {};
 
   // show the submitting state for at least 800ms
   const showSubmitting = showSubmittingMinDelay || isSubmitting;
@@ -54,6 +41,7 @@ export function ContactForm({ sectionData }: Props) {
         <h1>{sectionData.title}</h1>
       </div>
       <ValidatedForm
+        noValidate={isHydrated} // disable browser validation for non js browsers
         id="contact-form"
         method="post"
         action="/contact-us?index"
@@ -74,6 +62,7 @@ export function ContactForm({ sectionData }: Props) {
             type="text"
             maxLength={150}
             minLength={1}
+            isLoading={showSubmitting}
             placeholder={
               sectionData.nameplaceholder
                 ? sectionData.nameplaceholder
@@ -87,6 +76,7 @@ export function ContactForm({ sectionData }: Props) {
             type="email" // change to email
             maxLength={150}
             minLength={1}
+            isLoading={showSubmitting}
             placeholder={
               sectionData.emailplaceholder
                 ? sectionData.emailplaceholder
@@ -98,7 +88,8 @@ export function ContactForm({ sectionData }: Props) {
             label={sectionData.descriptionlabel}
             defaultValue={values?.description}
             maxLength={4000}
-            minLength={10}
+            minLength={1}
+            isLoading={showSubmitting}
             placeholder={
               sectionData.descriptionplaceholder
                 ? sectionData.descriptionplaceholder
@@ -108,7 +99,7 @@ export function ContactForm({ sectionData }: Props) {
           <Button
             {...sectionData.submitbutton}
             isLoading={showSubmitting}
-            disabled={!!error}
+            disabled={!isValid}
           >
             {showSubmitting
               ? sectionData.submitbutton.loadingText ?? "Loading..."
