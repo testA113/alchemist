@@ -18,6 +18,7 @@ import { getEnv } from "./env.server";
 import styles from "./styles/app.css";
 import { getNavBar } from "./components/layout/navbar.server";
 import { getFooter } from "./components/layout/footer.server";
+import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 
 export function links() {
   return [
@@ -86,17 +87,29 @@ function Document({
         <title>{title}</title>
         <Links />
       </head>
-      <body>
-        {children}
-        <ScrollRestoration />
-        <Scripts />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.ENV = ${JSON.stringify(data?.ENV)}`,
-          }}
-        />
-        <LiveReload />
-      </body>
+
+      <GoogleReCaptchaProvider
+        reCaptchaKey="6LeL9o0jAAAAANddsjQmD7-Xls1boV7i1DumFVfE"
+        useRecaptchaNet
+        useEnterprise
+        container={{
+          parameters: { badge: "inline" },
+          element: "captcha-container",
+        }}
+      >
+        <body>
+          {children}
+          <ScrollRestoration />
+          <Scripts />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.ENV = ${JSON.stringify(data?.ENV)}`,
+            }}
+          />
+          <LiveReload />
+          <div className="hidden" id="captcha-container" />
+        </body>
+      </GoogleReCaptchaProvider>
     </html>
   );
 }
