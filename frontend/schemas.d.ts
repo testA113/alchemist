@@ -618,7 +618,12 @@ export interface ApiContactMessageContactMessage extends CollectionTypeSchema {
         minLength: 1;
         maxLength: 200;
       }>;
-    description: RichTextAttribute;
+    description: RichTextAttribute &
+      RequiredAttribute &
+      SetMinMaxLength<{
+        minLength: 10;
+        maxLength: 4000;
+      }>;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;

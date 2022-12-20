@@ -1,12 +1,12 @@
-import { useActionData } from "@remix-run/react";
+import { useActionData, useSubmit } from "@remix-run/react";
 import clsx from "clsx";
 import {
   useIsSubmitting,
   ValidatedForm,
   useIsValid,
 } from "remix-validated-form";
-import { useState } from "react";
-import { useHydrated } from "remix-utils";
+import { useCallback, useEffect, useState } from "react";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 import { validator } from "~/routes/contact-us";
 import type { ContactFormValues } from "./types";
@@ -20,12 +20,31 @@ type Props = {
 };
 
 export function ContactForm({ sectionData }: Props) {
-  let isHydrated = useHydrated();
+  const submit = useSubmit();
   const [showSubmittingMinDelay, setShowSubmittingMinDelay] = useState(false);
+  const [token, setToken] = useState<string | undefined>();
   const actionData = useActionData<ContactMessageActionData>();
   const isSubmitting = useIsSubmitting("contact-form");
   const isValid = useIsValid("contact-form");
   const { values } = actionData ?? {};
+
+  const { executeRecaptcha } = useGoogleReCaptcha();
+
+  // Create an event handler so you can call the verification on button click event or form submit
+  const handleReCaptchaVerify = useCallback(async () => {
+    if (!executeRecaptcha) {
+      return;
+    }
+
+    // set the token to use to check verification later
+    const token = await executeRecaptcha();
+    setToken(token);
+  }, [executeRecaptcha]);
+
+  // You can use useEffect to trigger the verification as soon as the component being loaded
+  useEffect(() => {
+    handleReCaptchaVerify();
+  }, [handleReCaptchaVerify]);
 
   // show the submitting state for at least 800ms
   const showSubmitting = showSubmittingMinDelay || isSubmitting;
@@ -41,20 +60,27 @@ export function ContactForm({ sectionData }: Props) {
         <h1>{sectionData.title}</h1>
       </div>
       <ValidatedForm
-        noValidate={isHydrated} // disable browser validation for non js browsers
         id="contact-form"
         method="post"
         action="/contact-us?index"
         className="w-full max-w-xl"
-        onSubmit={() => {
-          setShowSubmittingMinDelay(true);
-          setTimeout(() => {
-            setShowSubmittingMinDelay(false);
-          }, 800);
+        onSubmit={(data, event) => {
+          event.preventDefault();
+          if (token) {
+            setShowSubmittingMinDelay(true);
+            setTimeout(() => {
+              setShowSubmittingMinDelay(false);
+            }, 800);
+            const dataWithToken = { ...data, token };
+            submit(dataWithToken, {
+              action: "/contact-us?index",
+              method: "post",
+            });
+          }
         }}
         validator={validator}
       >
-        <div className="flex w-full flex-col gap-y-2">
+        <div className="flex w-full flex-col gap-y-2" id="contact-form">
           <TextInput
             name="name"
             label={sectionData.namelabel}

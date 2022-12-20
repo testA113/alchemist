@@ -5,7 +5,11 @@ import { validationError } from "remix-validated-form";
 import { withZod } from "@remix-validated-form/with-zod";
 import { z } from "zod";
 
-import { getContactPage, postContactMessage } from "./contact-us.server";
+import {
+  createAssessment,
+  getContactPage,
+  postContactMessage,
+} from "./contact-us.server";
 import type { ContactMessage, ContactMessagePayload } from "./types";
 import { Section } from "~/components/sections";
 import { formatStrapiError } from "../utils.server";
@@ -20,7 +24,8 @@ export const validator = withZod(
     description: z
       .string()
       .min(10, {
-        message: "Your event is worth more than that! Minimum 10 characters.",
+        message:
+          "Your event is more interesting than that! Minimum 10 characters.",
       })
       .max(4000, {
         message: "Maximum 4000 characters. We can talk more about it soon.",
@@ -30,23 +35,27 @@ export const validator = withZod(
 
 // handle the contact us submission
 export const action = async ({ request }: ActionArgs) => {
-  console.log(request);
+  // run the same client validation server side and return the errors if any exist
   const dataResult = await validator.validate(await request.formData());
-
-  // run the same client validation server side and return the errors
   if (dataResult.error) return validationError(dataResult.error);
+
+  // check the google captchav3 token score and return an error if it is too low
+  const tokenScore = await createAssessment(dataResult.submittedData.token);
+  if (!tokenScore || tokenScore < 0.8) {
+    return redirect("/contact-us/robot");
+  }
+
+  // post the message to strapi and return the errors if any exist in the same format
   const messageBody: ContactMessagePayload = {
     data: dataResult.data,
   };
-
-  // post the message to strapi
   const { error } = await postContactMessage(messageBody);
   if (error) {
     const formattedError = formatStrapiError<keyof ContactMessage>(error);
-    // using validationError here will show the errors in the form
     return validationError({ fieldErrors: formattedError });
   }
 
+  // redirect to the success page
   return redirect("/contact-us/success");
 };
 
