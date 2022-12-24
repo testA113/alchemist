@@ -16,10 +16,10 @@ import {
   IntegerAttribute,
   DecimalAttribute,
   SetMinMax,
-  MediaAttribute,
   SingleTypeSchema,
-  ComponentAttribute,
   DynamicZoneAttribute,
+  ComponentAttribute,
+  MediaAttribute,
   RichTextAttribute,
   DateAttribute,
   BigIntegerAttribute,
@@ -532,6 +532,94 @@ export interface PluginUsersPermissionsUser extends CollectionTypeSchema {
   };
 }
 
+export interface ApiAboutUsAboutUs extends SingleTypeSchema {
+  info: {
+    singularName: "about-us";
+    pluralName: "about-uses";
+    displayName: "About Us";
+    description: "";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    sections: DynamicZoneAttribute<
+      [
+        "sections.contact-form",
+        "sections.cyclingsentence",
+        "sections.event-partners",
+        "sections.full-size-carousel",
+        "sections.large-summary",
+        "sections.services-showcase",
+        "sections.showcases",
+        "sections.simple-content",
+        "sections.video-hero"
+      ]
+    > &
+      RequiredAttribute;
+    seo: ComponentAttribute<"shared.seo"> & RequiredAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    publishedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      "api::about-us.about-us",
+      "oneToOne",
+      "admin::user"
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      "api::about-us.about-us",
+      "oneToOne",
+      "admin::user"
+    > &
+      PrivateAttribute;
+  };
+}
+
+export interface ApiBrandActionBrandAction extends SingleTypeSchema {
+  info: {
+    singularName: "brand-action";
+    pluralName: "brand-actions";
+    displayName: "Brand Action";
+    description: "";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    sections: DynamicZoneAttribute<
+      [
+        "sections.contact-form",
+        "sections.cyclingsentence",
+        "sections.event-partners",
+        "sections.full-size-carousel",
+        "sections.large-summary",
+        "sections.services-showcase",
+        "sections.showcases",
+        "sections.simple-content",
+        "sections.video-hero"
+      ]
+    > &
+      RequiredAttribute;
+    seo: ComponentAttribute<"shared.seo"> & RequiredAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    publishedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      "api::brand-action.brand-action",
+      "oneToOne",
+      "admin::user"
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      "api::brand-action.brand-action",
+      "oneToOne",
+      "admin::user"
+    > &
+      PrivateAttribute;
+  };
+}
+
 export interface ApiClientClient extends CollectionTypeSchema {
   info: {
     singularName: "client";
@@ -574,7 +662,7 @@ export interface ApiContactContact extends SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    seo: ComponentAttribute<"shared.seo">;
+    seo: ComponentAttribute<"shared.seo"> & RequiredAttribute;
     contactSections: DynamicZoneAttribute<["sections.contact-form"]> &
       RequiredAttribute;
     createdAt: DateTimeAttribute;
@@ -689,6 +777,50 @@ export interface ApiEventEvent extends CollectionTypeSchema {
   };
 }
 
+export interface ApiFestivalBarsFestivalBars extends SingleTypeSchema {
+  info: {
+    singularName: "festival-bars";
+    pluralName: "festival-barss";
+    displayName: "Festival Bars";
+    description: "";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    sections: DynamicZoneAttribute<
+      [
+        "sections.contact-form",
+        "sections.cyclingsentence",
+        "sections.event-partners",
+        "sections.full-size-carousel",
+        "sections.large-summary",
+        "sections.services-showcase",
+        "sections.showcases",
+        "sections.simple-content",
+        "sections.video-hero"
+      ]
+    > &
+      RequiredAttribute;
+    seo: ComponentAttribute<"shared.seo"> & RequiredAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    publishedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      "api::festival-bars.festival-bars",
+      "oneToOne",
+      "admin::user"
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      "api::festival-bars.festival-bars",
+      "oneToOne",
+      "admin::user"
+    > &
+      PrivateAttribute;
+  };
+}
+
 export interface ApiFooterFooter extends SingleTypeSchema {
   info: {
     singularName: "footer";
@@ -731,7 +863,7 @@ export interface ApiHomeHome extends SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    seo: ComponentAttribute<"shared.seo">;
+    seo: ComponentAttribute<"shared.seo"> & RequiredAttribute;
     homesections: DynamicZoneAttribute<
       [
         "sections.contact-form",
@@ -777,6 +909,50 @@ export interface ApiMenuMenu extends SingleTypeSchema {
     createdBy: RelationAttribute<"api::menu.menu", "oneToOne", "admin::user"> &
       PrivateAttribute;
     updatedBy: RelationAttribute<"api::menu.menu", "oneToOne", "admin::user"> &
+      PrivateAttribute;
+  };
+}
+
+export interface ApiPrivateEventsPrivateEvents extends SingleTypeSchema {
+  info: {
+    singularName: "private-events";
+    pluralName: "private-eventss";
+    displayName: "Private Events";
+    description: "";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    sections: DynamicZoneAttribute<
+      [
+        "sections.contact-form",
+        "sections.cyclingsentence",
+        "sections.event-partners",
+        "sections.full-size-carousel",
+        "sections.large-summary",
+        "sections.services-showcase",
+        "sections.showcases",
+        "sections.simple-content",
+        "sections.video-hero"
+      ]
+    > &
+      RequiredAttribute;
+    seo: ComponentAttribute<"shared.seo"> & RequiredAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    publishedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      "api::private-events.private-events",
+      "oneToOne",
+      "admin::user"
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      "api::private-events.private-events",
+      "oneToOne",
+      "admin::user"
+    > &
       PrivateAttribute;
   };
 }
@@ -2813,6 +2989,17 @@ export interface SectionsShowcases extends ComponentSchema {
   };
 }
 
+export interface SectionsSimpleContent extends ComponentSchema {
+  info: {
+    displayName: "simpleContent";
+    icon: "align-center";
+  };
+  attributes: {
+    title: StringAttribute;
+    content: RichTextAttribute & RequiredAttribute;
+  };
+}
+
 export interface SectionsVideoHero extends ComponentSchema {
   info: {
     displayName: "video hero";
@@ -2898,13 +3085,17 @@ declare global {
       "plugin::users-permissions.permission": PluginUsersPermissionsPermission;
       "plugin::users-permissions.role": PluginUsersPermissionsRole;
       "plugin::users-permissions.user": PluginUsersPermissionsUser;
+      "api::about-us.about-us": ApiAboutUsAboutUs;
+      "api::brand-action.brand-action": ApiBrandActionBrandAction;
       "api::client.client": ApiClientClient;
       "api::contact.contact": ApiContactContact;
       "api::contact-message.contact-message": ApiContactMessageContactMessage;
       "api::event.event": ApiEventEvent;
+      "api::festival-bars.festival-bars": ApiFestivalBarsFestivalBars;
       "api::footer.footer": ApiFooterFooter;
       "api::home.home": ApiHomeHome;
       "api::menu.menu": ApiMenuMenu;
+      "api::private-events.private-events": ApiPrivateEventsPrivateEvents;
       "api::service.service": ApiServiceService;
       "api::showcase.showcase": ApiShowcaseShowcase;
       "elements.footersection": ElementsFootersection;
@@ -2922,6 +3113,7 @@ declare global {
       "sections.large-summary": SectionsLargeSummary;
       "sections.services-showcase": SectionsServicesShowcase;
       "sections.showcases": SectionsShowcases;
+      "sections.simple-content": SectionsSimpleContent;
       "sections.video-hero": SectionsVideoHero;
       "shared.meta-social": SharedMetaSocial;
       "shared.seo": SharedSeo;

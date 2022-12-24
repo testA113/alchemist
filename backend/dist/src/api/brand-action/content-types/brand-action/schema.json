@@ -1,0 +1,37 @@
+{
+    "kind": "singleType",
+    "collectionName": "brand_actions",
+    "info": {
+        "singularName": "brand-action",
+        "pluralName": "brand-actions",
+        "displayName": "Brand Action",
+        "description": ""
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "sections": {
+            "type": "dynamiczone",
+            "components": [
+                "sections.contact-form",
+                "sections.cyclingsentence",
+                "sections.event-partners",
+                "sections.full-size-carousel",
+                "sections.large-summary",
+                "sections.services-showcase",
+                "sections.showcases",
+                "sections.simple-content",
+                "sections.video-hero"
+            ],
+            "required": true
+        },
+        "seo": {
+            "type": "component",
+            "repeatable": false,
+            "component": "shared.seo",
+            "required": true
+        }
+    }
+}

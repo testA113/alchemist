@@ -7,6 +7,7 @@ import {
   isShowcaseValues,
   isEventPartnersValues,
   isContactFormValues,
+  isSimpleContentValues,
 } from "./types";
 
 import { VideoHero } from "./VideoHero";
@@ -16,6 +17,7 @@ import { ServicesShowcase } from "./ServicesShowcase";
 import { Showcase } from "./Showcase";
 import { EventPartnerImages } from "./EventPartnerImages";
 import { ContactForm } from "./ContactForm";
+import { SimpleContent } from "./SimpleContent";
 
 type Props = {
   sectionData: DynamicSectionValues;
@@ -52,6 +54,10 @@ export function Section({ sectionData }: Props) {
 
   if (isContactFormValues(sectionData)) {
     return <ContactForm sectionData={sectionData} />;
+  }
+
+  if (isSimpleContentValues(sectionData)) {
+    return <SimpleContent sectionData={sectionData} />;
   }
 
   return (

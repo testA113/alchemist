@@ -2,7 +2,7 @@ import { json } from "@remix-run/node";
 import { useCatch, useLoaderData } from "@remix-run/react";
 import type { GetAttributesValues } from "@strapi/strapi";
 
-import { getHomePage } from "./home.server";
+import { getHomePage } from "./index.server";
 import { PageError } from "~/components/shared/Alert/PageError";
 import { Section } from "~/components/sections";
 
