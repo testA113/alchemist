@@ -18,8 +18,10 @@ export type ShowcaseValues = GetAttributesValues<"sections.showcases"> &
   DynamicZoneValueBase;
 export type EventPartnersValues =
   GetAttributesValues<"sections.event-partners"> & DynamicZoneValueBase;
-export type ContactFormValues = 
-  GetAttributesValues<"sections.contact-form"> & DynamicZoneValueBase;
+export type ContactFormValues = GetAttributesValues<"sections.contact-form"> &
+  DynamicZoneValueBase;
+export type SimpleContentValues =
+  GetAttributesValues<"sections.simple-content"> & DynamicZoneValueBase;
 
 export function isVideoHeroValues(
   sectionValues: DynamicSectionValues
@@ -61,4 +63,10 @@ export function isContactFormValues(
   sectionValues: DynamicSectionValues
 ): sectionValues is ContactFormValues {
   return sectionValues.__component === "sections.contact-form";
+}
+
+export function isSimpleContentValues(
+  sectionValues: DynamicSectionValues
+): sectionValues is SimpleContentValues {
+  return sectionValues.__component === "sections.simple-content";
 }

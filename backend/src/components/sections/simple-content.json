@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_sections_simple_contents",
+  "info": {
+    "displayName": "simpleContent",
+    "icon": "align-center",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}
