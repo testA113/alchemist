@@ -72,19 +72,12 @@ export const loader: LoaderFunction = async () => {
   );
 };
 
-function Document({
-  children,
-  title = "Alchemist Mixology",
-}: {
-  children: React.ReactNode;
-  title?: string;
-}) {
+function Document({ children }: { children: React.ReactNode; title?: string }) {
   const data = useLoaderData<LoaderData>();
   return (
     <html lang="en">
       <head>
         <Meta />
-        <title>{title}</title>
         <Links />
       </head>
 

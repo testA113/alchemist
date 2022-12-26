@@ -98,9 +98,9 @@ export async function loader() {
 
 export const meta: MetaFunction = ({ data }) => {
   const {
-    data: { seo },
+    contactData: { seo },
   } = data as {
-    data: GetAttributesValues<"api::contact.contact">;
+    contactData: GetAttributesValues<"api::contact.contact">;
   };
   return getStrapiSeo(seo);
 };
