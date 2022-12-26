@@ -1,10 +1,11 @@
-import { json } from "@remix-run/node";
+import { json, type MetaFunction } from "@remix-run/node";
 import { useCatch, useLoaderData } from "@remix-run/react";
 import type { GetAttributesValues } from "@strapi/strapi";
 
 import { getHomePage } from "./index.server";
 import { PageError } from "~/components/shared/Alert/PageError";
 import { Section } from "~/components/sections";
+import { getStrapiSeo } from "~/utils/seo";
 
 export async function loader() {
   const homeResponse = await getHomePage();
@@ -25,9 +26,18 @@ export async function loader() {
   );
 }
 
+export const meta: MetaFunction = ({ data }) => {
+  const {
+    homeData: { seo },
+  } = data as {
+    homeData: GetAttributesValues<"api::home.home">;
+  };
+  return getStrapiSeo(seo);
+};
+
 export default function Index() {
   const {
-    homeData: { homesections, seo },
+    homeData: { homesections },
   }: {
     homeData: GetAttributesValues<"api::home.home">;
   } = useLoaderData();

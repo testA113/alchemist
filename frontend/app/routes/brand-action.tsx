@@ -1,9 +1,10 @@
-import { json } from "@remix-run/node";
+import { json, type MetaFunction } from "@remix-run/node";
 import { getPage } from "./index.server";
 import type { GetAttributesValues } from "@strapi/strapi";
 import { useLoaderData } from "@remix-run/react";
-import { Section } from "~/components/sections";
 
+import { Section } from "~/components/sections";
+import { getStrapiSeo } from "~/utils/seo";
 export async function loader() {
   const brandActionResponse = await getPage("brand-action");
   const brandActionData = await brandActionResponse.json();
@@ -23,9 +24,18 @@ export async function loader() {
   );
 }
 
+export const meta: MetaFunction = ({ data }) => {
+  const {
+    brandActionData: { seo },
+  } = data as {
+    brandActionData: GetAttributesValues<"api::brand-action.brand-action">;
+  };
+  return getStrapiSeo(seo);
+};
+
 export default function BrandAction() {
   const {
-    brandActionData: { sections, seo },
+    brandActionData: { sections },
   }: {
     brandActionData: GetAttributesValues<"api::brand-action.brand-action">;
   } = useLoaderData();

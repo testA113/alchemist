@@ -21,7 +21,16 @@
     "contactSections": {
       "type": "dynamiczone",
       "components": [
-        "sections.contact-form"
+        "sections.contact-form",
+        "sections.cyclingsentence",
+        "sections.event-partners",
+        "sections.full-size-carousel",
+        "sections.image-title",
+        "sections.large-summary",
+        "sections.services-showcase",
+        "sections.showcases",
+        "sections.simple-content",
+        "sections.video-hero"
       ],
       "required": true
     }
