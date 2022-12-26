@@ -26,7 +26,7 @@ export function Carousel({ sectionData }: Props) {
 
   return (
     <section
-      className="relative items-center bg-base-100 py-8"
+      className="bg-base-100 relative items-center"
       aria-label="Carousel section"
     >
       <div className="cursor-move overflow-x-hidden" ref={emblaRef}>
@@ -40,7 +40,7 @@ export function Carousel({ sectionData }: Props) {
           ))}
         </div>
       </div>
-      <div className="absolute top-1/2 left-5vw -translate-y-1/2 md:left-20">
+      <div className="left-5vw absolute top-1/2 -translate-y-1/2 md:left-20">
         <Button
           type="button"
           onClick={scrollPrev}
@@ -50,7 +50,7 @@ export function Carousel({ sectionData }: Props) {
           <ChevronLeft />
         </Button>
       </div>
-      <div className="absolute top-1/2 right-5vw -translate-y-1/2 md:right-20">
+      <div className="right-5vw absolute top-1/2 -translate-y-1/2 md:right-20">
         <Button
           type="button"
           onClick={scrollNext}

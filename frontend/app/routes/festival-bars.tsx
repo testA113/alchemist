@@ -41,7 +41,7 @@ export default function FestivalBars() {
   } = useLoaderData();
 
   return (
-    <div className="min-h-minpage">
+    <div className="min-h-minpage pt-32">
       {sections.map((section, index) => (
         <Section key={index} sectionData={section} />
       ))}
