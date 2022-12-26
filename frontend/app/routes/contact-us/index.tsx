@@ -1,4 +1,9 @@
-import { type ActionArgs, json, redirect } from "@remix-run/node";
+import {
+  type ActionArgs,
+  json,
+  redirect,
+  type MetaFunction,
+} from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import type { GetAttributesValues } from "@strapi/strapi";
 import { validationError } from "remix-validated-form";
@@ -12,7 +17,8 @@ import {
 } from "./contact-us.server";
 import type { ContactMessage, ContactMessagePayload } from "./types";
 import { Section } from "~/components/sections";
-import { formatStrapiError } from "../utils.server";
+import { formatStrapiError } from "~/utils/utils.server";
+import { getStrapiSeo } from "~/utils/seo";
 
 export const validator = withZod(
   z.object({
@@ -90,9 +96,18 @@ export async function loader() {
   }
 }
 
+export const meta: MetaFunction = ({ data }) => {
+  const {
+    data: { seo },
+  } = data as {
+    data: GetAttributesValues<"api::contact.contact">;
+  };
+  return getStrapiSeo(seo);
+};
+
 export default function ContactUs() {
   const {
-    contactData: { contactSections, seo },
+    contactData: { contactSections },
   }: { contactData: GetAttributesValues<"api::contact.contact"> } =
     useLoaderData();
 

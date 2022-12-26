@@ -1,4 +1,4 @@
-import type { StrapiError } from "../utils.server";
+import type { StrapiError } from "../../utils/utils.server";
 
 export type ContactMessage = {
   name: string;

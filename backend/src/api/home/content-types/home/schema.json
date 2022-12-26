@@ -28,7 +28,9 @@
         "sections.services-showcase",
         "sections.video-hero",
         "sections.showcases",
-        "sections.event-partners"
+        "sections.event-partners",
+        "sections.image-title",
+        "sections.simple-content"
       ],
       "required": true,
       "min": 1

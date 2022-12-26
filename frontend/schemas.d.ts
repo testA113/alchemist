@@ -2993,9 +2993,9 @@ export interface SectionsSimpleContent extends ComponentSchema {
   info: {
     displayName: "simpleContent";
     icon: "align-center";
+    description: "";
   };
   attributes: {
-    title: StringAttribute;
     content: RichTextAttribute & RequiredAttribute;
   };
 }
@@ -3049,26 +3049,25 @@ export interface SharedSeo extends ComponentSchema {
   info: {
     displayName: "seo";
     icon: "search";
+    description: "";
   };
   attributes: {
-    metaTitle: StringAttribute &
+    title: StringAttribute &
       RequiredAttribute &
       SetMinMaxLength<{
         maxLength: 60;
       }>;
-    metaDescription: StringAttribute &
+    description: StringAttribute &
       RequiredAttribute &
       SetMinMaxLength<{
         minLength: 50;
         maxLength: 160;
       }>;
-    metaImage: MediaAttribute & RequiredAttribute;
-    metaSocial: ComponentAttribute<"shared.meta-social", true>;
+    image: MediaAttribute & RequiredAttribute;
     keywords: TextAttribute;
-    metaRobots: StringAttribute;
+    robots: StringAttribute;
     structuredData: JSONAttribute;
-    metaViewport: StringAttribute;
-    canonicalURL: StringAttribute;
+    viewport: StringAttribute;
   };
 }
 

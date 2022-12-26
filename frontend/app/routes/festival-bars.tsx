@@ -1,9 +1,10 @@
-import { json } from "@remix-run/node";
+import { json, type MetaFunction } from "@remix-run/node";
 import { getPage } from "./index.server";
 import type { GetAttributesValues } from "@strapi/strapi";
 import { useLoaderData } from "@remix-run/react";
-import { Section } from "~/components/sections";
 
+import { Section } from "~/components/sections";
+import { getStrapiSeo } from "~/utils/seo";
 export async function loader() {
   const festivalBarsResponse = await getPage("festival-bars");
   const festivalBarsData = await festivalBarsResponse.json();
@@ -23,9 +24,18 @@ export async function loader() {
   );
 }
 
+export const meta: MetaFunction = ({ data }) => {
+  const {
+    festivalBarsData: { seo },
+  } = data as {
+    festivalBarsData: GetAttributesValues<"api::festival-bars.festival-bars">;
+  };
+  return getStrapiSeo(seo);
+};
+
 export default function FestivalBars() {
   const {
-    festivalBarsData: { sections, seo },
+    festivalBarsData: { sections },
   }: {
     festivalBarsData: GetAttributesValues<"api::brand-action.brand-action">;
   } = useLoaderData();

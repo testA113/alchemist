@@ -23,7 +23,8 @@
         "sections.services-showcase",
         "sections.showcases",
         "sections.simple-content",
-        "sections.video-hero"
+        "sections.video-hero",
+        "sections.image-title"
       ],
       "required": true
     },
