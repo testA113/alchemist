@@ -47,8 +47,8 @@
             "component": "links.button",
             "required": true
         },
-        "title": {
-            "type": "string",
+        "titleContent": {
+            "type": "richtext",
             "required": true
         }
     }

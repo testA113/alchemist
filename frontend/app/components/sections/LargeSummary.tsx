@@ -1,5 +1,4 @@
 import Markdown from "markdown-to-jsx";
-import clsx from "clsx";
 
 import type { LargeSummaryValues } from "./types";
 import { LinkButton } from "../shared/Actions/LinkButton";
@@ -10,12 +9,7 @@ type Props = {
 
 export function LargeSummary({ sectionData }: Props) {
   return (
-    <section
-      className={clsx(
-        "bg-base-100 px-10vw flex max-w-max flex-col items-center justify-items-center pt-48 pb-24 text-center",
-        "prose md:prose-lg lg:prose-xl"
-      )}
-    >
+    <section className="bg-base-100 px-10vw prose prose-lg md:prose-xl lg:prose-2xl flex max-w-max flex-col items-center justify-items-center pt-48 pb-24 text-center">
       <Markdown>{sectionData.summarytext}</Markdown>
       {sectionData.moreInfoLink && (
         <LinkButton {...sectionData.moreInfoLink}>

@@ -7,10 +7,6 @@
     },
     "options": {},
     "attributes": {
-        "title": {
-            "type": "string",
-            "required": true
-        },
         "partnerImage": {
             "type": "media",
             "multiple": true,
@@ -21,6 +17,10 @@
                 "videos",
                 "audios"
             ]
+        },
+        "titleContent": {
+            "type": "richtext",
+            "required": true
         }
     }
 }

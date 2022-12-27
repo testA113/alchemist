@@ -1,8 +1,7 @@
-import clsx from "clsx";
 import { ChevronRight } from "lucide-react";
+import Markdown from "markdown-to-jsx";
 
 import type { Service } from "../shared/types";
-import { Button } from "../shared/Actions/Button";
 import { ImageCard } from "../shared/ImageCard";
 
 import type { ServicesShowcaseValues } from "./types";
@@ -19,20 +18,9 @@ type Props = {
 export function ServicesShowcase({ sectionData }: Props) {
   const serviceData = sectionData.services as ServiceData | undefined;
   return (
-    <section
-      className={clsx(
-        "flex flex-col gap-x-24 bg-base-100",
-        "w-full !max-w-full flex-wrap py-24 px-10vw md:flex-row"
-      )}
-    >
-      <div
-        className={clsx(
-          "mb-8 text-center",
-          "prose h-min flex-none md:sticky md:top-48 md:mb-0 md:w-1/3 md:prose-lg md:text-left lg:prose-xl"
-        )}
-      >
-        <h1>{sectionData.title}</h1>
-        <h3>{sectionData.servicesDescription}</h3>
+    <section className="bg-base-100 px-10vw prose prose-lg md:prose-xl lg:prose-2xl flex w-full !max-w-full flex-col flex-wrap gap-x-24 py-24 md:flex-row">
+      <div className="mb-8 h-min flex-none text-center md:sticky md:top-48 md:mb-0 md:w-1/3 md:text-left">
+        <Markdown>{sectionData.titleContent}</Markdown>
       </div>
 
       <div className="flex flex-1 flex-col flex-wrap gap-y-8">
@@ -49,9 +37,9 @@ export function ServicesShowcase({ sectionData }: Props) {
                 }
                 childClasses="px-8 py-20 bg-base-100 bg-opacity-50"
               >
-                <h1 className="mb-3 text-xl font-medium text-base-content sm:text-2xl">
+                <h3 className="font-suez text-base-content mb-3 text-xl font-medium sm:text-2xl">
                   {service.attributes.name}
-                </h1>
+                </h3>
                 <p className="mb-3 leading-relaxed">
                   {service.attributes.shortDescription}
                 </p>

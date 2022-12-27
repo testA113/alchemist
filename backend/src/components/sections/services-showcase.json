@@ -7,17 +7,14 @@
   },
   "options": {},
   "attributes": {
-    "title": {
-      "type": "string",
-      "required": true
-    },
-    "servicesDescription": {
-      "type": "richtext"
-    },
     "services": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::service.service"
+    },
+    "titleContent": {
+      "type": "richtext",
+      "required": true
     }
   }
 }
