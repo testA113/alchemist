@@ -65,8 +65,6 @@ export function VideoHero({ sectionData }: Props) {
               src={sectionData.videoUrl}
               aria-hidden
               loading="eager"
-              scrolling="no"
-              frameBorder="0"
               allow="autoplay; fullscreen; picture-in-picture"
               className="absolute top-1/2 left-1/2 hidden aspect-video min-h-full min-w-full -translate-x-1/2 -translate-y-1/2 object-cover md:block lg:block"
             ></iframe>
@@ -94,12 +92,12 @@ export function VideoHero({ sectionData }: Props) {
           />
         </m.div>
       </LazyMotion>
-      <div className="z-20 flex flex-col items-start gap-6 px-10vw">
-        <div className="prose-lg relative flex w-full flex-col flex-wrap pr-24 md:w-[60%] md:prose-xl lg:w-[50%] lg:prose-2xl">
-          <h1 className="!mb-4 text-white">
+      <div className="px-10vw z-20 flex flex-col items-start gap-6">
+        <div className="prose-xl md:prose-2xl lg:prose-3xl relative flex w-full flex-col flex-wrap pr-24 md:w-[60%] lg:w-[50%]">
+          <h2 className="font-suez !mb-4 text-white">
             {sectionData.cyclingSentence.sentencestart}
-          </h1>
-          <h1 className="!mb-32 italic">
+          </h2>
+          <h2 className="font-suez !mb-32 italic">
             <div className="inline min-h-max">
               {sentenceEndings.map((sentenceEnding, index) => (
                 <span
@@ -116,7 +114,7 @@ export function VideoHero({ sectionData }: Props) {
                 </span>
               ))}
             </div>
-          </h1>
+          </h2>
         </div>
         <div className="flex w-full justify-center gap-6 md:justify-start">
           {primaryButton && (
@@ -131,7 +129,7 @@ export function VideoHero({ sectionData }: Props) {
           )}
         </div>
       </div>
-      <div className="absolute bottom-0 h-2/3 w-full bg-gradient-to-t from-base-100 to-transparent"></div>
+      <div className="from-base-100 absolute bottom-0 h-2/3 w-full bg-gradient-to-t to-transparent"></div>
       <div className="absolute bottom-0" ref={bottomRef} />
     </section>
   );

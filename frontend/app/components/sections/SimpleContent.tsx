@@ -44,7 +44,7 @@ const MarkdownImage = ({
 
 export function SimpleContent({ sectionData }: Props) {
   return (
-    <section className="bg-base-100 px-10vw prose md:prose-lg lg:prose-xl flex max-w-max flex-col items-center justify-items-center py-12 text-center">
+    <section className="bg-base-100 px-10vw prose md:prose-lg lg:prose-xl flex max-w-none flex-col items-center justify-items-center py-12 text-center">
       <Markdown
         options={{
           overrides: {

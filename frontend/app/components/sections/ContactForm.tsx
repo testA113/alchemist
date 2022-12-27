@@ -7,6 +7,7 @@ import {
 } from "remix-validated-form";
 import { useCallback, useEffect, useState } from "react";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import Markdown from "markdown-to-jsx";
 
 import { validator } from "~/routes/contact-us";
 import type { ContactFormValues } from "./types";
@@ -56,8 +57,8 @@ export function ContactForm({ sectionData }: Props) {
         "px-10vw w-full !max-w-full items-center py-12"
       )}
     >
-      <div className="prose md:prose-lg lg:prose-xl mb-12">
-        <h1>{sectionData.title}</h1>
+      <div className="prose prose-lg md:prose-xl lg:prose-2xl mb-12">
+        <Markdown>{sectionData.titleContent}</Markdown>
       </div>
       <ValidatedForm
         id="contact-form"

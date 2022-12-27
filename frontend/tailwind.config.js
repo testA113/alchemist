@@ -29,6 +29,15 @@ module.exports = {
       animation: {
         rotateword: "rotateword 12s linear infinite",
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            h2: {
+              fontFamily: "Suez One",
+            },
+          },
+        },
+      },
     },
   },
   plugins: [
@@ -36,7 +45,6 @@ module.exports = {
     require("daisyui"),
     require("@tailwindcss/line-clamp"),
   ],
-  // daisyUI config (optional)
   daisyui: {
     styled: true,
     base: true,

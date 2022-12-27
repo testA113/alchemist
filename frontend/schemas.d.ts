@@ -553,7 +553,8 @@ export interface ApiAboutUsAboutUs extends SingleTypeSchema {
         "sections.services-showcase",
         "sections.showcases",
         "sections.simple-content",
-        "sections.video-hero"
+        "sections.video-hero",
+        "sections.image-title"
       ]
     > &
       RequiredAttribute;
@@ -597,7 +598,8 @@ export interface ApiBrandActionBrandAction extends SingleTypeSchema {
         "sections.services-showcase",
         "sections.showcases",
         "sections.simple-content",
-        "sections.video-hero"
+        "sections.video-hero",
+        "sections.image-title"
       ]
     > &
       RequiredAttribute;
@@ -663,7 +665,20 @@ export interface ApiContactContact extends SingleTypeSchema {
   };
   attributes: {
     seo: ComponentAttribute<"shared.seo"> & RequiredAttribute;
-    contactSections: DynamicZoneAttribute<["sections.contact-form"]> &
+    contactSections: DynamicZoneAttribute<
+      [
+        "sections.contact-form",
+        "sections.cyclingsentence",
+        "sections.event-partners",
+        "sections.full-size-carousel",
+        "sections.image-title",
+        "sections.large-summary",
+        "sections.services-showcase",
+        "sections.showcases",
+        "sections.simple-content",
+        "sections.video-hero"
+      ]
+    > &
       RequiredAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
@@ -798,7 +813,8 @@ export interface ApiFestivalBarsFestivalBars extends SingleTypeSchema {
         "sections.services-showcase",
         "sections.showcases",
         "sections.simple-content",
-        "sections.video-hero"
+        "sections.video-hero",
+        "sections.image-title"
       ]
     > &
       RequiredAttribute;
@@ -873,7 +889,9 @@ export interface ApiHomeHome extends SingleTypeSchema {
         "sections.services-showcase",
         "sections.video-hero",
         "sections.showcases",
-        "sections.event-partners"
+        "sections.event-partners",
+        "sections.image-title",
+        "sections.simple-content"
       ]
     > &
       RequiredAttribute &
@@ -934,7 +952,8 @@ export interface ApiPrivateEventsPrivateEvents extends SingleTypeSchema {
         "sections.services-showcase",
         "sections.showcases",
         "sections.simple-content",
-        "sections.video-hero"
+        "sections.video-hero",
+        "sections.image-title"
       ]
     > &
       RequiredAttribute;
@@ -2892,7 +2911,7 @@ export interface SectionsContactForm extends ComponentSchema {
     emailplaceholder: StringAttribute;
     showcaptcha: BooleanAttribute & RequiredAttribute & DefaultTo<true>;
     submitbutton: ComponentAttribute<"links.button"> & RequiredAttribute;
-    title: StringAttribute & RequiredAttribute;
+    titleContent: RichTextAttribute & RequiredAttribute;
   };
 }
 
@@ -2920,8 +2939,8 @@ export interface SectionsEventPartners extends ComponentSchema {
     description: "";
   };
   attributes: {
-    title: StringAttribute & RequiredAttribute;
     partnerImage: MediaAttribute & RequiredAttribute;
+    titleContent: RichTextAttribute & RequiredAttribute;
   };
 }
 
@@ -2933,6 +2952,17 @@ export interface SectionsFullSizeCarousel extends ComponentSchema {
   };
   attributes: {
     images: MediaAttribute & RequiredAttribute;
+  };
+}
+
+export interface SectionsImageTitle extends ComponentSchema {
+  info: {
+    displayName: "Image Title";
+    icon: "ad";
+  };
+  attributes: {
+    title: StringAttribute & RequiredAttribute;
+    image: MediaAttribute;
   };
 }
 
@@ -2961,13 +2991,12 @@ export interface SectionsServicesShowcase extends ComponentSchema {
     description: "";
   };
   attributes: {
-    title: StringAttribute & RequiredAttribute;
-    servicesDescription: RichTextAttribute;
     services: RelationAttribute<
       "sections.services-showcase",
       "oneToMany",
       "api::service.service"
     >;
+    titleContent: RichTextAttribute & RequiredAttribute;
   };
 }
 
@@ -2978,14 +3007,13 @@ export interface SectionsShowcases extends ComponentSchema {
     description: "";
   };
   attributes: {
-    title: StringAttribute;
-    description: StringAttribute;
     showcases: RelationAttribute<
       "sections.showcases",
       "oneToMany",
       "api::showcase.showcase"
     >;
     seeMoreButton: ComponentAttribute<"links.link"> & RequiredAttribute;
+    titleContent: RichTextAttribute & RequiredAttribute;
   };
 }
 
@@ -3109,6 +3137,7 @@ declare global {
       "sections.cyclingsentence": SectionsCyclingsentence;
       "sections.event-partners": SectionsEventPartners;
       "sections.full-size-carousel": SectionsFullSizeCarousel;
+      "sections.image-title": SectionsImageTitle;
       "sections.large-summary": SectionsLargeSummary;
       "sections.services-showcase": SectionsServicesShowcase;
       "sections.showcases": SectionsShowcases;

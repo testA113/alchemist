@@ -7,12 +7,6 @@
     },
     "options": {},
     "attributes": {
-        "title": {
-            "type": "string"
-        },
-        "description": {
-            "type": "string"
-        },
         "showcases": {
             "type": "relation",
             "relation": "oneToMany",
@@ -22,6 +16,10 @@
             "type": "component",
             "repeatable": false,
             "component": "links.link",
+            "required": true
+        },
+        "titleContent": {
+            "type": "richtext",
             "required": true
         }
     }
