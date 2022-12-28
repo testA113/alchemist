@@ -26,6 +26,9 @@
                 "videos",
                 "audios"
             ]
+        },
+        "websiteLink": {
+            "type": "string"
         }
     }
 }

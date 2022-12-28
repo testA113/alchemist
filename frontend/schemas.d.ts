@@ -635,6 +635,7 @@ export interface ApiClientClient extends CollectionTypeSchema {
   attributes: {
     name: StringAttribute & RequiredAttribute;
     image: MediaAttribute;
+    websiteLink: StringAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
@@ -1067,6 +1068,20 @@ export interface ApiShowcaseShowcase extends CollectionTypeSchema {
     >;
     seo: ComponentAttribute<"shared.seo">;
     featured: BooleanAttribute;
+    sections: DynamicZoneAttribute<
+      [
+        "sections.contact-form",
+        "sections.cyclingsentence",
+        "sections.event-partners",
+        "sections.full-size-carousel",
+        "sections.image-title",
+        "sections.large-summary",
+        "sections.services-showcase",
+        "sections.showcases",
+        "sections.simple-content",
+        "sections.video-hero"
+      ]
+    >;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
@@ -2941,6 +2956,11 @@ export interface SectionsEventPartners extends ComponentSchema {
   attributes: {
     partnerImage: MediaAttribute & RequiredAttribute;
     titleContent: RichTextAttribute & RequiredAttribute;
+    clients: RelationAttribute<
+      "sections.event-partners",
+      "oneToMany",
+      "api::client.client"
+    >;
   };
 }
 
