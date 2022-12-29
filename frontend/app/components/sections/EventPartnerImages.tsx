@@ -38,14 +38,16 @@ export function EventPartnerImages({ sectionData }: Props) {
                 rel="noopener noreferrer"
               >
                 <StrapiImage
+                  title={partner.attributes.name}
                   image={partner.attributes.image.data}
                   className="rounded-2xl object-contain transition duration-300 ease-in-out hover:scale-110"
                 ></StrapiImage>
               </a>
             ) : (
               <StrapiImage
+                title={partner.attributes.name}
                 image={partner.attributes.image.data}
-                className="rounded-2xl object-contain transition duration-300 ease-in-out hover:scale-110"
+                className="rounded-2xl object-contain"
               ></StrapiImage>
             )}
           </div>
