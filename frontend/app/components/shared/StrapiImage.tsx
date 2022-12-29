@@ -3,10 +3,15 @@ import type { ImageValues } from "./types";
 
 type Props = {
   image: ImageValues;
+  title?: string;
   className?: string;
 };
 
-export function StrapiImage({ image: { attributes }, className }: Props) {
+export function StrapiImage({
+  image: { attributes },
+  className,
+  title,
+}: Props) {
   const { url, formats, alternativeText, width, height } = attributes;
   return (
     <img
@@ -19,6 +24,7 @@ export function StrapiImage({ image: { attributes }, className }: Props) {
         formats?.large?.url &&
           `${ENV.STRAPI_BASEURL}${formats.large.url} 1024w,`
       )}
+      title={title}
       alt={alternativeText}
       width={width}
       height={height}

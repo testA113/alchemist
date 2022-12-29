@@ -31,9 +31,7 @@ export function Showcase({ sectionData }: Props) {
               isModTwoOrThree(index) ? "flex-[30%]" : "flex-[60%]"
             )}
           >
-            <Link
-              to={`${sectionData.seeMoreButton.to}/${showcase.attributes.slug}`}
-            >
+            <Link to={`${sectionData.seeMoreButton.to}/${showcase.id}`}>
               <ImageCard
                 imageUrl={
                   showcase.attributes.hero.data.attributes.formats?.medium.url

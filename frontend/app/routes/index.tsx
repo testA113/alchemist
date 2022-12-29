@@ -2,13 +2,13 @@ import { json, type MetaFunction } from "@remix-run/node";
 import { useCatch, useLoaderData } from "@remix-run/react";
 import type { GetAttributesValues } from "@strapi/strapi";
 
-import { getHomePage } from "./index.server";
+import { getPage } from "./index.server";
 import { PageError } from "~/components/shared/Alert/PageError";
 import { Section } from "~/components/sections";
 import { getStrapiSeo } from "~/utils/seo";
 
 export async function loader() {
-  const homeResponse = await getHomePage();
+  const homeResponse = await getPage("home" );
   const homeData = await homeResponse.json();
   if (homeData.error) {
     throw new Response("Error loading home page data from strapi", {
