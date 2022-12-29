@@ -81,6 +81,19 @@
                 "sections.simple-content",
                 "sections.video-hero"
             ]
+        },
+        "imageTitle": {
+            "type": "component",
+            "repeatable": false,
+            "component": "sections.image-title",
+            "required": true
+        },
+        "simpleContent": {
+            "type": "component",
+            "repeatable": true,
+            "component": "sections.simple-content",
+            "required": true,
+            "min": 1
         }
     }
 }

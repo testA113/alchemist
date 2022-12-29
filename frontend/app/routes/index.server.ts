@@ -1,7 +1,14 @@
-export const getPage = async (page: string) => {
-  console.log(page);
+type Options = {
+  queryParams?: Record<string, string>;
+};
+
+export const getPage = async (page: string, options?: Options) => {
+  const queryParamsString = options?.queryParams
+    ? queryParamsToString(options.queryParams)
+    : "";
+  console.log(queryParamsString);
   return await fetch(
-    `${process.env.STRAPI_BASEURL}/api/${page}?populate=deep`,
+    `${process.env.STRAPI_BASEURL}/api/${page}${queryParamsString}`,
     {
       method: "GET",
       headers: {
@@ -9,4 +16,12 @@ export const getPage = async (page: string) => {
       },
     }
   );
+};
+
+const queryParamsToString = (queryParams: Record<string, string>) => {
+  const queryParamsArray = Object.entries(queryParams);
+  return queryParamsArray.reduce((acc, [key, value], index) => {
+    const isLast = index === queryParamsArray.length - 1;
+    return `${acc}${key}=${value}${isLast ? "" : "&"}`;
+  }, "?");
 };

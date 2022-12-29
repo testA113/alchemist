@@ -6,7 +6,9 @@ import { useLoaderData } from "@remix-run/react";
 import { Section } from "~/components/sections";
 import { getStrapiSeo } from "~/utils/seo";
 export async function loader() {
-  const festivalBarsResponse = await getPage("festival-bars");
+  const festivalBarsResponse = await getPage("festival-bars", {
+    queryParams: { populate: "deep" },
+  });
   const festivalBarsData = await festivalBarsResponse.json();
   if (festivalBarsData.error) {
     throw new Response("Error loading Festival Bars data from strapi", {
