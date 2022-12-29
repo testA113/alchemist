@@ -7,7 +7,9 @@ import { Section } from "~/components/sections";
 import { getStrapiSeo } from "~/utils/seo";
 
 export async function loader() {
-  const privateEventsResponse = await getPage("private-events");
+  const privateEventsResponse = await getPage("private-events", {
+    queryParams: { populate: "deep" },
+  });
   const privateEventsData = await privateEventsResponse.json();
   if (privateEventsData.error) {
     throw new Response("Error loading Private Events data from strapi", {

@@ -6,7 +6,9 @@ import { Section } from "~/components/sections";
 import { getStrapiSeo } from "~/utils/seo";
 
 export async function loader() {
-  const aboutUsResponse = await getPage("about-us");
+  const aboutUsResponse = await getPage("about-us", {
+    queryParams: { populate: "deep" },
+  });
   const aboutUsData = await aboutUsResponse.json();
   if (aboutUsData.error) {
     throw new Response("Error loading About Us data from strapi", {

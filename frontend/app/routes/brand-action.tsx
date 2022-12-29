@@ -6,7 +6,9 @@ import { useLoaderData } from "@remix-run/react";
 import { Section } from "~/components/sections";
 import { getStrapiSeo } from "~/utils/seo";
 export async function loader() {
-  const brandActionResponse = await getPage("brand-action");
+  const brandActionResponse = await getPage("brand-action", {
+    queryParams: { populate: "deep" },
+  });
   const brandActionData = await brandActionResponse.json();
   if (brandActionData.error) {
     throw new Response("Error loading Brand Action data from strapi", {

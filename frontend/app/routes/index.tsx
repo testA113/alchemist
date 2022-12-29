@@ -8,7 +8,9 @@ import { Section } from "~/components/sections";
 import { getStrapiSeo } from "~/utils/seo";
 
 export async function loader() {
-  const homeResponse = await getPage("home" );
+  const homeResponse = await getPage("home", {
+    queryParams: { populate: "deep" },
+  });
   const homeData = await homeResponse.json();
   if (homeData.error) {
     throw new Response("Error loading home page data from strapi", {
