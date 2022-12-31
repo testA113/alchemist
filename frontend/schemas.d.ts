@@ -1037,18 +1037,11 @@ export interface ApiShowcaseShowcase extends CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    title: StringAttribute &
-      RequiredAttribute &
-      SetMinMaxLength<{
-        maxLength: 60;
-      }>;
     summary: TextAttribute &
       RequiredAttribute &
       SetMinMaxLength<{
         maxLength: 155;
       }>;
-    hero: MediaAttribute & RequiredAttribute;
-    content: RichTextAttribute & RequiredAttribute;
     slug: UIDAttribute<"api::showcase.showcase", "name">;
     client: RelationAttribute<
       "api::showcase.showcase",
@@ -1081,7 +1074,9 @@ export interface ApiShowcaseShowcase extends CollectionTypeSchema {
         "sections.simple-content",
         "sections.video-hero"
       ]
-    >;
+    > &
+      RequiredAttribute;
+    imageTitle: ComponentAttribute<"sections.image-title"> & RequiredAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
@@ -3045,6 +3040,10 @@ export interface SectionsSimpleContent extends ComponentSchema {
   };
   attributes: {
     content: RichTextAttribute & RequiredAttribute;
+    align: EnumerationAttribute<["start", "middle", "end"]> &
+      RequiredAttribute &
+      DefaultTo<"middle">;
+    gutters: BooleanAttribute & RequiredAttribute & DefaultTo<true>;
   };
 }
 

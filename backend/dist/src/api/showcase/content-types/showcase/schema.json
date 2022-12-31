@@ -12,27 +12,9 @@
     },
     "pluginOptions": {},
     "attributes": {
-        "title": {
-            "type": "string",
-            "maxLength": 60,
-            "required": true
-        },
         "summary": {
             "type": "text",
             "maxLength": 155,
-            "required": true
-        },
-        "hero": {
-            "type": "media",
-            "multiple": false,
-            "required": true,
-            "allowedTypes": [
-                "images",
-                "files"
-            ]
-        },
-        "content": {
-            "type": "richtext",
             "required": true
         },
         "slug": {
@@ -80,7 +62,8 @@
                 "sections.showcases",
                 "sections.simple-content",
                 "sections.video-hero"
-            ]
+            ],
+            "required": true
         },
         "imageTitle": {
             "type": "component",

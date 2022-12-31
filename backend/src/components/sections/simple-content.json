@@ -10,6 +10,21 @@
     "content": {
       "type": "richtext",
       "required": true
+    },
+    "align": {
+      "type": "enumeration",
+      "enum": [
+        "start",
+        "middle",
+        "end"
+      ],
+      "default": "middle",
+      "required": true
+    },
+    "gutters": {
+      "type": "boolean",
+      "default": true,
+      "required": true
     }
   }
 }

@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { Link } from "@remix-run/react";
 
-import type { Showcase as ShowcaseType } from "../shared/types";
+import type { Showcase as ShowcaseType } from "./types";
 import { ImageCard } from "../shared/ImageCard";
 
 import type { ShowcaseValues } from "./types";
@@ -36,7 +36,8 @@ export function Showcase({ sectionData }: Props) {
             >
               <ImageCard
                 imageUrl={
-                  showcase.attributes.hero.data.attributes.formats?.medium.url
+                  showcase.attributes.imageTitle.image?.data.attributes.formats
+                    ?.medium.url
                 }
                 imageClasses="group-hover:opacity-90"
                 childClasses="h-full px-8 py-16 bg-base-100 bg-opacity-50 opacity-100 md:opacity-0 md:group-hover:opacity-100 md:group-hover:bg-opacity-50 transition ease-out transform duration-300"

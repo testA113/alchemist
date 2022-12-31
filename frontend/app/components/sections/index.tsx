@@ -18,6 +18,8 @@ import { Showcase } from "./Showcase";
 import { EventPartnerImages } from "./EventPartnerImages";
 import { ContactForm } from "./ContactForm";
 import { SimpleContent } from "./SimpleContent";
+import { isImageTitleValues } from "./types";
+import { ImageTitle } from "./ImageTitle";
 
 type Props = {
   sectionData: DynamicSectionValues;
@@ -58,6 +60,10 @@ export function Section({ sectionData }: Props) {
 
   if (isSimpleContentValues(sectionData)) {
     return <SimpleContent sectionData={sectionData} />;
+  }
+
+  if (isImageTitleValues(sectionData)) {
+    return <ImageTitle sectionData={sectionData} />;
   }
 
   return (

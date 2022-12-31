@@ -2,6 +2,7 @@ import Markdown from "markdown-to-jsx";
 import { useEffect, useState } from "react";
 
 import type { SimpleContentValues } from "./types";
+import { clsx } from "clsx";
 
 type Props = {
   sectionData: SimpleContentValues;
@@ -42,9 +43,21 @@ const MarkdownImage = ({
   );
 };
 
+const alignmentClasses = {
+  start: "text-left",
+  middle: "text-center",
+  end: "text-right",
+};
+
 export function SimpleContent({ sectionData }: Props) {
   return (
-    <section className="bg-base-100 px-10vw prose md:prose-lg lg:prose-xl flex max-w-none flex-col items-center justify-items-center py-12 text-center">
+    <section
+      className={clsx(
+        "bg-base-100 prose md:prose-lg lg:prose-xl flex max-w-none flex-col py-12",
+        sectionData.gutters && "px-10vw",
+        alignmentClasses[sectionData.align]
+      )}
+    >
       <Markdown
         options={{
           overrides: {

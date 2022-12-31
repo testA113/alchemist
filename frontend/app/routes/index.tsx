@@ -7,6 +7,10 @@ import { PageError } from "~/components/shared/Alert/PageError";
 import { Section } from "~/components/sections";
 import { getStrapiSeo } from "~/utils/seo";
 
+type HomeResponse = {
+  homeData: GetAttributesValues<"api::home.home">;
+};
+
 export async function loader() {
   const homeResponse = await getPage("home", {
     queryParams: { populate: "deep" },
@@ -31,18 +35,14 @@ export async function loader() {
 export const meta: MetaFunction = ({ data }) => {
   const {
     homeData: { seo },
-  } = data as {
-    homeData: GetAttributesValues<"api::home.home">;
-  };
+  } = data as HomeResponse;
   return getStrapiSeo(seo);
 };
 
 export default function Index() {
   const {
     homeData: { homesections },
-  }: {
-    homeData: GetAttributesValues<"api::home.home">;
-  } = useLoaderData();
+  }: HomeResponse = useLoaderData();
 
   return (
     <div className="min-h-minpage">

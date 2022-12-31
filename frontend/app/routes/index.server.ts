@@ -6,7 +6,6 @@ export const getPage = async (page: string, options?: Options) => {
   const queryParamsString = options?.queryParams
     ? queryParamsToString(options.queryParams)
     : "";
-  console.log(queryParamsString);
   return await fetch(
     `${process.env.STRAPI_BASEURL}/api/${page}${queryParamsString}`,
     {

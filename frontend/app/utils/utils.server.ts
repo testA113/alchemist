@@ -1,15 +1,4 @@
-export type StrapiError<ErrorKeys> = {
-  status: number;
-  name: string;
-  message: string;
-  details: {
-    errors: {
-      path: Array<ErrorKeys>;
-      message: string;
-      name: string;
-    }[];
-  };
-};
+import type { StrapiError } from "~/types";
 
 // using the generic strapi error and possible error key from the form, generate a formatted error object
 export function formatStrapiError<ErrorKeys extends string>(
