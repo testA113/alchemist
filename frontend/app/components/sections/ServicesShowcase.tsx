@@ -1,7 +1,7 @@
 import { ChevronRight } from "lucide-react";
 import Markdown from "markdown-to-jsx";
 
-import type { Service } from "../shared/types";
+import type { Service } from "./types";
 import { ImageCard } from "../shared/ImageCard";
 
 import type { ServicesShowcaseValues } from "./types";

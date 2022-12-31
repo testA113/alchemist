@@ -1,4 +1,14 @@
-import type { GetAttributesValues } from "@strapi/strapi";
+import type {
+  ComponentAttribute,
+  DateTimeAttribute,
+  GetAttributesValues,
+  PrivateAttribute,
+  RelationAttribute,
+  RequiredAttribute,
+  RichTextAttribute,
+} from "@strapi/strapi";
+
+import type { ImageData } from "../shared/types";
 
 type DynamicZoneValueBase = {
   __component: keyof Strapi.Schemas;
@@ -22,6 +32,8 @@ export type ContactFormValues = GetAttributesValues<"sections.contact-form"> &
   DynamicZoneValueBase;
 export type SimpleContentValues =
   GetAttributesValues<"sections.simple-content"> & DynamicZoneValueBase;
+export type ImageTitleValues = GetAttributesValues<"sections.image-title"> &
+  DynamicZoneValueBase;
 
 export function isVideoHeroValues(
   sectionValues: DynamicSectionValues
@@ -69,4 +81,83 @@ export function isSimpleContentValues(
   sectionValues: DynamicSectionValues
 ): sectionValues is SimpleContentValues {
   return sectionValues.__component === "sections.simple-content";
+}
+
+export function isImageTitleValues(
+  sectionValues: DynamicSectionValues
+): sectionValues is ImageTitleValues {
+  return sectionValues.__component === "sections.image-title";
+}
+
+export interface Service {
+  id: number;
+  attributes: {
+    name: string;
+    slug: string;
+    showcases: RelationAttribute<
+      "api::service.service",
+      "manyToMany",
+      "api::showcase.showcase"
+    >;
+    events: RelationAttribute<
+      "api::service.service",
+      "manyToMany",
+      "api::event.event"
+    >;
+    seo: ComponentAttribute<"shared.seo">;
+    image: ImageData;
+    fullDescription: RichTextAttribute;
+    shortDescription: string;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    publishedAt: DateTimeAttribute;
+  };
+}
+
+type ServicesData = {
+  data: Service[];
+};
+
+interface ImageTitleAttributes {
+  title: string;
+  image: ImageData;
+}
+
+interface ShowcaseAttributes {
+  imageTitle: ImageTitleAttributes;
+  title: string;
+  summary: string;
+  hero: ImageData;
+  content: RichTextAttribute & RequiredAttribute;
+  slug: string;
+  client: string;
+  name: string;
+  services: ServicesData;
+  event: RelationAttribute<
+    "api::showcase.showcase",
+    "oneToOne",
+    "api::event.event"
+  >;
+  seo: ComponentAttribute<"shared.seo">;
+  featured: boolean;
+  createdAt: DateTimeAttribute;
+  updatedAt: DateTimeAttribute;
+  publishedAt: DateTimeAttribute;
+  createdBy: RelationAttribute<
+    "api::showcase.showcase",
+    "oneToOne",
+    "admin::user"
+  > &
+    PrivateAttribute;
+  updatedBy: RelationAttribute<
+    "api::showcase.showcase",
+    "oneToOne",
+    "admin::user"
+  > &
+    PrivateAttribute;
+}
+
+export interface Showcase {
+  id: number;
+  attributes: ShowcaseAttributes;
 }
