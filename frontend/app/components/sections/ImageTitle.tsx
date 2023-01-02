@@ -29,13 +29,10 @@ export function ImageTitle({ sectionData }: Props) {
       className="flex h-[60vh] flex-col justify-end overflow-hidden bg-transparent "
     >
       <LazyMotion features={domAnimation}>
-        <m.div
-          style={{ y }}
-          className="absolute inset-x-0 top-0 -z-20 mx-auto h-fit overflow-hidden"
-        >
+        <m.div style={{ y }} className="absolute inset-x-0 top-0 -z-20 h-full">
           <StrapiImage
             image={image}
-            className="block h-1/2 min-h-full min-w-full object-center"
+            className="h-[70%] min-h-[70%] min-w-full object-cover"
           />
         </m.div>
       </LazyMotion>

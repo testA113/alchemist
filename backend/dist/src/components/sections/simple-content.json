@@ -25,6 +25,14 @@
             "type": "boolean",
             "default": true,
             "required": true
+        },
+        "contentSize": {
+            "type": "enumeration",
+            "enum": [
+                "sm",
+                "md",
+                "lg"
+            ]
         }
     }
 }
