@@ -4,6 +4,12 @@ import { useEffect, useState } from "react";
 import type { SimpleContentValues } from "./types";
 import { clsx } from "clsx";
 
+const contentSizeClassMap = {
+  sm: "prose prose-sm md:prose-md lg:prose-lg",
+  md: "prose md:prose-lg lg:prose-xl",
+  lg: "prose prose-lg md:prose-xl lg:prose-2xl",
+};
+
 type Props = {
   sectionData: SimpleContentValues;
 };
@@ -30,13 +36,13 @@ const MarkdownImage = ({
   title: string;
 }) => {
   const { width, height } = useImageSize(src);
-  const fullSrc = `${ENV.STRAPI_BASEURL}${src}`;
+
   return (
     <img
-      src={width > 1000 ? `${fullSrc}?w=1000&h=1000&fit=crop` : fullSrc}
+      src={width > 1000 ? `${src}?w=1000&h=1000&fit=crop` : src}
       alt={alt}
       title={title}
-      className="w-full"
+      className="w-full rounded-2xl"
       width={width}
       height={height}
     />
@@ -53,9 +59,10 @@ export function SimpleContent({ sectionData }: Props) {
   return (
     <section
       className={clsx(
-        "bg-base-100 prose md:prose-lg lg:prose-xl flex max-w-none flex-col py-12",
+        "bg-base-100 flex max-w-none flex-col py-12",
         sectionData.gutters && "px-10vw",
-        alignmentClasses[sectionData.align]
+        alignmentClasses[sectionData.align],
+        contentSizeClassMap[sectionData.contentSize || "md"]
       )}
     >
       <Markdown

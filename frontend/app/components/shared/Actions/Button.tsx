@@ -11,6 +11,7 @@ interface Props extends GetAttributesValues<"links.button"> {
   className?: string;
   disabled?: boolean;
   isLoading?: boolean;
+  id?: string;
 }
 
 export const Button = ({
@@ -24,6 +25,7 @@ export const Button = ({
   type = "button",
   disabled = false,
   isLoading,
+  id,
 }: PropsWithChildren<Props>) => {
   const buttonClass = clsx(getButtonClass(mode, size), className);
 
@@ -34,6 +36,7 @@ export const Button = ({
       className={buttonClass}
       onClick={onClick}
       disabled={disabled || isLoading}
+      id={id}
     >
       {isLoading && <Icon icon="Loader2" className="animate-spin" />}
       {children}

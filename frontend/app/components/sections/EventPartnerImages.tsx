@@ -18,7 +18,7 @@ export function EventPartnerImages({ sectionData }: Props) {
       }
     | undefined;
   return (
-    <section className="bg-base-100 px-10vw flex w-full !max-w-full flex-col items-center pb-24">
+    <section className="bg-base-100 px-10vw flex w-full !max-w-full flex-col items-center py-24">
       <div className="prose prose-lg md:prose-xl lg:prose-2xl mb-12">
         <Markdown>{sectionData.titleContent}</Markdown>
       </div>
@@ -27,7 +27,7 @@ export function EventPartnerImages({ sectionData }: Props) {
           <div
             key={index}
             className={clsx(
-              "max-h-[150px] min-w-[100px] max-w-[200px] flex-[12%]",
+              "max-h-[130px] min-w-[100px] max-w-[130px] flex-[12%]",
               index > 7 && "hidden md:block"
             )}
           >

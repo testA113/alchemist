@@ -989,7 +989,7 @@ export interface ApiServiceService extends CollectionTypeSchema {
   };
   attributes: {
     name: StringAttribute & RequiredAttribute;
-    slug: UIDAttribute<"api::service.service", "name">;
+    slug: UIDAttribute<"api::service.service", "name"> & RequiredAttribute;
     showcases: RelationAttribute<
       "api::service.service",
       "manyToMany",
@@ -1061,7 +1061,7 @@ export interface ApiShowcaseShowcase extends CollectionTypeSchema {
     >;
     seo: ComponentAttribute<"shared.seo">;
     featured: BooleanAttribute;
-    sections: DynamicZoneAttribute<
+    leftSections: DynamicZoneAttribute<
       [
         "sections.contact-form",
         "sections.cyclingsentence",
@@ -1077,6 +1077,20 @@ export interface ApiShowcaseShowcase extends CollectionTypeSchema {
     > &
       RequiredAttribute;
     imageTitle: ComponentAttribute<"sections.image-title"> & RequiredAttribute;
+    bottomSections: DynamicZoneAttribute<
+      [
+        "sections.contact-form",
+        "sections.cyclingsentence",
+        "sections.event-partners",
+        "sections.full-size-carousel",
+        "sections.image-title",
+        "sections.large-summary",
+        "sections.services-showcase",
+        "sections.showcases",
+        "sections.simple-content",
+        "sections.video-hero"
+      ]
+    >;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
@@ -3044,6 +3058,7 @@ export interface SectionsSimpleContent extends ComponentSchema {
       RequiredAttribute &
       DefaultTo<"middle">;
     gutters: BooleanAttribute & RequiredAttribute & DefaultTo<true>;
+    contentSize: EnumerationAttribute<["sm", "md", "lg"]>;
   };
 }
 

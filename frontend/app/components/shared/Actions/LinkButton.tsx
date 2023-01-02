@@ -10,6 +10,7 @@ import { getButtonClass } from "./getButtonClass";
 interface Props extends GetAttributesValues<"links.link"> {
   disabled?: boolean;
   className?: string;
+  external?: boolean;
 }
 
 export function LinkButton({
@@ -20,10 +21,28 @@ export function LinkButton({
   mode,
   size = "md",
   newTab,
+  external,
 }: PropsWithChildren<Props>) {
   const buttonClass = clsx(getButtonClass(mode, size), className);
 
-  return (
+  const renderChildren = () => (
+    <>
+      {children}
+      {icon && <Icon icon={icon} />}
+    </>
+  );
+
+  return external ? (
+    // eslint-disable-next-line react/jsx-no-target-blank
+    <a
+      href={to}
+      className={buttonClass}
+      target={newTab ? "_blank" : ""}
+      rel={newTab ? "noopener noreferrer" : ""}
+    >
+      {renderChildren()}
+    </a>
+  ) : (
     <Link
       prefetch="intent"
       to={to}
@@ -31,8 +50,7 @@ export function LinkButton({
       target={newTab ? "_blank" : ""}
       rel={newTab ? "noopener noreferrer" : ""}
     >
-      {children}
-      {icon && <Icon icon={icon} />}
+      {renderChildren()}
     </Link>
   );
 }
