@@ -1,3 +1,5 @@
+import sgMail from "@sendgrid/mail";
+
 import type {
   ContactMessagePayload,
   StrapiContactMessageResponse,
@@ -89,4 +91,38 @@ export const createAssessment = async (token: string) => {
       "does not match the action you are expecting to score"
   );
   return false;
+};
+
+// sendConfirmationEmail sends a confirmation email to the user using sendgrid
+export const sendConfirmationEmail = async (
+  emailTo: string,
+  subject: string,
+  htmlContent: string
+) => {
+  const fromEmail = process.env.FROM_EMAIL;
+  if (!fromEmail) {
+    return new Error("Error sending email - FROM_EMAIL not set");
+  }
+
+  const sendGridApiKey = process.env.SENDGRID_API_KEY;
+  if (!sendGridApiKey) {
+    return new Error("Error sending email - SENDGRID_API_KEY not set");
+  }
+
+  const emailBody = {
+    to: emailTo,
+    from: fromEmail,
+    subject,
+    html: htmlContent,
+  };
+
+  try {
+    sgMail.setApiKey(sendGridApiKey);
+    const response = await sgMail.send(emailBody);
+    if (response[0].statusCode !== 202) {
+      return new Error(`Error sending email - ${response[0].body}`);
+    }
+  } catch (error) {
+    return new Error("Error sending email");
+  }
 };

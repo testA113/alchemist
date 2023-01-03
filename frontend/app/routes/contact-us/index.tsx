@@ -14,11 +14,16 @@ import {
   createAssessment,
   getContactPage,
   postContactMessage,
+  sendConfirmationEmail,
 } from "./contact-us.server";
 import type { ContactMessage, ContactMessagePayload } from "./types";
 import { Section } from "~/components/sections";
 import { formatStrapiError } from "~/utils/utils.server";
 import { getStrapiSeo } from "~/utils/seo";
+import {
+  generateConfirmationEmail,
+  generateNewEnquiryEmail,
+} from "./email-templates.server";
 
 export const validator = withZod(
   z.object({
@@ -59,6 +64,38 @@ export const action = async ({ request }: ActionArgs) => {
   if (error) {
     const formattedError = formatStrapiError<keyof ContactMessage>(error);
     return validationError({ fieldErrors: formattedError });
+  }
+
+  // Send a confirmation email to the user using sendgrid
+  const { name, email, description } = dataResult.data;
+  const confirmationEmailError = sendConfirmationEmail(
+    email,
+    "Contact Us Confirmation",
+    generateConfirmationEmail(name)
+  );
+  if (confirmationEmailError) {
+    // only show an error server side because the user is notified of the confirmation on the success page too
+    console.error(confirmationEmailError);
+  }
+
+  // Send a notification email to Alchemist Mixology using sendgrid
+  const clientError =
+    "Error sending message to Alchemist Mixology, please try again, or contact us directly at jaz@alchemistmixology.co.nz";
+  const fromEmail = process.env.FROM_EMAIL;
+  if (!fromEmail) {
+    console.error(
+      "FROM_EMAIL environment variable is not set, please contact the site administrator"
+    );
+    throw new Response(clientError, { status: 500 });
+  }
+  const notificationEmailError = await sendConfirmationEmail(
+    fromEmail,
+    "New Event Enquiry",
+    generateNewEnquiryEmail(name, email, description)
+  );
+  if (notificationEmailError) {
+    console.error(notificationEmailError);
+    throw new Response(clientError, { status: 500 });
   }
 
   // redirect to the success page

@@ -70,18 +70,20 @@ export default function Event() {
           __component: "sections.image-title",
         }}
       />
-      <div className="px-10vw bg-base-100 flex w-full justify-start">
-        <LinkButton
-          mode="link"
-          icon="ChevronRight"
-          className="text-base-content btn-outline w-max"
-          to={eventUrl}
-          external
-          newTab
-        >
-          Event Page
-        </LinkButton>
-      </div>
+      {eventUrl && (
+        <div className="px-10vw bg-base-100 flex w-full justify-start">
+          <LinkButton
+            mode="link"
+            icon="ChevronRight"
+            className="text-base-content btn-outline w-max"
+            to={eventUrl}
+            external
+            newTab
+          >
+            Event Page
+          </LinkButton>
+        </div>
+      )}
       <div className="bg-base-100 px-10vw mb-24 flex flex-col gap-x-16 md:flex-row">
         <div className="w-full md:w-2/3">
           <div className="mt-16 md:hidden">
