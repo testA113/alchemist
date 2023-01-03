@@ -28,11 +28,12 @@ export function Showcase({ sectionData }: Props) {
             key={index}
             className={clsx(
               "group min-h-min min-w-[200px] flex-1 transform transition duration-300 ease-out hover:scale-105 md:hover:scale-100",
-              isModTwoOrThree(index) ? "flex-[30%]" : "flex-[60%]"
+              isModTwoOrThree(index) ? "flex-[40%]" : "flex-[50%]"
             )}
           >
             <Link
               to={`${sectionData.seeMoreButton.to}/${showcase.attributes.slug}`}
+              prefetch="intent"
             >
               <ImageCard
                 imageUrl={

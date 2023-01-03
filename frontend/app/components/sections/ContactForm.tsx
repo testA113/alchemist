@@ -1,4 +1,4 @@
-import { useActionData, useSubmit } from "@remix-run/react";
+import { useActionData, useSubmit, useTransition } from "@remix-run/react";
 import clsx from "clsx";
 import {
   useIsSubmitting,
@@ -26,6 +26,7 @@ export function ContactForm({ sectionData }: Props) {
   const [token, setToken] = useState<string | undefined>();
   const actionData = useActionData<ContactMessageActionData>();
   const isSubmitting = useIsSubmitting("contact-form");
+  const transition = useTransition();
   const isValid = useIsValid("contact-form");
   const { values } = actionData ?? {};
 
@@ -48,7 +49,8 @@ export function ContactForm({ sectionData }: Props) {
   }, [handleReCaptchaVerify]);
 
   // show the submitting state for at least 800ms
-  const showSubmitting = showSubmittingMinDelay || isSubmitting;
+  const showSubmitting =
+    showSubmittingMinDelay || isSubmitting || transition.state === "submitting";
 
   return (
     <section
