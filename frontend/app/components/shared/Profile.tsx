@@ -21,7 +21,7 @@ export const Profile = ({ client }: Props) => {
           className="!m-0 h-16 w-auto"
         />
       ) : (
-        <div className="bg-base-200 flex h-16 w-16 flex-col items-center justify-center rounded-2xl">
+        <div className="flex h-16 w-16 flex-col items-center justify-center rounded-2xl">
           <User size={64} />
         </div>
       )}
