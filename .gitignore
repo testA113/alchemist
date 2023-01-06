@@ -108,6 +108,7 @@ coverage
 .env
 .env.develop
 .env.production
+fly.toml
 license.txt
 exports
 *.cache
