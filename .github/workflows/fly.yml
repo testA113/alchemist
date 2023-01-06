@@ -23,7 +23,7 @@ jobs:
         - uses: superfly/flyctl-actions/setup-flyctl@master
         - name: deploy backend
           working-directory: ./backend
-          run: cd backend flyctl deploy --remote-only -e ADMIN_JWT_SECRET=$ADMIN_JWT_SECRET -e API_TOKEN_SALT=$API_TOKEN_SALT -e APP_KEYS=$APP_KEYS -e DATABASE_PASSWORD=$DATABASE_PASSWORD -e JWT_SECRET=$JWT_SECRET
+          run: flyctl deploy --remote-only -e ADMIN_JWT_SECRET=$ADMIN_JWT_SECRET -e API_TOKEN_SALT=$API_TOKEN_SALT -e APP_KEYS=$APP_KEYS -e DATABASE_PASSWORD=$DATABASE_PASSWORD -e JWT_SECRET=$JWT_SECRET
   deploy-frontend:
     name: Deploy frontend
     runs-on: ubuntu-latest
