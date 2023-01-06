@@ -6,17 +6,11 @@ kill_timeout = 5
 processes = []
 
 [env]
-  DATABASE_HOST = "hostname"
+  DATABASE_HOST = "alchemist-cms-db.internal"
   DATABASE_PORT = 5432
-  DATABASE_NAME = "database-name"
+  DATABASE_NAME = "alchemist_cms"
   DATABASE_USERNAME = "dev"
-  DATABASE_PASSWORD = "password"
   DATABASE_SSL = false
-  APP_KEYS = "ereryovb7isybvoi"
-  API_TOKEN_SALT = "ereryovb7isybvoi"
-  ADMIN_JWT_SECRET = "ereryovb7isybvoi"
-  JWT_SECRET = "ereryovb7isybvoi"
-
 
 [experimental]
   allowed_public_ports = []
