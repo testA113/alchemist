@@ -24,7 +24,7 @@ jobs:
         - run: echo $ADMIN_JWT_SECRET
         - name: deploy backend
           working-directory: ./backend
-          run: flyctl deploy --remote-only -e ADMIN_JWT_SECRET=$ADMIN_JWT_SECRET -e API_TOKEN_SALT=$API_TOKEN_SALT -e APP_KEYS=$APP_KEYS -e DATABASE_PASSWORD=$DATABASE_PASSWORD -e JWT_SECRET=$JWT_SECRET
+          run: flyctl deploy --remote-only -e ADMIN_JWT_SECRET="$ADMIN_JWT_SECRET" -e API_TOKEN_SALT="$API_TOKEN_SALT" -e APP_KEYS="$APP_KEYS" -e DATABASE_PASSWORD="$DATABASE_PASSWORD" -e JWT_SECRET="$JWT_SECRET"
   deploy-frontend:
     name: Deploy frontend
     runs-on: ubuntu-latest
@@ -33,4 +33,4 @@ jobs:
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - name: deploy frontend
         working-directory: ./frontend
-        run: flyctl deploy --remote-only -e STRAPI_BASEURL=$STRAPI_BASEURL -e CAPTCHA_API_KEY=$CAPTCHA_API_KEY -e SENDGRID_API_KEY=$SENDGRID_API_KEY -e FROM_EMAIL=$FROM_EMAIL
+        run: flyctl deploy --remote-only -e STRAPI_BASEURL="$STRAPI_BASEURL" -e CAPTCHA_API_KEY="$CAPTCHA_API_KEY" -e SENDGRID_API_KEY="$SENDGRID_API_KEY" -e FROM_EMAIL="$FROM_EMAIL"
