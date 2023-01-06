@@ -123,6 +123,7 @@ export const sendConfirmationEmail = async (
       return new Error(`Error sending email - ${response[0].body}`);
     }
   } catch (error) {
+    console.error(JSON.stringify(error));
     return new Error("Error sending email");
   }
 };
