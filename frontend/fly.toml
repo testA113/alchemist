@@ -1,22 +1,9 @@
-# fly.toml file generated for alchemist-cms on 2023-01-05T12:52:43+13:00
+# fly.toml file generated for alchemist-client on 2023-01-06T00:34:00+13:00
 
-app = "alchemist-cms"
+app = "alchemist-client"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
-
-[env]
-  DATABASE_HOST = "hostname"
-  DATABASE_PORT = 5432
-  DATABASE_NAME = "database-name"
-  DATABASE_USERNAME = "dev"
-  DATABASE_PASSWORD = "password"
-  DATABASE_SSL = false
-  APP_KEYS = "ereryovb7isybvoi"
-  API_TOKEN_SALT = "ereryovb7isybvoi"
-  ADMIN_JWT_SECRET = "ereryovb7isybvoi"
-  JWT_SECRET = "ereryovb7isybvoi"
-
 
 [experimental]
   allowed_public_ports = []
@@ -24,7 +11,7 @@ processes = []
 
 [[services]]
   http_checks = []
-  internal_port = 1337
+  internal_port = 3000
   processes = ["app"]
   protocol = "tcp"
   script_checks = []
