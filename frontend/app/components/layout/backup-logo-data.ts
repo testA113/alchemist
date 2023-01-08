@@ -1,0 +1,43 @@
+export const logo = {
+  data: {
+    id: 9,
+    attributes: {
+      name: "small-logo.webp",
+      alternativeText: "small-logo.webp",
+      caption: "small-logo.webp",
+      width: 715,
+      height: 335,
+      formats: {
+        small: {
+          ext: ".webp",
+          url: "/images/small_small_logo_6d8d7070f6.webp",
+          hash: "small_small_logo_6d8d7070f6",
+          mime: "image/webp",
+          name: "small_small-logo.webp",
+          size: 24.29,
+          width: 500,
+          height: 234,
+        },
+        thumbnail: {
+          ext: ".webp",
+          url: "/images/small_small_logo_6d8d7070f6.webp",
+          hash: "thumbnail_small_logo_6d8d7070f6",
+          mime: "image/webp",
+          name: "thumbnail_small-logo.webp",
+          size: 8.9,
+          width: 245,
+          height: 115,
+        },
+      },
+      hash: "small_logo_6d8d7070f6",
+      ext: ".webp",
+      mime: "image/webp",
+      size: 39.38,
+      url: "/images/small_small_logo_6d8d7070f6.webp",
+      provider: "local",
+      createdAt: "2022-10-12T12:27:35.236Z",
+      updatedAt: "2022-10-25T07:25:17.675Z",
+      previewUrl: "",
+    },
+  },
+};

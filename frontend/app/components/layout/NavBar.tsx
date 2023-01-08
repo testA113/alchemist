@@ -17,12 +17,68 @@ import { NavLink } from "../shared/Actions/NavLink";
 import type { ImageValues } from "../shared/types";
 import { StrapiImage } from "../shared/StrapiImage";
 import { LinkButton } from "../shared/Actions/LinkButton";
+import { logo } from "./backup-logo-data";
 
 type MobileMenuListProps = {
-  social: GetAttributesValues<"elements.socials">;
   navbarLinks: GetAttributesValues<"links.link">[];
   actionButton: GetAttributesValues<"links.link">;
+  social?: GetAttributesValues<"elements.socials">;
 };
+
+const backupNavData = {
+  id: 1,
+  links: [
+    {
+      id: 15,
+      newTab: false,
+      text: "Home",
+      size: "md",
+      to: "/",
+      mode: "link",
+    },
+    {
+      id: 3,
+      newTab: false,
+      text: "About Us",
+      size: "md",
+      to: "about-us",
+      mode: "link",
+    },
+    {
+      newTab: false,
+      text: "Festival Bars",
+      size: "lg",
+      to: "festival-bars",
+      mode: "link",
+    },
+    {
+      id: 4,
+      newTab: false,
+      text: "Private events",
+      size: "md",
+      to: "private-events",
+      mode: "link",
+    },
+    {
+      id: 6,
+      newTab: false,
+      text: "Brand Action",
+      size: "md",
+      to: "brand-action",
+      mode: "link",
+    },
+  ],
+  logo,
+  actionButton: {
+    id: 14,
+    newTab: false,
+    text: "Contact Us",
+    size: "lg",
+    to: "contact-us",
+    mode: "primary",
+  },
+} as GetAttributesValues<"layout.navbar">;
+
 const MobileMenuList = ({
   social,
   navbarLinks,
@@ -96,10 +152,11 @@ const MobileMenuList = ({
 };
 
 type MobileMenuProps = {
-  social: GetAttributesValues<"elements.socials">;
   navbarLinks: GetAttributesValues<"links.link">[];
   actionButton: GetAttributesValues<"links.link">;
+  social?: GetAttributesValues<"elements.socials">;
 };
+
 const MobileMenu = ({ social, navbarLinks, actionButton }: MobileMenuProps) => {
   return (
     <Menu>
@@ -125,7 +182,9 @@ interface NavBarProps {
   data?: GetAttributesValues<"api::menu.menu">;
 }
 export const NavBar = ({ data }: NavBarProps) => {
-  const logo = data?.navbar.logo.data as ImageValues | undefined;
+  const navData = data?.navbar || backupNavData;
+  const imageBaseUrl = data ? undefined : "";
+  const logo = navData.logo.data as ImageValues;
 
   return (
     <div className="w-full transition duration-500">
@@ -134,14 +193,18 @@ export const NavBar = ({ data }: NavBarProps) => {
           <div className="mr-5 shrink-0">
             <Link to="/" title="Alchemist Mixology - Home" prefetch="intent">
               {logo && (
-                <StrapiImage image={logo} className="h-20 w-auto md:h-24" />
+                <StrapiImage
+                  image={logo}
+                  className="h-20 w-auto md:h-24"
+                  baseUrl={imageBaseUrl}
+                />
               )}
             </Link>
           </div>
-          {data && (
+          {navData && (
             <div className="flex items-center py-4">
               <div aria-label="Navigation bar links" className="hidden lg:flex">
-                {data.navbar.links
+                {navData.links
                   .filter((link) => link.to !== "/") // dont include the home link in the nav bar
                   .map((link) => (
                     <NavLink key={link.to} {...link}>
@@ -150,16 +213,16 @@ export const NavBar = ({ data }: NavBarProps) => {
                   ))}
               </div>
               <LinkButton
-                {...data.navbar.actionButton}
+                {...navData.actionButton}
                 className="ml-5 hidden md:flex"
               >
-                {data.navbar.actionButton.text}
+                {navData.actionButton.text}
               </LinkButton>
               <div className="flex lg:hidden">
                 <MobileMenu
-                  social={data.social}
-                  navbarLinks={data.navbar.links}
-                  actionButton={data.navbar.actionButton}
+                  social={data?.social}
+                  navbarLinks={navData.links}
+                  actionButton={navData.actionButton}
                 />
               </div>
             </div>
