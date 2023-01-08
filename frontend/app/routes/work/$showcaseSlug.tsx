@@ -71,7 +71,6 @@ export default function Event() {
     | StrapiDataArray<GetAttributesValues<"api::service.service">>
     | undefined;
 
-  console.log(eventData.leftSections);
   return (
     <div className="min-h-minpage">
       <Section

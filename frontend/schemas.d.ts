@@ -932,6 +932,51 @@ export interface ApiMenuMenu extends SingleTypeSchema {
   };
 }
 
+export interface ApiPrivacyPrivacy extends SingleTypeSchema {
+  info: {
+    singularName: "privacy";
+    pluralName: "privacies";
+    displayName: "Privacy";
+    description: "";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    sections: DynamicZoneAttribute<
+      [
+        "sections.contact-form",
+        "sections.cyclingsentence",
+        "sections.event-partners",
+        "sections.full-size-carousel",
+        "sections.image-title",
+        "sections.large-summary",
+        "sections.services-showcase",
+        "sections.showcases",
+        "sections.simple-content",
+        "sections.video-hero"
+      ]
+    > &
+      RequiredAttribute;
+    seo: ComponentAttribute<"shared.seo"> & RequiredAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    publishedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      "api::privacy.privacy",
+      "oneToOne",
+      "admin::user"
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      "api::privacy.privacy",
+      "oneToOne",
+      "admin::user"
+    > &
+      PrivateAttribute;
+  };
+}
+
 export interface ApiPrivateEventsPrivateEvents extends SingleTypeSchema {
   info: {
     singularName: "private-events";
@@ -3156,6 +3201,7 @@ declare global {
       "api::footer.footer": ApiFooterFooter;
       "api::home.home": ApiHomeHome;
       "api::menu.menu": ApiMenuMenu;
+      "api::privacy.privacy": ApiPrivacyPrivacy;
       "api::private-events.private-events": ApiPrivateEventsPrivateEvents;
       "api::service.service": ApiServiceService;
       "api::showcase.showcase": ApiShowcaseShowcase;
