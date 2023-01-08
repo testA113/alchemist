@@ -15,7 +15,6 @@ export function StrapiImage({
   baseUrl,
 }: Props) {
   const { url, formats, alternativeText, width, height } = attributes;
-  console.log(baseUrl);
   const imageBaseUrl =
     typeof baseUrl === "undefined" ? ENV.STRAPI_BASEURL : baseUrl;
   return (
