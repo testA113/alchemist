@@ -1059,7 +1059,7 @@ export interface ApiShowcaseShowcase extends CollectionTypeSchema {
       "oneToOne",
       "api::event.event"
     >;
-    seo: ComponentAttribute<"shared.seo">;
+    seo: ComponentAttribute<"shared.seo"> & RequiredAttribute;
     featured: BooleanAttribute;
     leftSections: DynamicZoneAttribute<
       [
