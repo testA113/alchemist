@@ -4,7 +4,7 @@ import Markdown from "markdown-to-jsx";
 import type { Service } from "./types";
 import { ImageCard } from "../shared/ImageCard";
 
-import type { ServicesShowcaseValues } from "./types";
+import type { SectionValues } from "./types";
 import { LinkButton } from "../shared/Actions/LinkButton";
 
 type ServiceData = {
@@ -12,7 +12,7 @@ type ServiceData = {
 };
 
 type Props = {
-  sectionData: ServicesShowcaseValues;
+  sectionData: SectionValues<"sections.services-showcase">;
 };
 
 export function ServicesShowcase({ sectionData }: Props) {

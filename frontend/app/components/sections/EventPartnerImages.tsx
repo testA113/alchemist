@@ -4,10 +4,10 @@ import { type GetAttributesValues } from "@strapi/strapi";
 
 import { StrapiImage } from "../shared/StrapiImage";
 
-import type { EventPartnersValues } from "./types";
+import type { SectionValues } from "./types";
 
 type Props = {
-  sectionData: EventPartnersValues;
+  sectionData: SectionValues<"sections.event-partners">;
 };
 
 // react component with a 3x2 grid of images that can be horizontally scrolled using embla-carousel

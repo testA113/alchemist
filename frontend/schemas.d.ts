@@ -554,7 +554,8 @@ export interface ApiAboutUsAboutUs extends SingleTypeSchema {
         "sections.showcases",
         "sections.simple-content",
         "sections.video-hero",
-        "sections.image-title"
+        "sections.image-title",
+        "sections.testimonials"
       ]
     > &
       RequiredAttribute;
@@ -599,7 +600,8 @@ export interface ApiBrandActionBrandAction extends SingleTypeSchema {
         "sections.showcases",
         "sections.simple-content",
         "sections.video-hero",
-        "sections.image-title"
+        "sections.image-title",
+        "sections.testimonials"
       ]
     > &
       RequiredAttribute;
@@ -677,7 +679,8 @@ export interface ApiContactContact extends SingleTypeSchema {
         "sections.services-showcase",
         "sections.showcases",
         "sections.simple-content",
-        "sections.video-hero"
+        "sections.video-hero",
+        "sections.testimonials"
       ]
     > &
       RequiredAttribute;
@@ -815,7 +818,8 @@ export interface ApiFestivalBarsFestivalBars extends SingleTypeSchema {
         "sections.showcases",
         "sections.simple-content",
         "sections.video-hero",
-        "sections.image-title"
+        "sections.image-title",
+        "sections.testimonials"
       ]
     > &
       RequiredAttribute;
@@ -892,7 +896,8 @@ export interface ApiHomeHome extends SingleTypeSchema {
         "sections.showcases",
         "sections.event-partners",
         "sections.image-title",
-        "sections.simple-content"
+        "sections.simple-content",
+        "sections.testimonials"
       ]
     > &
       RequiredAttribute &
@@ -999,7 +1004,8 @@ export interface ApiPrivateEventsPrivateEvents extends SingleTypeSchema {
         "sections.showcases",
         "sections.simple-content",
         "sections.video-hero",
-        "sections.image-title"
+        "sections.image-title",
+        "sections.testimonials"
       ]
     > &
       RequiredAttribute;
@@ -1117,7 +1123,8 @@ export interface ApiShowcaseShowcase extends CollectionTypeSchema {
         "sections.services-showcase",
         "sections.showcases",
         "sections.simple-content",
-        "sections.video-hero"
+        "sections.video-hero",
+        "sections.testimonials"
       ]
     > &
       RequiredAttribute;
@@ -1133,7 +1140,8 @@ export interface ApiShowcaseShowcase extends CollectionTypeSchema {
         "sections.services-showcase",
         "sections.showcases",
         "sections.simple-content",
-        "sections.video-hero"
+        "sections.video-hero",
+        "sections.testimonials"
       ]
     >;
     createdAt: DateTimeAttribute;
@@ -1147,6 +1155,40 @@ export interface ApiShowcaseShowcase extends CollectionTypeSchema {
       PrivateAttribute;
     updatedBy: RelationAttribute<
       "api::showcase.showcase",
+      "oneToOne",
+      "admin::user"
+    > &
+      PrivateAttribute;
+  };
+}
+
+export interface ApiTestimonialTestimonial extends CollectionTypeSchema {
+  info: {
+    singularName: "testimonial";
+    pluralName: "testimonials";
+    displayName: "Testimonial";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    testimonial: RichTextAttribute & RequiredAttribute;
+    client: RelationAttribute<
+      "api::testimonial.testimonial",
+      "oneToOne",
+      "api::client.client"
+    >;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    publishedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      "api::testimonial.testimonial",
+      "oneToOne",
+      "admin::user"
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      "api::testimonial.testimonial",
       "oneToOne",
       "admin::user"
     > &
@@ -3107,6 +3149,21 @@ export interface SectionsSimpleContent extends ComponentSchema {
   };
 }
 
+export interface SectionsTestimonials extends ComponentSchema {
+  info: {
+    displayName: "Testimonials";
+    icon: "grin-stars";
+  };
+  attributes: {
+    testimonials: RelationAttribute<
+      "sections.testimonials",
+      "oneToMany",
+      "api::testimonial.testimonial"
+    >;
+    header: RichTextAttribute;
+  };
+}
+
 export interface SectionsVideoHero extends ComponentSchema {
   info: {
     displayName: "video hero";
@@ -3205,6 +3262,7 @@ declare global {
       "api::private-events.private-events": ApiPrivateEventsPrivateEvents;
       "api::service.service": ApiServiceService;
       "api::showcase.showcase": ApiShowcaseShowcase;
+      "api::testimonial.testimonial": ApiTestimonialTestimonial;
       "elements.footersection": ElementsFootersection;
       "elements.mobile-menu-item": ElementsMobileMenuItem;
       "elements.socials": ElementsSocials;
@@ -3222,6 +3280,7 @@ declare global {
       "sections.services-showcase": SectionsServicesShowcase;
       "sections.showcases": SectionsShowcases;
       "sections.simple-content": SectionsSimpleContent;
+      "sections.testimonials": SectionsTestimonials;
       "sections.video-hero": SectionsVideoHero;
       "shared.meta-social": SharedMetaSocial;
       "shared.seo": SharedSeo;

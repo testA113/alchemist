@@ -11,10 +11,10 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "~/components/shared/Actions/Button";
 import { LinkButton } from "../shared/Actions/LinkButton";
 
-import type { VideoHeroValues } from "./types";
+import type { SectionValues } from "./types";
 
 type Props = {
-  sectionData: VideoHeroValues;
+  sectionData: SectionValues<"sections.video-hero">;
 };
 
 export function VideoHero({ sectionData }: Props) {

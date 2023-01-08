@@ -1,69 +1,67 @@
-import {
-  type DynamicSectionValues,
-  isVideoHeroValues,
-  isLargeSummaryValues,
-  isCarouselValues,
-  isServicesShowcaseValues,
-  isShowcaseValues,
-  isEventPartnersValues,
-  isContactFormValues,
-  isSimpleContentValues,
-} from "./types";
+import { type DynamicSectionValues, isSectionValues } from "./types";
 
 import { VideoHero } from "./VideoHero";
 import { LargeSummary } from "./LargeSummary";
 import { Carousel } from "./Carousel";
 import { ServicesShowcase } from "./ServicesShowcase";
-import { Showcase } from "./Showcase";
+import { Showcases } from "./Showcases";
 import { EventPartnerImages } from "./EventPartnerImages";
 import { ContactForm } from "./ContactForm";
 import { SimpleContent } from "./SimpleContent";
-import { isImageTitleValues } from "./types";
 import { ImageTitle } from "./ImageTitle";
+import { Testimonials } from "./Testimonials";
 
 type Props = {
   sectionData: DynamicSectionValues;
 };
 
 export function Section({ sectionData }: Props) {
-  if (isVideoHeroValues(sectionData)) {
+  if (isSectionValues(sectionData, "sections.video-hero")) {
     return <VideoHero sectionData={sectionData} />;
   }
 
-  if (isLargeSummaryValues(sectionData)) {
+  if (isSectionValues(sectionData, "sections.large-summary")) {
     return <LargeSummary sectionData={sectionData} />;
   }
 
-  if (isCarouselValues(sectionData)) {
+  if (isSectionValues(sectionData, "sections.full-size-carousel")) {
     return <Carousel sectionData={sectionData} />;
   }
 
   if (
-    isServicesShowcaseValues(sectionData) &&
+    isSectionValues(sectionData, "sections.services-showcase") &&
     sectionData.services &&
     "data" in sectionData.services
   ) {
     return <ServicesShowcase sectionData={sectionData} />;
   }
 
-  if (isShowcaseValues(sectionData)) {
-    return <Showcase sectionData={sectionData} />;
+  if (isSectionValues(sectionData, "sections.showcases")) {
+    return <Showcases sectionData={sectionData} />;
   }
 
-  if (isEventPartnersValues(sectionData)) {
+  if (isSectionValues(sectionData, "sections.event-partners")) {
     return <EventPartnerImages sectionData={sectionData} />;
   }
 
-  if (isContactFormValues(sectionData)) {
+  if (isSectionValues(sectionData, "sections.contact-form")) {
     return <ContactForm sectionData={sectionData} />;
   }
 
-  if (isSimpleContentValues(sectionData)) {
+  if (isSectionValues(sectionData, "sections.simple-content")) {
     return <SimpleContent sectionData={sectionData} />;
   }
 
-  if (isImageTitleValues(sectionData)) {
+  if (isSectionValues(sectionData, "sections.image-title")) {
     return <ImageTitle sectionData={sectionData} />;
+  }
+
+  if (
+    isSectionValues(sectionData, "sections.testimonials") &&
+    sectionData.testimonials &&
+    "data" in sectionData.testimonials
+  ) {
+    return <Testimonials sectionData={sectionData} />;
   }
 
   return (

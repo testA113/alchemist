@@ -30,7 +30,8 @@
                 "sections.showcases",
                 "sections.event-partners",
                 "sections.image-title",
-                "sections.simple-content"
+                "sections.simple-content",
+                "sections.testimonials"
             ],
             "required": true,
             "min": 1

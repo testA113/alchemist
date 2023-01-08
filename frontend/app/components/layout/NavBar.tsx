@@ -203,7 +203,10 @@ export const NavBar = ({ data }: NavBarProps) => {
           </div>
           {navData && (
             <div className="flex items-center py-4">
-              <div aria-label="Navigation bar links" className="hidden lg:flex">
+              <div
+                aria-label="Navigation bar links"
+                className="hidden lg:flex lg:gap-x-2"
+              >
                 {navData.links
                   .filter((link) => link.to !== "/") // dont include the home link in the nav bar
                   .map((link) => (

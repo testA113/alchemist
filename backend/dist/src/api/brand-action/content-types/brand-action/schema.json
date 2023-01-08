@@ -24,7 +24,8 @@
                 "sections.showcases",
                 "sections.simple-content",
                 "sections.video-hero",
-                "sections.image-title"
+                "sections.image-title",
+                "sections.testimonials"
             ],
             "required": true
         },

@@ -43,7 +43,6 @@ export default function Index() {
   const {
     homeData: { homesections },
   }: HomeResponse = useLoaderData();
-
   return (
     <div className="min-h-minpage">
       {homesections.map((section, index) => (

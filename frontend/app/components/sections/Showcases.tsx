@@ -4,7 +4,7 @@ import { Link } from "@remix-run/react";
 import type { Showcase as ShowcaseType } from "./types";
 import { ImageCard } from "../shared/ImageCard";
 
-import type { ShowcaseValues } from "./types";
+import type { SectionValues } from "./types";
 import Markdown from "markdown-to-jsx";
 
 type ShowcaseData = {
@@ -12,10 +12,10 @@ type ShowcaseData = {
 };
 
 type Props = {
-  sectionData: ShowcaseValues;
+  sectionData: SectionValues<"sections.showcases">;
 };
 
-export function Showcase({ sectionData }: Props) {
+export function Showcases({ sectionData }: Props) {
   const showcases = sectionData.showcases as ShowcaseData | undefined;
   return (
     <section className="bg-base-100 px-10vw flex w-full !max-w-full flex-col items-center py-24">

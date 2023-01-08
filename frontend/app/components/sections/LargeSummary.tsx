@@ -1,10 +1,10 @@
 import Markdown from "markdown-to-jsx";
 
-import type { LargeSummaryValues } from "./types";
+import type { SectionValues } from "./types";
 import { LinkButton } from "../shared/Actions/LinkButton";
 
 type Props = {
-  sectionData: LargeSummaryValues;
+  sectionData: SectionValues<"sections.large-summary">;
 };
 
 export function LargeSummary({ sectionData }: Props) {
