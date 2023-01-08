@@ -1,7 +1,7 @@
 import Markdown from "markdown-to-jsx";
 import { useEffect, useState } from "react";
 
-import type { SimpleContentValues } from "./types";
+import type { SectionValues } from "./types";
 import { clsx } from "clsx";
 
 const contentSizeClassMap = {
@@ -11,7 +11,7 @@ const contentSizeClassMap = {
 };
 
 type Props = {
-  sectionData: SimpleContentValues;
+  sectionData: SectionValues<"sections.simple-content">;
 };
 
 const useImageSize = (src: string) => {

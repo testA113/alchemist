@@ -15,7 +15,7 @@ export const NavLink = ({ to, children }: PropsWithChildren<Props>) => {
     to === location?.pathname || location?.pathname.startsWith(`${to}/`);
 
   return (
-    <div className="px-[1vw] py-2">
+    <div className="py-2">
       <Link
         prefetch="intent"
         className={clsx(

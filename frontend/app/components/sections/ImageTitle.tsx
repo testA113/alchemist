@@ -6,11 +6,11 @@ import {
   m,
 } from "framer-motion";
 import { useRef } from "react";
-import type { ImageTitleValues } from "./types";
+import type { SectionValues } from "./types";
 import { StrapiImage } from "../shared/StrapiImage";
 
 type Props = {
-  sectionData: ImageTitleValues;
+  sectionData: SectionValues<"sections.image-title">;
 };
 
 export function ImageTitle({ sectionData }: Props) {

@@ -1,3 +1,5 @@
+import { type GetAttributesValues } from "@strapi/strapi";
+
 export type StrapiError<ErrorKeys> = {
   status: number;
   name: string;
@@ -11,18 +13,18 @@ export type StrapiError<ErrorKeys> = {
   };
 };
 
-export type StrapiData<AttributesValues> = {
+export type StrapiData<T extends keyof Strapi.Schemas> = {
   data: {
     id: number;
-    attributes: AttributesValues;
+    attributes: GetAttributesValues<T>;
   };
   error?: StrapiError<string>;
 };
 
-export type StrapiDataArray<AttributesValues> = {
+export type StrapiDataArray<T extends keyof Strapi.Schemas> = {
   data: {
     id: number;
-    attributes: AttributesValues;
+    attributes: GetAttributesValues<T>;
   }[];
   error?: StrapiError<string>;
 };

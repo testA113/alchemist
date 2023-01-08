@@ -62,7 +62,8 @@
                 "sections.services-showcase",
                 "sections.showcases",
                 "sections.simple-content",
-                "sections.video-hero"
+                "sections.video-hero",
+                "sections.testimonials"
             ],
             "required": true
         },
@@ -84,7 +85,8 @@
                 "sections.services-showcase",
                 "sections.showcases",
                 "sections.simple-content",
-                "sections.video-hero"
+                "sections.video-hero",
+                "sections.testimonials"
             ],
             "required": false
         }

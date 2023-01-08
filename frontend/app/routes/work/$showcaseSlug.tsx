@@ -20,9 +20,8 @@ export async function loader({ params }: LoaderArgs) {
   const eventResponse = await getPage(`showcases`, {
     queryParams: { "filters[slug][$eq]": slug, populate: "deep" },
   });
-  const eventsData = (await eventResponse.json()) as StrapiDataArray<
-    GetAttributesValues<"api::showcase.showcase">
-  >;
+  const eventsData =
+    (await eventResponse.json()) as StrapiDataArray<"api::showcase.showcase">;
   if (eventsData.error) {
     throw new Response("Error loading About Us data from strapi", {
       status: eventsData?.error?.status || 500,
@@ -53,9 +52,7 @@ export default function Event() {
     eventData: GetAttributesValues<"api::showcase.showcase">;
   };
   const { eventData } = data;
-  const event = eventData.event as
-    | StrapiData<GetAttributesValues<"api::event.event">>
-    | undefined;
+  const event = eventData.event as StrapiData<"api::event.event"> | undefined;
 
   const attendees = event?.data?.attributes.numberofattendees || "";
   const drinks = event?.data?.attributes.drinksserved || "";
@@ -64,11 +61,11 @@ export default function Event() {
     { value: drinks, label: "Cocktails Crafted" },
   ];
   const client = eventData.client as
-    | StrapiData<GetAttributesValues<"api::client.client">>
+    | StrapiData<"api::client.client">
     | undefined;
   const eventUrl = event?.data?.attributes?.url || "";
   const services = eventData.services as
-    | StrapiDataArray<GetAttributesValues<"api::service.service">>
+    | StrapiDataArray<"api::service.service">
     | undefined;
 
   return (

@@ -10,14 +10,14 @@ import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import Markdown from "markdown-to-jsx";
 
 import { validator } from "~/routes/contact-us";
-import type { ContactFormValues } from "./types";
+import type { SectionValues } from "./types";
 import { Button } from "../shared/Actions/Button";
 import type { ContactMessageActionData } from "~/routes/contact-us/types";
 import { TextInput } from "../shared/Input/TextInput";
 import { TextArea } from "../shared/Input/TextArea";
 
 type Props = {
-  sectionData: ContactFormValues;
+  sectionData: SectionValues<"sections.contact-form">;
 };
 
 export function ContactForm({ sectionData }: Props) {
