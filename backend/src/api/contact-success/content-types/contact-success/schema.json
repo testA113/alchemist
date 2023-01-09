@@ -1,0 +1,39 @@
+{
+  "kind": "singleType",
+  "collectionName": "contact_successes",
+  "info": {
+    "singularName": "contact-success",
+    "pluralName": "contact-successes",
+    "displayName": "Contact Success",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "sections": {
+      "type": "dynamiczone",
+      "components": [
+        "sections.contact-form",
+        "sections.cyclingsentence",
+        "sections.event-partners",
+        "sections.full-size-carousel",
+        "sections.image-title",
+        "sections.large-summary",
+        "sections.services-showcase",
+        "sections.showcases",
+        "sections.simple-content",
+        "sections.testimonials",
+        "sections.video-hero"
+      ],
+      "required": true
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo",
+      "required": true
+    }
+  }
+}
