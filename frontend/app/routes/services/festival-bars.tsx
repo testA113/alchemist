@@ -1,5 +1,5 @@
 import { json, type MetaFunction } from "@remix-run/node";
-import { getPage } from "./index.server";
+import { getPage } from "../index.server";
 import type { GetAttributesValues } from "@strapi/strapi";
 import { useLoaderData } from "@remix-run/react";
 

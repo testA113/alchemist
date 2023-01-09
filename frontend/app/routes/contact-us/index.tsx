@@ -35,11 +35,10 @@ export const validator = withZod(
     description: z
       .string()
       .min(10, {
-        message:
-          "Your event is more interesting than that! Minimum 10 characters.",
+        message: "Describe your exciting event! Minimum 10 characters.",
       })
       .max(4000, {
-        message: "Maximum 4000 characters. We can talk more about it soon.",
+        message: "Maximum 4000 characters. We can talk more soon.",
       }),
   })
 );

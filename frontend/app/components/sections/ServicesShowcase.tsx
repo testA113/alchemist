@@ -46,9 +46,9 @@ export function ServicesShowcase({ sectionData }: Props) {
                 <LinkButton
                   mode="link"
                   className="inline-flex items-center"
-                  to={service.attributes.slug}
+                  to={`services/${service.attributes.slug}`}
                 >
-                  Learn More
+                  {`See more about ${service.attributes.name}`}
                   <ChevronRight />
                 </LinkButton>
               </ImageCard>

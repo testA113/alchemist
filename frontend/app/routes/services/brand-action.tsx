@@ -1,25 +1,24 @@
 import { json, type MetaFunction } from "@remix-run/node";
-import { getPage } from "./index.server";
+import { getPage } from "../index.server";
 import type { GetAttributesValues } from "@strapi/strapi";
 import { useLoaderData } from "@remix-run/react";
 
 import { Section } from "~/components/sections";
 import { getStrapiSeo } from "~/utils/seo";
-
 export async function loader() {
-  const privateEventsResponse = await getPage("private-events", {
+  const brandActionResponse = await getPage("brand-action", {
     queryParams: { populate: "deep" },
   });
-  const privateEventsData = await privateEventsResponse.json();
-  if (privateEventsData.error) {
-    throw new Response("Error loading Private Events data from strapi", {
-      status: privateEventsData?.error?.status || 500,
+  const brandActionData = await brandActionResponse.json();
+  if (brandActionData.error) {
+    throw new Response("Error loading Brand Action data from strapi", {
+      status: brandActionData?.error?.status || 500,
     });
   }
 
   return json(
     {
-      privateEventsData: privateEventsData.data.attributes,
+      brandActionData: brandActionData.data.attributes,
     },
     {
       headers: { "Cache-Control": "private, max-age=120" },
@@ -29,18 +28,18 @@ export async function loader() {
 
 export const meta: MetaFunction = ({ data }) => {
   const {
-    privateEventsData: { seo },
+    brandActionData: { seo },
   } = data as {
-    privateEventsData: GetAttributesValues<"api::private-events.private-events">;
+    brandActionData: GetAttributesValues<"api::brand-action.brand-action">;
   };
   return getStrapiSeo(seo);
 };
 
-export default function PrivateEvents() {
+export default function BrandAction() {
   const {
-    privateEventsData: { sections },
+    brandActionData: { sections },
   }: {
-    privateEventsData: GetAttributesValues<"api::brand-action.brand-action">;
+    brandActionData: GetAttributesValues<"api::brand-action.brand-action">;
   } = useLoaderData();
 
   return (
