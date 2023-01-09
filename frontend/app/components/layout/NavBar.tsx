@@ -48,7 +48,7 @@ const backupNavData = {
       newTab: false,
       text: "Festival Bars",
       size: "lg",
-      to: "festival-bars",
+      to: "services/festival-bars",
       mode: "link",
     },
     {
@@ -56,7 +56,7 @@ const backupNavData = {
       newTab: false,
       text: "Private events",
       size: "md",
-      to: "private-events",
+      to: "services/private-events",
       mode: "link",
     },
     {
@@ -64,7 +64,7 @@ const backupNavData = {
       newTab: false,
       text: "Brand Action",
       size: "md",
-      to: "brand-action",
+      to: "services/brand-action",
       mode: "link",
     },
   ],
@@ -130,6 +130,7 @@ const MobileMenuList = ({
                   key={to}
                   as={Link}
                   to={to}
+                  id={`${to}-link`}
                 >
                   {text}
                 </MenuLink>
@@ -163,7 +164,13 @@ const MobileMenu = ({ social, navbarLinks, actionButton }: MobileMenuProps) => {
       {({ isExpanded }) => {
         return (
           <>
-            <MenuButton className="btn btn-circle btn-ghost no-animation ml-5">
+            <MenuButton
+              className="btn btn-circle btn-ghost no-animation ml-5"
+              id="menu-button"
+              aria-controls="menu-options"
+              aria-label="menu-button"
+              role="button"
+            >
               {isExpanded ? <X /> : <MenuIcon />}
             </MenuButton>
             <MobileMenuList

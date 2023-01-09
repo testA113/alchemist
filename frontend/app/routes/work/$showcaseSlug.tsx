@@ -117,7 +117,7 @@ export default function Event() {
                   {services.data.map((service, index) => (
                     <LinkButton
                       key={index}
-                      to={`../${service.attributes.slug}`}
+                      to={`../services/${service.attributes.slug}`}
                       mode="default"
                       className="btn-outline btn-xs"
                     >
