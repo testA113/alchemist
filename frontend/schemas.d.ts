@@ -749,6 +749,52 @@ export interface ApiContactMessageContactMessage extends CollectionTypeSchema {
   };
 }
 
+export interface ApiContactSuccessContactSuccess extends SingleTypeSchema {
+  info: {
+    singularName: "contact-success";
+    pluralName: "contact-successes";
+    displayName: "Contact Success";
+    description: "";
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    sections: DynamicZoneAttribute<
+      [
+        "sections.contact-form",
+        "sections.cyclingsentence",
+        "sections.event-partners",
+        "sections.full-size-carousel",
+        "sections.image-title",
+        "sections.large-summary",
+        "sections.services-showcase",
+        "sections.showcases",
+        "sections.simple-content",
+        "sections.testimonials",
+        "sections.video-hero"
+      ]
+    > &
+      RequiredAttribute;
+    seo: ComponentAttribute<"shared.seo"> & RequiredAttribute;
+    createdAt: DateTimeAttribute;
+    updatedAt: DateTimeAttribute;
+    publishedAt: DateTimeAttribute;
+    createdBy: RelationAttribute<
+      "api::contact-success.contact-success",
+      "oneToOne",
+      "admin::user"
+    > &
+      PrivateAttribute;
+    updatedBy: RelationAttribute<
+      "api::contact-success.contact-success",
+      "oneToOne",
+      "admin::user"
+    > &
+      PrivateAttribute;
+  };
+}
+
 export interface ApiEventEvent extends CollectionTypeSchema {
   info: {
     singularName: "event";
@@ -3256,6 +3302,7 @@ declare global {
       "api::client.client": ApiClientClient;
       "api::contact.contact": ApiContactContact;
       "api::contact-message.contact-message": ApiContactMessageContactMessage;
+      "api::contact-success.contact-success": ApiContactSuccessContactSuccess;
       "api::event.event": ApiEventEvent;
       "api::festival-bars.festival-bars": ApiFestivalBarsFestivalBars;
       "api::footer.footer": ApiFooterFooter;
