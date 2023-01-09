@@ -1167,6 +1167,7 @@ export interface ApiTestimonialTestimonial extends CollectionTypeSchema {
     singularName: "testimonial";
     pluralName: "testimonials";
     displayName: "Testimonial";
+    description: "";
   };
   options: {
     draftAndPublish: true;
@@ -1178,6 +1179,7 @@ export interface ApiTestimonialTestimonial extends CollectionTypeSchema {
       "oneToOne",
       "api::client.client"
     >;
+    name: StringAttribute & RequiredAttribute;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
@@ -3153,14 +3155,15 @@ export interface SectionsTestimonials extends ComponentSchema {
   info: {
     displayName: "Testimonials";
     icon: "grin-stars";
+    description: "";
   };
   attributes: {
+    header: RichTextAttribute;
     testimonials: RelationAttribute<
       "sections.testimonials",
       "oneToMany",
       "api::testimonial.testimonial"
     >;
-    header: RichTextAttribute;
   };
 }
 
