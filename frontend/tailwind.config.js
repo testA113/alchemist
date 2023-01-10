@@ -7,6 +7,10 @@ module.exports = {
       sans: ["Ubuntu", "sans-serif"],
     },
     extend: {
+      screens: {
+        xs: "400px",
+        // => @media (min-width: 992px) { ... }
+      },
       spacing: {
         "5vw": "5vw", // pull featured sections and navbar in the margin
         "8vw": "8vw", // positions hero img inside the margin
