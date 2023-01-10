@@ -39,7 +39,7 @@ export const Profile = ({ client, className = "column" }: Props) => {
             mode="default"
             icon="ChevronRight"
             className="btn-circle btn-outline transform duration-300 ease-in-out hover:translate-x-1"
-            id={`${name}-profile-external-website-button`}
+            aria-label={`${name}`}
           />
         )}
       </div>
@@ -47,7 +47,13 @@ export const Profile = ({ client, className = "column" }: Props) => {
   );
 
   return websiteLink ? (
-    <a href={websiteLink} target="_blank" rel="noopener noreferrer">
+    <a
+      href={websiteLink}
+      target="_blank"
+      rel="noopener noreferrer"
+      id={`${name}`}
+      aria-label={`${name} external link`}
+    >
       <label
         htmlFor={`${name}-profile-external-website-button`}
         className="hover:cursor-pointer"
