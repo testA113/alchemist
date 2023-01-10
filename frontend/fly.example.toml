@@ -10,7 +10,6 @@ processes = []
   CAPTCHA_API_KEY = "abw9avfewbyp9afweybfeabyoef"
   SENDGRID_API_KEY = "SG.naeonwfycfnioucfaenouiacenwoucefawno"
   FROM_EMAIL = "test@test.com"
-  GA_TRACKING_ID = "G-asdfergergr"
 
 [experimental]
   allowed_public_ports = []
