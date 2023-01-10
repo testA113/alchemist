@@ -7,22 +7,26 @@ import { Icon } from "../Icon";
 
 import { getButtonClass } from "./getButtonClass";
 
-interface Props extends GetAttributesValues<"links.link"> {
+interface Props
+  extends GetAttributesValues<"links.link">,
+    React.AriaAttributes {
   disabled?: boolean;
   className?: string;
   external?: boolean;
 }
 
-export function LinkButton({
-  to,
-  icon,
-  children,
-  className,
-  mode,
-  size = "md",
-  newTab,
-  external,
-}: PropsWithChildren<Props>) {
+export function LinkButton(props: PropsWithChildren<Props>) {
+  const {
+    to,
+    icon,
+    children,
+    className,
+    mode,
+    size = "md",
+    newTab,
+    external,
+    ...buttonProps
+  } = props;
   const buttonClass = clsx(getButtonClass(mode, size), className);
 
   const renderChildren = () => (
@@ -39,6 +43,7 @@ export function LinkButton({
       className={buttonClass}
       target={newTab ? "_blank" : ""}
       rel={newTab ? "noopener noreferrer" : ""}
+      {...buttonProps}
     >
       {renderChildren()}
     </a>
@@ -49,6 +54,7 @@ export function LinkButton({
       className={buttonClass}
       target={newTab ? "_blank" : ""}
       rel={newTab ? "noopener noreferrer" : ""}
+      {...buttonProps}
     >
       {renderChildren()}
     </Link>

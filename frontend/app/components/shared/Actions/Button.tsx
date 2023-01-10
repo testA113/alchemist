@@ -6,7 +6,9 @@ import { Icon } from "../Icon";
 
 import { getButtonClass } from "./getButtonClass";
 
-interface Props extends GetAttributesValues<"links.button"> {
+interface Props
+  extends GetAttributesValues<"links.button">,
+    React.AriaAttributes {
   onClick?: () => void;
   className?: string;
   disabled?: boolean;
@@ -26,6 +28,7 @@ export const Button = ({
   disabled = false,
   isLoading,
   id,
+  ...buttonProps
 }: PropsWithChildren<Props>) => {
   const buttonClass = clsx(getButtonClass(mode, size), className);
 
@@ -37,6 +40,7 @@ export const Button = ({
       onClick={onClick}
       disabled={disabled || isLoading}
       id={id}
+      {...buttonProps}
     >
       {isLoading && <Icon icon="Loader2" className="animate-spin" />}
       {children}

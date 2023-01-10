@@ -33,13 +33,12 @@ export function links() {
       rel: "stylesheet",
       href: "https://fonts.googleapis.com/css2?family=Suez+One&family=Ubuntu&display=swap",
     },
-    {},
   ];
 }
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
-  title: "New Remix App",
+  title: "Alchemist Mixology",
   viewport: "width=device-width,initial-scale=1",
 });
 
