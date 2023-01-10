@@ -100,6 +100,7 @@ export const sendConfirmationEmail = async (
   htmlContent: string
 ) => {
   const fromEmail = process.env.FROM_EMAIL;
+  console.log(fromEmail);
   if (!fromEmail) {
     return new Error("Error sending email - FROM_EMAIL not set");
   }

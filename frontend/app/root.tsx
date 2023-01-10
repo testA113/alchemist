@@ -10,7 +10,6 @@ import {
   useLoaderData,
 } from "@remix-run/react";
 import type { GetAttributesValues } from "@strapi/strapi";
-import { Partytown } from "@builder.io/partytown/react";
 
 import { NavBar } from "./components/layout/NavBar";
 import { Footer } from "./components/layout/Footer";
@@ -34,6 +33,7 @@ export function links() {
       rel: "stylesheet",
       href: "https://fonts.googleapis.com/css2?family=Suez+One&family=Ubuntu&display=swap",
     },
+    {},
   ];
 }
 
@@ -78,29 +78,14 @@ function Document({ children }: { children: React.ReactNode; title?: string }) {
   return (
     <html lang="en">
       <head>
-        <Partytown debug={true} forward={["dataLayer.push"]} />
         <Meta />
         <Links />
         <script
-          type="text/partytown"
           async
-          src={`https://www.googletagmanager.com/gtag/js?id=${ENV.GA_TRACKING_ID}`}
-        />
-        <script
-          type="text/partytown"
-          async
-          id="gtag-init"
-          dangerouslySetInnerHTML={{
-            __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${ENV.GA_TRACKING_ID}', {
-                  page_path: window.location.pathname,
-                });
-              `,
-          }}
-        />
+          defer
+          data-website-id="34adf423-2416-416e-9bdb-6b5e050b1d0a"
+          src="https://alchemist-analytics.fly.dev/umami.js"
+        ></script>
       </head>
 
       <GoogleReCaptchaProvider
