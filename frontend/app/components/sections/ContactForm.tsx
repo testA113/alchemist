@@ -129,6 +129,7 @@ export function ContactForm({ sectionData }: Props) {
             {...sectionData.submitbutton}
             isLoading={showSubmitting}
             disabled={!isValid}
+            className="umami--click--contact-form-submit"
           >
             {showSubmitting
               ? sectionData.submitbutton.loadingText ?? "Loading..."

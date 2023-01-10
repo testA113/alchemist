@@ -136,7 +136,7 @@ const MobileMenuList = ({
                 </MenuLink>
               ))}
               <MenuLink
-                className="btn btn-lg btn-primary mx-5vw mt-8 md:hidden"
+                className="btn btn-lg btn-primary mx-5vw umami--click--contact-button mt-8 md:hidden"
                 key={actionButton.to}
                 as={Link}
                 to={actionButton.to}
@@ -224,7 +224,7 @@ export const NavBar = ({ data }: NavBarProps) => {
               </div>
               <LinkButton
                 {...navData.actionButton}
-                className="ml-5 hidden md:flex"
+                className="umami--click--contact-button ml-5 hidden md:flex"
               >
                 {navData.actionButton.text}
               </LinkButton>
