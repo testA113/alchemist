@@ -190,7 +190,7 @@ interface NavBarProps {
 }
 export const NavBar = ({ data }: NavBarProps) => {
   const navData = data?.navbar || backupNavData;
-  const imageBaseUrl = data ? undefined : "";
+  const isBackup = !data;
   const logo = navData.logo.data as ImageValues;
 
   return (
@@ -203,7 +203,7 @@ export const NavBar = ({ data }: NavBarProps) => {
                 <StrapiImage
                   image={logo}
                   className="h-20 w-auto md:h-24"
-                  baseUrl={imageBaseUrl}
+                  isBackup={isBackup}
                 />
               )}
             </Link>

@@ -20,7 +20,7 @@ export function ImageCard({
         imageClasses
       )}
       style={{
-        backgroundImage: imageUrl && `url(${ENV.STRAPI_BASEURL}${imageUrl})`,
+        backgroundImage: imageUrl && `url(${imageUrl})`,
       }}
     >
       <div className={childClasses}>{children}</div>
