@@ -5,18 +5,15 @@ type Props = {
   image: ImageValues;
   title?: string;
   className?: string;
-  baseUrl?: string;
 };
 
 export function StrapiImage({
   image: { attributes },
   className,
   title,
-  baseUrl,
 }: Props) {
-  const { url, formats, alternativeText, width, height } = attributes;
-  const imageBaseUrl =
-    typeof baseUrl === "undefined" ? ENV.STRAPI_BASEURL : baseUrl;
+  const { url, formats, alternativeText, width, height, provider } = attributes;
+  const imageBaseUrl = provider === "local" ? ENV.STRAPI_BASEURL : "";
   return (
     <img
       src={`${imageBaseUrl}${url}`}
