@@ -12,7 +12,7 @@ interface Props {
 
 export const Footer = ({ data }: Props) => {
   const imageLogo: ImageValues = data?.footer.logo?.data || backupLogo.data;
-  const imageBaseUrl = data ? undefined : "";
+  const isBackup = !data;
 
   return (
     <footer className="bg-base-100 flex w-full flex-col items-center justify-center pb-6">
@@ -22,7 +22,7 @@ export const Footer = ({ data }: Props) => {
             <StrapiImage
               image={imageLogo}
               className="h-32 w-auto object-cover"
-              baseUrl={imageBaseUrl}
+              isBackup={isBackup}
             />
           )}
         </Link>

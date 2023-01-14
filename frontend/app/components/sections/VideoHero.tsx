@@ -28,7 +28,6 @@ export function VideoHero({ sectionData }: Props) {
   });
   let y = useTransform(scrollYProgress, [0, 1], ["0%", "60%"]);
 
-  const fallBackImage = sectionData.fallbackImage.data.attributes;
   const sentenceEndings = sectionData.cyclingSentence
     .sentenceendings as string[];
   const { primaryButton, link } = sectionData;
@@ -72,14 +71,8 @@ export function VideoHero({ sectionData }: Props) {
             />
           )}
           {/* for small screens */}
-          <img
-            src={sectionData.fallbackImage}
-            alt="Showcase"
-            srcSet={clsx(
-              `${ENV.STRAPI_BASEURL}${fallBackImage.formats.small.url} 640w,`,
-              `${ENV.STRAPI_BASEURL}${fallBackImage.formats.medium.url} 768w,`,
-              `${ENV.STRAPI_BASEURL}${fallBackImage.formats.large.url} 1024w,`
-            )}
+          <StrapiImage
+            image={sectionData.fallbackImage.data}
             className="block h-full w-full object-cover md:hidden lg:hidden"
           />
         </m.div>
