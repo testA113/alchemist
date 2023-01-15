@@ -84,7 +84,7 @@ export function VideoHero({ sectionData }: Props) {
           <h2 className="font-suez !mb-4 text-white">
             {sectionData.cyclingSentence.sentencestart}
           </h2>
-          <h2 className="font-suez !mb-24 italic md:!mb-32">
+          <h2 className="font-suez text-secondary-content !mb-24 italic md:!mb-32">
             <div className="inline min-h-max">
               {sentenceEndings.map((sentenceEnding, index) => (
                 <span
