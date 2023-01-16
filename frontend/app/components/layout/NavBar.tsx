@@ -1,14 +1,13 @@
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { Link } from "@remix-run/react";
 import { Menu as MenuIcon, X } from "lucide-react";
 import {
+  useMenuState,
   Menu,
+  MenuItem,
   MenuButton,
-  MenuItems,
-  MenuLink,
-  MenuPopover,
-  useMenuButtonContext,
-} from "@reach/menu-button";
+  type MenuStateReturn,
+} from "reakit/Menu";
 import { AnimatePresence, motion } from "framer-motion";
 import type { GetAttributesValues } from "@strapi/strapi";
 
@@ -23,6 +22,7 @@ type MobileMenuListProps = {
   navbarLinks: GetAttributesValues<"links.link">[];
   actionButton: GetAttributesValues<"links.link">;
   social?: GetAttributesValues<"elements.socials">;
+  menu: MenuStateReturn;
 };
 
 const backupNavData = {
@@ -83,11 +83,10 @@ const MobileMenuList = ({
   social,
   navbarLinks,
   actionButton,
+  menu,
 }: MobileMenuListProps) => {
-  const { isExpanded } = useMenuButtonContext();
-
   useEffect(() => {
-    if (isExpanded) {
+    if (menu.visible) {
       // don't use overflow-hidden, as that toggles the scrollbar and causes layout shift
       document.body.classList.add("fixed");
       document.body.classList.add("overflow-y-scroll");
@@ -100,18 +99,15 @@ const MobileMenuList = ({
       document.body.style.removeProperty("height");
       document.body.style.removeProperty("width");
     }
-  }, [isExpanded]);
+  }, [menu.visible]);
   return (
     <AnimatePresence>
-      {isExpanded ? (
-        <MenuPopover
-          position={() => ({
-            top: 0,
-            left: 0,
-            bottom: 0,
-            right: 0,
-          })}
-          className="bg-base-100 z-20 block h-[100vh] pt-28 sm:w-[100vw]"
+      {menu.visible ? (
+        <Menu
+          {...menu}
+          placement="top"
+          aria-label="Main Menu"
+          className="bg-base-100 z-20 h-[100vh] w-[100vw] !transform-none pt-28"
         >
           <motion.div
             initial={{ y: -50, opacity: 0 }}
@@ -121,32 +117,39 @@ const MobileMenuList = ({
               duration: 0.15,
               ease: "linear",
             }}
-            className="flex h-full flex-col overflow-y-scroll pb-12"
+            className="flex h-full flex-col pb-12"
           >
-            <MenuItems className="flex flex-col border-none bg-transparent p-0 focus-visible:outline-none">
-              {navbarLinks.map(({ to, text }) => (
-                <MenuLink
-                  className="text-neutral-content focus:bg-base-200 border-base-200 hover:bg-base-200 px-5vw border-b py-6 uppercase transition duration-200"
-                  key={to}
-                  as={Link}
-                  to={to}
-                  id={`${to}-link`}
-                >
-                  {text}
-                </MenuLink>
+            <ul className="flex flex-col border-none bg-transparent p-0 focus-visible:outline-none">
+              {navbarLinks.map(({ to, text }, index) => (
+                <Fragment key={index}>
+                  <MenuItem
+                    className="text-neutral-content focus:bg-base-200 border-base-200 hover:bg-base-200 px-5vw border-b py-6 uppercase transition duration-200"
+                    {...menu}
+                    as={Link}
+                    to={to}
+                    prefetch="intent"
+                    aria-label={text}
+                    onClick={() => menu.hide()}
+                  >
+                    {text}
+                  </MenuItem>
+                </Fragment>
               ))}
-              <MenuLink
-                className="btn btn-lg btn-primary mx-5vw umami--click--contact-button mt-8 md:hidden"
-                key={actionButton.to}
+              <MenuItem
+                {...menu}
                 as={Link}
+                className="btn btn-lg btn-primary mx-5vw umami--click--contact-button mt-8 md:hidden"
                 to={actionButton.to}
+                aria-label={actionButton.text}
+                prefetch="intent"
+                onClick={() => menu.hide()}
               >
                 {actionButton.text}
-              </MenuLink>
+              </MenuItem>
               <SocialIcons social={social} className="mt-8" />
-            </MenuItems>
+            </ul>
           </motion.div>
-        </MenuPopover>
+        </Menu>
       ) : null}
     </AnimatePresence>
   );
@@ -159,29 +162,26 @@ type MobileMenuProps = {
 };
 
 const MobileMenu = ({ social, navbarLinks, actionButton }: MobileMenuProps) => {
+  const menu = useMenuState({ modal: true });
   return (
-    <Menu>
-      {({ isExpanded }) => {
-        return (
-          <>
-            <MenuButton
-              className="btn btn-circle btn-ghost no-animation ml-5"
-              id="menu-button"
-              aria-controls="menu-options"
-              aria-label="menu-button"
-              role="button"
-            >
-              {isExpanded ? <X /> : <MenuIcon />}
-            </MenuButton>
-            <MobileMenuList
-              social={social}
-              navbarLinks={navbarLinks}
-              actionButton={actionButton}
-            />
-          </>
-        );
-      }}
-    </Menu>
+    <>
+      <MenuButton
+        {...menu}
+        className="btn btn-circle btn-ghost no-animation ml-5"
+        id="menu-button"
+        aria-controls="menu-options"
+        aria-label="menu-button"
+        role="button"
+      >
+        {menu.visible ? <X /> : <MenuIcon />}
+      </MenuButton>
+      <MobileMenuList
+        menu={menu}
+        social={social}
+        navbarLinks={navbarLinks}
+        actionButton={actionButton}
+      />
+    </>
   );
 };
 

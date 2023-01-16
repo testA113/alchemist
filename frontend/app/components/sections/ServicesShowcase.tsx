@@ -45,11 +45,13 @@ export function ServicesShowcase({ sectionData }: Props) {
                 </p>
                 <LinkButton
                   mode="link"
-                  className="inline-flex items-center"
+                  className="flex items-center"
                   to={`services/${service.attributes.slug}`}
                 >
-                  {`See more about ${service.attributes.name}`}
-                  <ChevronRight />
+                  <span className="flex items-center">
+                    {`See more about ${service.attributes.name}`}
+                    <ChevronRight className="inline-flex shrink-0" />
+                  </span>
                 </LinkButton>
               </ImageCard>
             </div>

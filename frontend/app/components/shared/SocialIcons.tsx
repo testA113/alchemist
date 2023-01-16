@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { VisuallyHidden } from "@reach/visually-hidden";
+import { VisuallyHidden } from "reakit/VisuallyHidden";
 import { Facebook, Instagram, Mail, Phone } from "lucide-react";
 import type { GetAttributesValues } from "@strapi/strapi";
 
