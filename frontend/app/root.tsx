@@ -14,7 +14,7 @@ import type { GetAttributesValues } from "@strapi/strapi";
 import { NavBar } from "./components/layout/NavBar";
 import { Footer } from "./components/layout/Footer";
 import { PageError } from "./components/shared/Alert/PageError";
-import { getEnv } from "./env.server";
+import { getEnv } from "./utils/env.server";
 import styles from "./styles/app.css";
 import { getNavBar } from "./components/layout/navbar.server";
 import { getFooter } from "./components/layout/footer.server";
