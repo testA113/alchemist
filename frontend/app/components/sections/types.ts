@@ -7,7 +7,7 @@ import type {
   RequiredAttribute,
   RichTextAttribute,
 } from "@strapi/strapi";
-import { StrapiData } from "~/types";
+import { type StrapiData } from "~/types";
 
 import type { ImageData } from "../shared/types";
 
