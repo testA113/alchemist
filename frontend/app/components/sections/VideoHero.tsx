@@ -6,6 +6,7 @@ import {
   domAnimation,
   m,
 } from "framer-motion";
+import { VisuallyHidden } from "reakit/VisuallyHidden";
 import { useEffect, useRef, useState } from "react";
 
 import { Button } from "~/components/shared/Actions/Button";
@@ -84,7 +85,7 @@ export function VideoHero({ sectionData }: Props) {
           <h2 className="font-suez !mb-4 text-white">
             {sectionData.cyclingSentence.sentencestart}
           </h2>
-          <h2 className="font-suez text-secondary-content !mb-24 italic md:!mb-32">
+          <h2 className="font-suez !mb-24 italic md:!mb-32">
             <div className="inline min-h-max">
               {sentenceEndings.map((sentenceEnding, index) => (
                 <span
@@ -103,18 +104,29 @@ export function VideoHero({ sectionData }: Props) {
             </div>
           </h2>
         </div>
-        <div className="flex w-full justify-start gap-6">
+        <div className="xs:justify-start flex w-full justify-between gap-6">
           {primaryButton && (
             <LinkButton {...primaryButton}>{primaryButton.text}</LinkButton>
           )}
           {link && (
-            <Button
-              {...link}
-              className="xs:flex hidden"
-              onClick={() => scrollDown()}
-            >
-              {link.text}
-            </Button>
+            <>
+              <Button
+                {...link}
+                id={"expanded-learn-more-button"}
+                className="xs:flex hidden"
+                onClick={() => scrollDown()}
+              >
+                {link.text}
+              </Button>
+              <Button
+                {...link}
+                id={"minimised-learn-more-button"}
+                className="xs:hidden btn-circle btn-primary animate-bobbing flex"
+                onClick={() => scrollDown()}
+              >
+                <VisuallyHidden>{link.text}</VisuallyHidden>
+              </Button>
+            </>
           )}
         </div>
       </div>

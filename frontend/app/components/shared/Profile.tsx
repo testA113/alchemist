@@ -32,7 +32,7 @@ export const Profile = ({ client, className = "column" }: Props) => {
         </div>
       )}
       <div className="flex w-full items-center justify-around gap-y-2 gap-x-4">
-        <h4 className="!my-4 flex !no-underline">{name}</h4>
+        <p className="!my-4 flex !no-underline">{name}</p>
         {websiteLink && (
           <Button
             type="button"

@@ -29,9 +29,15 @@ module.exports = {
           "80%": { opacity: "0" },
           "100%": { opacity: "0" },
         },
+        bobbing: {
+          "0%": { transform: "translateY(0px)" },
+          "25%": { transform: "translateY(5px)" },
+          "50%": { transform: "translateY(0px)" },
+        },
       },
       animation: {
         rotateword: "rotateword 12s linear infinite",
+        bobbing: "bobbing 2s ease-out infinite",
       },
       typography: {
         DEFAULT: {
