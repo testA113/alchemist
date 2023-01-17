@@ -19,6 +19,7 @@ JWT_SECRET = "ereryovb7isybvoi"
 AWS_ACCESS_KEY_ID = "ERIUHEFRIUERFP"
 AWS_ACCESS_SECRET = "efhiuerernuerowiuneoiuer"
 AWS_BUCKET = "alchemist-prod"
+CDN_BASE_URL = "https://asdfasdf.cloudfront.net"
 
 
 [experimental]
