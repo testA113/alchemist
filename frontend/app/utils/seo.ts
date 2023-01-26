@@ -2,7 +2,9 @@ import type { GetAttributesValues } from "@strapi/strapi";
 
 export const getStrapiSeo = (seo: GetAttributesValues<"shared.seo">) => {
   const { title, description, keywords } = seo;
-  const image = `${ENV.STRAPI_BASEURL}${seo.image.data.attributes?.url}`;
+  const { url, provider } = seo.image.data.attributes;
+  const baseUrl = provider === "local" ? ENV?.STRAPI_BASEURL : "";
+  const image = `${baseUrl}${url}`;
   return {
     title,
     description,

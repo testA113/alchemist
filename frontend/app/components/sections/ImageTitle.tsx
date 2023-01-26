@@ -38,8 +38,8 @@ export function ImageTitle({ sectionData }: Props) {
       </LazyMotion>
       <div className="pt-96">
         <div className="px-10vw from-base-100 z-20 flex flex-col items-start gap-6 bg-gradient-to-t to-transparent">
-          <div className="prose-xl md:prose-2xl lg:prose-3xl relative flex w-full flex-col flex-wrap pr-24 md:w-[60%] lg:w-[50%]">
-            <h2 className="font-suez !mb-4 text-white">{sectionData.title}</h2>
+          <div className="prose-lg md:prose-xl lg:prose-2xl relative flex w-full flex-col flex-wrap pr-24 md:w-[60%] lg:w-[50%]">
+            <h1 className="font-suez !mb-4 text-white">{sectionData.title}</h1>
           </div>
         </div>
       </div>
