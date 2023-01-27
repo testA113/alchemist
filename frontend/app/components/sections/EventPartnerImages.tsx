@@ -27,8 +27,7 @@ export function EventPartnerImages({ sectionData }: Props) {
           <div
             key={index}
             className={clsx(
-              "max-h-[130px] min-w-[100px] max-w-[130px] flex-[12%]",
-              index > 7 && "hidden md:block"
+              "max-h-[130px] min-w-[100px] max-w-[130px] flex-[12%]"
             )}
           >
             {partner.attributes.websiteLink ? (

@@ -24,7 +24,7 @@ export const Profile = ({ client, className = "column" }: Props) => {
         <StrapiImage
           image={image.data}
           title={name}
-          className="!m-0 h-16 w-auto object-contain"
+          className="!m-0 h-16 w-auto object-contain md:max-w-[30%]"
         />
       ) : (
         <div className="flex h-16 w-16 flex-col items-center justify-center rounded-2xl">
@@ -38,7 +38,7 @@ export const Profile = ({ client, className = "column" }: Props) => {
             type="button"
             mode="default"
             icon="ChevronRight"
-            className="btn-circle btn-outline transform duration-300 ease-in-out hover:translate-x-1"
+            className="btn-circle btn-outline hidden transform duration-300 ease-in-out hover:translate-x-1 lg:flex"
             aria-label={`${name}`}
           />
         )}
