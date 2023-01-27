@@ -19,7 +19,7 @@ export function ServicesShowcase({ sectionData }: Props) {
   const serviceData = sectionData.services as ServiceData | undefined;
   return (
     <section className="bg-base-100 px-10vw prose prose-lg md:prose-xl lg:prose-2xl flex w-full !max-w-full flex-col flex-wrap gap-x-24 py-24 md:flex-row">
-      <div className="mb-8 h-min flex-none text-center md:sticky md:top-48 md:mb-0 md:w-1/3 md:text-left">
+      <div className="mb-8 h-min flex-none text-center md:sticky md:top-24 md:mb-0 md:w-1/3 md:text-left">
         <Markdown>{sectionData.titleContent}</Markdown>
       </div>
 
