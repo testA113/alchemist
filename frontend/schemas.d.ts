@@ -638,6 +638,11 @@ export interface ApiClientClient extends CollectionTypeSchema {
     name: StringAttribute & RequiredAttribute;
     image: MediaAttribute;
     websiteLink: StringAttribute;
+    importance: IntegerAttribute &
+      SetMinMax<{
+        min: 1;
+        max: 10;
+      }>;
     createdAt: DateTimeAttribute;
     updatedAt: DateTimeAttribute;
     publishedAt: DateTimeAttribute;
