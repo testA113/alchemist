@@ -29,6 +29,11 @@
         },
         "websiteLink": {
             "type": "string"
+        },
+        "importance": {
+            "type": "integer",
+            "max": 10,
+            "min": 1
         }
     }
 }

@@ -1,10 +1,10 @@
 import Markdown from "markdown-to-jsx";
 import clsx from "clsx";
-import { type GetAttributesValues } from "@strapi/strapi";
 
 import { StrapiImage } from "../shared/StrapiImage";
 
 import type { SectionValues } from "./types";
+import type { StrapiDataArray } from "~/types";
 
 type Props = {
   sectionData: SectionValues<"sections.event-partners">;
@@ -13,17 +13,18 @@ type Props = {
 // react component with a 3x2 grid of images that can be horizontally scrolled using embla-carousel
 export function EventPartnerImages({ sectionData }: Props) {
   const partnersData = sectionData.clients as
-    | {
-        data: { attributes: GetAttributesValues<"api::client.client"> }[];
-      }
+    | StrapiDataArray<"api::client.client">
     | undefined;
+  const partnersByImportance = partnersData?.data.sort(
+    (i, j) => (j.attributes.importance || 0) - (i.attributes.importance || 0)
+  );
   return (
     <section className="bg-base-100 px-10vw flex w-full !max-w-full flex-col items-center py-24">
       <div className="prose prose-lg md:prose-xl lg:prose-2xl mb-12">
         <Markdown>{sectionData.titleContent}</Markdown>
       </div>
       <div className="flex flex-wrap items-center justify-center gap-8">
-        {partnersData?.data.map((partner, index) => (
+        {partnersByImportance?.map((partner, index) => (
           <div
             key={index}
             className={clsx(
