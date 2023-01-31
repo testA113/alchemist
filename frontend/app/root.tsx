@@ -19,6 +19,7 @@ import styles from "./styles/app.css";
 import { getNavBar } from "./components/layout/navbar.server";
 import { getFooter } from "./components/layout/footer.server";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
+import { StructuredData } from "remix-utils";
 
 export function links() {
   return [
@@ -79,6 +80,7 @@ function Document({ children }: { children: React.ReactNode; title?: string }) {
       <head>
         <Meta />
         <Links />
+        <StructuredData />
         <script
           async
           defer
