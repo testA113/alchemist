@@ -1,6 +1,7 @@
-import { json, type MetaFunction } from "@remix-run/node";
+import { json, type SerializeFrom, type MetaFunction } from "@remix-run/node";
 import { useCatch, useLoaderData } from "@remix-run/react";
 import type { GetAttributesValues } from "@strapi/strapi";
+import { type StructuredDataFunction } from "remix-utils";
 
 import { getPage } from "./index.server";
 import { PageError } from "~/components/shared/Alert/PageError";
@@ -38,6 +39,18 @@ export const meta: MetaFunction = ({ data }) => {
   } = data as HomeResponse;
   return getStrapiSeo(seo);
 };
+
+let structuredData: StructuredDataFunction<
+  SerializeFrom<typeof loader>,
+  any
+> = ({ data }) => {
+  const {
+    homeData: { seo },
+  } = data as HomeResponse;
+
+  return seo.structuredData;
+};
+export let handle = { structuredData };
 
 export default function Index() {
   const {

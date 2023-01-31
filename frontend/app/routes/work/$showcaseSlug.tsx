@@ -1,4 +1,9 @@
-import { json, type MetaFunction, type LoaderArgs } from "@remix-run/node";
+import {
+  json,
+  type MetaFunction,
+  type LoaderArgs,
+  SerializeFrom,
+} from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import type { GetAttributesValues } from "@strapi/strapi";
 import type { StrapiData, StrapiDataArray } from "~/types";
@@ -8,6 +13,7 @@ import { Statistics } from "~/components/shared/Statistics";
 import { Profile } from "~/components/shared/Profile";
 import { LinkButton } from "~/components/shared/Actions/LinkButton";
 import { getStrapiSeo } from "~/utils/seo";
+import { StructuredDataFunction } from "remix-utils";
 
 export async function loader({ params }: LoaderArgs) {
   // get the slug from the params
@@ -46,6 +52,20 @@ export const meta: MetaFunction = ({ data }) => {
   };
   return getStrapiSeo(seo);
 };
+
+let structuredData: StructuredDataFunction<
+  SerializeFrom<typeof loader>,
+  any
+> = ({ data }) => {
+  const {
+    eventData: { seo },
+  } = data as {
+    eventData: GetAttributesValues<"api::showcase.showcase">;
+  };
+
+  return seo.structuredData;
+};
+export let handle = { structuredData };
 
 export default function Event() {
   const data = useLoaderData() as {
