@@ -51,7 +51,7 @@ export const action = async ({ request }: ActionArgs) => {
 
   // check the google captchav3 token score and return an error if it is too low
   const tokenScore = await createAssessment(dataResult.submittedData.token);
-  if (!tokenScore || tokenScore < 0.8) {
+  if (!tokenScore || tokenScore < 0.9) {
     return redirect("/contact-us/robot");
   }
 
