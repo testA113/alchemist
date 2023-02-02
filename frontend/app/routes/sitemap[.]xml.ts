@@ -66,7 +66,7 @@ export async function loader() {
     });
   }
   const showcaseSitemapEntries = workData.data.map((showcase) => ({
-    loc: `/showcases/${showcase.attributes.slug}`,
+    loc: `/work/${showcase.attributes.slug}`,
     lastmod: showcase.attributes.updatedAt,
     priority: 0.8,
     changefreq: "monthly",
